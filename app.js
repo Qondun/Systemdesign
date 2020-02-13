@@ -31,6 +31,15 @@ app.get('/dispatcher', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/dispatcher.html'));
 });
 
+app.get('/arranger', function(req, res) {
+  res.sendFile(path.join(__dirname, 'views/arranger.html'));
+});
+
+app.get('/ongoing_event', function(req, res) {
+  res.sendFile(path.join(__dirname, 'views/ongoing_event.html'));
+});
+
+
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {

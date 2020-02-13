@@ -1,0 +1,22 @@
+main {
+	background-color: pink;
+}
+
+.menu {
+	height: 100%;
+	width: 480px;
+	background-color: black;
+	color: white;
+	margin-left: 50px;
+}
+
+.menuButton {
+	height: 100px;
+	width: 480px;
+}
+
+.title {
+	overflow: hidden;
+	height: 300px;
+	width: 100%;	
+}

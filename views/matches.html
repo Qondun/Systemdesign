@@ -1,23 +1,32 @@
 <html>
-  <head>
+
+<head>
     <title>All matches</title>
     <meta charset="utf-8" />
     <script src="https://vuejs.org/js/vue.js" defer></script>
     <script src="js/algorithm.js" defer></script>
-  </head>
-  <body>
+    <link rel="stylesheet" href="css/matches.css" defer>
+</head>
+
+<body>
     <main>
-        <div id="allMatches" v-for="pair of Pairs">
-            <div class="bigBox">
-                <img src="https://reterdeen.com/wp-content/uploads/2019/10/arnold.jpg" class="manPic"></img>
-                <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="womanPic"></img>
-                <p class="manName">{{pair.man}}</p>
-                <p class="womanName">Miss stock photo</p>
-            </div>
-        </div>
+        <div id="allMatches">
+            <div v-for="pair in pairs">
+                <div class="singlePair">
+                    <img src="https://reterdeen.com/wp-content/uploads/2019/10/arnold.jpg" class="manPic"></img>
+
+                    <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                        class="womanPic"></img>
+                    <span class="manName">{{pair.man}}</span>
+                    <span class="womanName">{{pair.woman}}</span>
+                    <span class="matchIndicator">99%<span>
+                        </div>
+                    </div>
+                </div>
     </main>
-  </body>
-  <footer>
-    
-  </footer>
+</body>
+<footer>
+
+</footer>
+
 </html>

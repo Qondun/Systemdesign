@@ -1,0 +1,31 @@
+.manName{
+    grid-column: 1;
+}
+.womanName{
+    grid-column: 3;
+}
+.manPic{
+    height: 200px;
+    width: 200px;
+    grid-column: 1;
+}
+.womanPic{
+    height: 200px;
+    width: 200px;
+    grid-column: 3;
+}
+.matchIndicator{
+    grid-column: 2;
+    text-align: center;
+    color: red;
+    font-size: xx-large;
+    margin-top: -150px;
+}
+.singlePair{
+    border-style: solid;
+    display: grid;
+    grid-template-columns: 200px 100px 200px;
+    width: 500px;
+    margin: 5px;
+    background-color: lightsalmon;
+}

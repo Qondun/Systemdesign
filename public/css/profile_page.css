@@ -1,15 +1,3 @@
-body {
-    background: #000000;
-}
-#main_box {
-    width: 480px;
-    height: 100%;
-    background: #fff;
-    margin: auto;
-}
-#main_box h1 {
-    text-align: center;
-}
 #back_button {
     height: 50px;
     width: 50px;

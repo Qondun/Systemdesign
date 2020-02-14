@@ -1,6 +1,5 @@
-
-
 const Algorithm  = new Vue({
+    el: '#allMatches',
     data:{
         men: [],
         women: [],
@@ -28,6 +27,9 @@ const Algorithm  = new Vue({
             for (var pair of this.pairs){
                 console.log(pair.man.toString() + " - " + pair.woman.toString());
             } 
+        },
+        printPair: function(pair){
+            return pair.man.toString() + " - " + pair.woman.toString();
         },
         testSetup: function(){
             this.addPerson("Anders", true); 

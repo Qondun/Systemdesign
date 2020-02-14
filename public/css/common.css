@@ -1,5 +1,6 @@
 body {
     background: #000000;
+    font-family: Arial;
 }
 #main_box {
     width: 480px;
@@ -8,5 +9,6 @@ body {
     margin: auto;
 }
 #main_box h1 {
+    margin: auto;
     text-align: center;
 }

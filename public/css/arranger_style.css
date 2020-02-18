@@ -3,7 +3,7 @@ main {
 }
 
 .menu {
-	height: 100%;
+	height: auto;
 	width: 480px;
 	background-color: black;
 	color: white;

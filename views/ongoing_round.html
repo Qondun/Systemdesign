@@ -2,6 +2,8 @@
 	<main>
 	<head>
 		<link rel="stylesheet" type="text/css" href="/css/arranger_style.css">
+		<script src="https://vuejs.org/js/vue.js" defer></script>
+    	<script src="js/arranger.js" defer></script>
 		<title>
 			SpeedArranger - Ongoing Round
 		</title>
@@ -13,7 +15,7 @@
 
 		<section class="menu">
 			<form action="ongoing_event">
-				<input class="menuButton" type="submit" value="End round">
+				<input class="menuButton" type="submit" value="End round" v-on:clic="nextRound">
 			</form>
 		</section>
 	</body>

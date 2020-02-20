@@ -58,12 +58,10 @@ io.on('connection', function(socket) {
 
   // When a connected client emits an "addOrder" message
   socket.on('addOrder', function(order) {
-    console.log(order.pairs);
     data.addOrder(order);
     // send updated info to all connected clients,
     // note the use of io instead of socket
     io.emit('currentQueue', { orders: data.getAllOrders() });
-    console.log(data.getAllOrders());
   });
 
 });

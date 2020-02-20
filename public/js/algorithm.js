@@ -68,12 +68,6 @@ const btn = new Vue({
     el: '#nextButton',
     methods: {
         toRematch: function(){
-            for(var pair of Algorithm.pairs){
-                /*if(pair.selected){
-                    Algorithm.umatchedMen.push(pair.man);
-                    Algorithm.umatchedWomen.push(pair.woman);
-                }*/
-            }
             socket.emit('addOrder', 
             {pairs: Algorithm.pairs}
             )

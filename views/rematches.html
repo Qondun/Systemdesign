@@ -10,28 +10,27 @@
 </head>
 
 <body>
-    <main>
+    <main id="main">
         <a href="matches">
             <div id="back_button">
             </div>
         </a>
-        <p id="rubrik">Rematch</p>
+        <p id="rubrik">Matcha om</p>
         <hr>
 
         <div id="chosenGrid">
-            <button id="leftButton"></button>
-            <img :src="{{pairs[0].man.picture}}">
-            <button id="leftButton"></button>
+            <button id="leftButton">Vänster</button>
+            <img id ="chosenPicture" v-bind:src="chosenPerson.picture">
+            <button id="leftButton">Höger</button>
+            <p id="chosenName">{{chosenPerson.name}}</p>
         </div>
-
+        <hr>
         <div id="allUnmatched">
-            <div v-for="pair in pairs">
-                <div class="singlePair" v-on:click="selectPair(pair.index)"
-                    v-bind:style="pair.selected ? 'filter: grayscale(100%);' : 'filter: grayscale(0%);'">
-                    <img :src="pair.man.picture" class="manPic"></img>
-                    <img :src="pair.woman.picture" class="womanPic"></img>
-                    <span class="manName">{{pair.man.name}}</span>
-                    <span class="womanName">{{pair.woman.name}}</span>
+            <div v-for="person in unmatchedWomen">
+                <div class="singlePerson">
+                    <img :src="person.picture" class="Picture"></img>
+                    <button class="matchButton">Matcha ihop!</button>
+                    <span class="nameLabel">{{person.name}}</span>
                 </div>
             </div>
         </div>

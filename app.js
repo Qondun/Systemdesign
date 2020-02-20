@@ -22,10 +22,12 @@ app.use('/vue',
 app.get('/profile_page', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/profile_page.html'));
 });
+app.get('/user_menu', function(req, res) {
+  res.sendFile(path.join(__dirname, '/views/user_menu.html'));
+});
 app.get('/example', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/example.html'));
-})
-
+});
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {

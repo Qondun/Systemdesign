@@ -1,6 +1,3 @@
-#main_box {
-    background: #ffffff;
-}
 #back_button {
   width: 20px; 
   height: 0; 
@@ -46,4 +43,6 @@ input[type=number] {
     height: 50px;
     width: 250px;
     margin-bottom: 50px;
+    background: #ff807a;
+    color: #000;
 }

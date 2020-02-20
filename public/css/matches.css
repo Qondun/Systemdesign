@@ -22,10 +22,38 @@
     margin-top: -150px;
 }
 .singlePair{
-    border-style: solid;
     display: grid;
     grid-template-columns: 200px 100px 200px;
     width: 500px;
-    margin: 5px;
+    margin: 15px auto;
     background-color: lightsalmon;
+    box-shadow: 5px 8px #555555;
+}
+.singlePair:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+#rubrik{
+    text-align: center;
+    font-size: xx-large;
+}
+#allMatches{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+#back_button {
+    position: fixed;
+    width: 20px;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right:30px solid black;
+    float: left;
+    margin-top: 10px;
+  }
+#nextButton{
+    font-size: x-large;
+}
+#nextButtonContainer{
+    text-align: center;
 }

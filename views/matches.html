@@ -10,19 +10,27 @@
 
 <body>
     <main>
+        <a href="#">
+            <div id="back_button">
+            </div>
+        </a>
+        <p id="rubrik">All matches</p>
+        <hr>
         <div id="allMatches">
             <div v-for="pair in pairs">
-                <div class="singlePair">
-                    <img src="https://reterdeen.com/wp-content/uploads/2019/10/arnold.jpg" class="manPic"></img>
-
-                    <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                        class="womanPic"></img>
-                    <span class="manName">{{pair.man}}</span>
-                    <span class="womanName">{{pair.woman}}</span>
-                    <span class="matchIndicator">99%<span>
-                        </div>
-                    </div>
+                <div class="singlePair" v-on:click="selectPair(pair.index)"
+                    v-bind:style="pair.selected ? 'filter: grayscale(100%);' : 'filter: grayscale(0%);'">
+                    <img :src="pair.man.picture" class="manPic"></img>
+                    <img :src="pair.woman.picture" class="womanPic"></img>
+                    <span class="manName">{{pair.man.name}}</span>
+                    <span class="womanName">{{pair.woman.name}}</span>
+                    <span class="matchIndicator">{{pair.percentMatch}}%<span>
                 </div>
+            </div>
+        </div>
+        <div id="nextButtonContainer">
+            <Button id="nextButton" v-on:click="toRematch" href="#">Next</Button>
+        </div>
     </main>
 </body>
 <footer>

@@ -25,6 +25,9 @@ app.get('/profile_page', function(req, res) {
 app.get('/matches', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/matches.html'));
 });
+app.get('/rematches', function(req, res) {
+  res.sendFile(path.join(__dirname, '/views/rematches.html'));
+});
 app.get('/example', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/example.html'));
 })
@@ -39,8 +42,8 @@ function Data() {
   Adds an order to to the queue
 */
 Data.prototype.addOrder = function(order) {
-  // Store the order in an "associative array" with orderId as key
-  this.orders[order.orderId] = order;
+  // Store the order in an "associative array" with orderId as key¨
+  this.orders = order;
 };
 
 Data.prototype.getAllOrders = function() {
@@ -55,10 +58,12 @@ io.on('connection', function(socket) {
 
   // When a connected client emits an "addOrder" message
   socket.on('addOrder', function(order) {
+    console.log(order.pairs);
     data.addOrder(order);
     // send updated info to all connected clients,
     // note the use of io instead of socket
     io.emit('currentQueue', { orders: data.getAllOrders() });
+    console.log(data.getAllOrders());
   });
 
 });

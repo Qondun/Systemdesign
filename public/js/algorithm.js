@@ -1,13 +1,19 @@
+'use strict';
+const socket = io();
+
 const Algorithm  = new Vue({
     el: '#allMatches',
     data:{
         men: [],
         women: [],
-        pairs: []
+        pairs: [],
+        umatchedMen: [],
+        unmatchedWomen: [],
+        newPairs: []
     },
     methods:{
         stdPair: function(){
-            for(i = 0; i<this.men.length; i++){
+            for(var i = 0; i<this.men.length; i++){
                 this.pairs.push(
                     {
                         index: i,
@@ -34,7 +40,7 @@ const Algorithm  = new Vue({
         },
         printPairs: function(){
             for (var pair of this.pairs){
-                console.log(pair.man.toString() + " - " + pair.woman.toString());
+                console.log(pair.man.name + " - " + pair.woman.name);
             } 
         },
         printPair: function(pair){
@@ -62,12 +68,18 @@ const btn = new Vue({
     el: '#nextButton',
     methods: {
         toRematch: function(){
-            console.log("Till ommatchningen!")
-            //Anything here?
+            for(var pair of Algorithm.pairs){
+                /*if(pair.selected){
+                    Algorithm.umatchedMen.push(pair.man);
+                    Algorithm.umatchedWomen.push(pair.woman);
+                }*/
+            }
+            socket.emit('addOrder', 
+            {pairs: Algorithm.pairs}
+            )
         }
     }
 })
 
 Algorithm.testSetup();
 Algorithm.stdPair();
-Algorithm.printPairs();

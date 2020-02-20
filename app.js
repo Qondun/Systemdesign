@@ -26,6 +26,11 @@ app.get('/example', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/example.html'));
 })
 
+app.get('/question_page', function(req, res) {
+  res.sendFile(path.join(__dirname, '/views/question_page.html'));
+})
+
+
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {

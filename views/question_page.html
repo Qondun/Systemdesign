@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>Question page</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/question_page.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/question_page_vue.js" defer></script>
+</head>
+
+<body>
+    <main id="main_box">
+        <h1>Question Page</h1>
+        <div id="user_img"></div>
+        <form id="n_p_button">
+            <div id="left_button">
+                <h4 id="previous_q">Previous question</h4>
+                <a href="#">
+                </a>
+            </div>
+            <div id="right_button">
+                <h4 id="next_q">Next question</h4>
+                <a href="#">
+                </a>
+            </div>
+        </form>
+        <section id="questions">
+
+
+            <div class="qustion" id="qustion_menu" v-if="questioning== false">
+                <h2>question 1?</h2>
+                <input class="q_button" type="submit" id="q_yes" value="Yes" v-if="questionDone == false" v-on:click="questioning"></input>
+                <input class="q_button" type="submit" id="q_no" value="No" v-if="questionDone == false" v-on:click="questioning"></input><br>
+
+            </div>
+            <!--
+            <div>
+                <h2>question 2?</h2>
+                <button id="q_yes" v-on:click="q2_on_click">Yes</button>
+                <button id="q_no" v-on:click="q2_on_click">No</button>
+
+            </div>
+            <div>
+                <h2>question 3?</h2>
+                <button id="q_yes" v-on:click="q3_on_click">Yes</button>
+                <button id="q_no" v-on:click="q3_on_click">No</button>
+
+            </div>
+        -->
+        </section>
+
+
+    </main>
+</body>
+
+<footer>
+
+</footer>
+
+</html>

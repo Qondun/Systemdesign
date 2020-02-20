@@ -1,12 +1,13 @@
 body {
     background: #000000;
+    font-family: Arial;
 }
 #main_box {
     width: 480px;
-    /*height: 100%;*/
     background: #fff;
     margin: auto;
 }
 #main_box h1 {
+    margin: auto;
     text-align: center;
 }

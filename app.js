@@ -25,6 +25,9 @@ app.get('/profile_page', function(req, res) {
 app.get('/user_menu', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/user_menu.html'));
 });
+app.get('/matches', function(req, res) {
+  res.sendFile(path.join(__dirname, '/views/matches.html'));
+});
 app.get('/example', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/example.html'));
 });

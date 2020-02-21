@@ -15,4 +15,8 @@
     margin-bottom: 60px;
     color: #000000;
     padding-top: 2px;
+    box-shadow: 3px 3px #000;
+}
+.menu_buttons:hover{
+    opacity: 0.5;
 }

@@ -1,12 +1,3 @@
-#back_button {
-  width: 20px; 
-  height: 0; 
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent; 
-  
-  border-right:30px solid black;
-  float: left;
-}
 #user_img {
     width: 200px;
     height: 300px;
@@ -45,4 +36,7 @@ input[type=number] {
     margin-bottom: 50px;
     background: #ff807a;
     color: #000;
+}
+#submit_button:hover {
+    cursor: pointer;
 }

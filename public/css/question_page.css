@@ -16,12 +16,22 @@
     height: 50px;
     width: 110px;
     margin-bottom: 50px;
+    background: green;
+}
+
+#q_yes:hover {
+    opacity: 0.5;
 }
 
 #q_no {
     height: 50px;
     width: 110px;
     margin-bottom: 50px;
+    background: red;
+}
+
+#q_no:hover {
+    opacity: 0.5;
 }
 
 #left_button {
@@ -32,6 +42,7 @@
     border-right: 30px solid black;
     float: left;
 }
+
 #left_button:hover {
     opacity: 0.5;
 }
@@ -44,6 +55,7 @@
     border-left: 30px solid black;
     float: right;
 }
+
 #right_button:hover {
     opacity: 0.5;
 }
@@ -63,7 +75,11 @@
 
 .q_button {
     background: #ff807a;
+    height: 50px;
+    width: 110px;
+    margin-bottom: 50px;
 }
+
 .q_button:hover {
     opacity: 0.5;
 }
@@ -87,6 +103,7 @@
     margin: auto;
     float: left;
 }
-#answer_list{
+
+#answer_list {
     list-style-type: none;
 }

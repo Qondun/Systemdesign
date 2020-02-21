@@ -1,7 +1,3 @@
-#main_box {
-    background: #ffffff;
-}
-
 #questions {
     margin-top: 100px;
     text-align: center;
@@ -57,4 +53,28 @@
 
 #n_p_button {
     margin-top: 40px;
+}
+
+.q_button {
+    background: #ff807a;
+}
+
+#question {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+#test {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+.list_box {
+    width: 50%;
+    margin: auto;
+    float: left;
 }

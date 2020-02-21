@@ -3,12 +3,14 @@ body {
     font-family: Arial;
     height: 100%
 }
+
 #main_box {
     width: 480px;
-    background: #eeeeee ;
+    background: #eeeeee;
     margin: auto;
     min-height: 100%;
 }
+
 #main_box h1 {
     margin: auto;
     text-align: center;

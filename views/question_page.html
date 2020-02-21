@@ -13,42 +13,41 @@
     <main id="main_box">
         <h1>Question Page</h1>
         <div id="user_img"></div>
-        <form id="n_p_button">
+
+        <a href="#" v-on:click="decrementNumber()">
             <div id="left_button">
-                <h4 id="previous_q">Previous question</h4>
-                <a href="#">
-                </a>
             </div>
+        </a>
+        <a href="#" v-on:click="incrementNumber()">
             <div id="right_button">
-                <h4 id="next_q">Next question</h4>
-                <a href="#">
-                </a>
             </div>
-        </form>
-        <section id="questions">
+        </a>
+        <div id="question" v-if="questionNumber <= 3">
+            <h2>question {{questionNumber}}/3</h2>
+            <p>{{questions[questionNumber-1]}}</p>
+            <button class="q_button" id="q_yes" v-on:click="addAnswerYes">Yes</button>
+            <button class="q_button" id="q_no" v-on:click="addAnswerNo">No</button><br>
 
-
-            <div class="qustion" id="qustion_menu" v-if="questioning== false">
-                <h2>question 1?</h2>
-                <input class="q_button" type="submit" id="q_yes" value="Yes" v-if="questionDone == false" v-on:click="questioning"></input>
-                <input class="q_button" type="submit" id="q_no" value="No" v-if="questionDone == false" v-on:click="questioning"></input><br>
-
+        </div>
+        <div id="test" v-if="questionNumber == 4">
+            <h2>Submit your info</h2>
+            <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
+            <div class="list_box">
+                <ol>
+                    <li v-for="question in questions">
+                        {{question}}
+                    </li>
+                </ol>
             </div>
-            <!--
-            <div>
-                <h2>question 2?</h2>
-                <button id="q_yes" v-on:click="q2_on_click">Yes</button>
-                <button id="q_no" v-on:click="q2_on_click">No</button>
-
+            <div class="list_box">
+                <ol>
+                    <li v-for="answer in answers">
+                        {{answer}}
+                    </li>
+                </ol>
             </div>
-            <div>
-                <h2>question 3?</h2>
-                <button id="q_yes" v-on:click="q3_on_click">Yes</button>
-                <button id="q_no" v-on:click="q3_on_click">No</button>
-
-            </div>
-        -->
-        </section>
+            <button class="q_button" id="q_no" v-on:click="submitAnswers">Submit answers</button><br>
+        </div>
 
 
     </main>

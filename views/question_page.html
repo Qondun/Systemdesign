@@ -25,10 +25,9 @@
         <div id="question" v-if="questionNumber <= 3">
             <h2>question {{questionNumber}}/3</h2>
             <p>{{questions[questionNumber-1]}}</p>
-
             <button id="q_yes" v-on:click="addAnswerYes">Yes</button>
             <button id="q_no" v-on:click="addAnswerNo">No</button><br>
-
+            <p>{{answers[answerNumber-1]}}</p>
         </div>
         <div id="test" v-if="questionNumber == 4">
             <h2>Answers confirmation</h2>
@@ -48,7 +47,7 @@
                 </ol>
             </div>
             <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
-            <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed</p>
+            <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
         </div>
 
 

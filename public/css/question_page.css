@@ -99,11 +99,26 @@
     cursor: pointer;
 }
 
+.q_button:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
 .q_button:hover {
     opacity: 0.5;
 }
 
 #question {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+#answer {
     width: 80%;
     height: 200px;
     margin: auto;

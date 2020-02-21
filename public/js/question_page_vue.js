@@ -2,9 +2,10 @@ const vm = new Vue({
     el: '#main_box',
     data: {
         questions: ['lorem ipsum1', 'lorem ipsum2', 'lorem ipsum3'],
-        answers: ['Not answered', 'Not answered', 'Not answered'],
+        answers: ['Not answerd', 'Not answerd', 'Not answerd'],
         questionsDone: false,
         questionNumber: '1',
+        answerNumber: '1',
         triedSubmitting: false
     },
     methods: {
@@ -31,7 +32,7 @@ const vm = new Vue({
         },
         submitAnswers: function() {
             this.triedSubmitting = true;
-            if (!this.answers.includes('Not answered')) {
+            if (!this.answers.includes('Not answerd')) {
                 console.log(this.answers);
                 this.questionsDone = true;
             }

@@ -14,11 +14,11 @@
         <h1>Question Page</h1>
         <div id="user_img"></div>
 
-        <a href="#" v-on:click="decrementNumber()">
+        <a href="#" v-if="questionNumber > 1" v-on:click="decrementNumber()">
             <div id="left_button">
             </div>
         </a>
-        <a href="#" v-on:click="incrementNumber()">
+        <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
             <div id="right_button">
             </div>
         </a>

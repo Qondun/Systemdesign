@@ -78,3 +78,6 @@
     margin: auto;
     float: left;
 }
+#answer_list{
+    list-style-type: none;
+}

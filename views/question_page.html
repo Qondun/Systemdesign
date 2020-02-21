@@ -33,14 +33,14 @@
             <h2>Submit your info</h2>
             <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
             <div class="list_box">
-                <ol>
+                <ul>
                     <li v-for="question in questions">
                         {{question}}
                     </li>
-                </ol>
+                </ul>
             </div>
             <div class="list_box">
-                <ol>
+                <ol id="answer_list">
                     <li v-for="answer in answers">
                         {{answer}}
                     </li>

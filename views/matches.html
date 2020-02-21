@@ -1,15 +1,17 @@
 <html>
   <head>
     <title>Example</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" />    
     <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/matches_vue.js" defer></script>
   </head>
   <body>
     <main id="main_box">
       <a href="/user_menu">
-        <div id="back_button">
-        </div>
+        <div id="back_button"></div>
       </a>
+      <p> {{ person1.name }}</p>
     </main>
   </body>
   <footer>

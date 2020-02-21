@@ -17,6 +17,7 @@
     width: 110px;
     margin-bottom: 50px;
     background: green;
+    cursor: pointer;
 }
 
 #q_yes:hover {
@@ -28,6 +29,7 @@
     width: 110px;
     margin-bottom: 50px;
     background: red;
+    cursor: pointer;
 }
 
 #q_no:hover {
@@ -78,6 +80,7 @@
     height: 50px;
     width: 110px;
     margin-bottom: 50px;
+    cursor: pointer;
 }
 
 .q_button:hover {

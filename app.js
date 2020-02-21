@@ -17,55 +17,62 @@ app.set('port', (process.env.PORT || port));
 app.use(express.static(path.join(__dirname, 'public/')));
 // Serve vue from node_modules as vue/
 app.use('/vue',
-  express.static(path.join(__dirname, '/node_modules/vue/dist/')));
+    express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 // Serve index.html directly as root page
 app.get('/profile_page', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/profile_page.html'));
+    res.sendFile(path.join(__dirname, '/views/profile_page.html'));
 });
 app.get('/user_menu', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/user_menu.html'));
+    res.sendFile(path.join(__dirname, '/views/user_menu.html'));
 });
 app.get('/matches', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/matches.html'));
 });
 app.get('/example', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/example.html'));
-});
+    res.sendFile(path.join(__dirname, '/views/example.html'));
+
+})
+
+app.get('/question_page', function(req, res) {
+    res.sendFile(path.join(__dirname, '/views/question_page.html'));
+})
+
+
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
-  this.orders = {};
+    this.orders = {};
 }
 
 /*
   Adds an order to to the queue
 */
 Data.prototype.addOrder = function(order) {
-  // Store the order in an "associative array" with orderId as key
-  this.orders[order.orderId] = order;
+    // Store the order in an "associative array" with orderId as key
+    this.orders[order.orderId] = order;
 };
 
 Data.prototype.getAllOrders = function() {
-  return this.orders;
+    return this.orders;
 };
 
 const data = new Data();
 
 io.on('connection', function(socket) {
-  // Send list of orders when a client connects
-  socket.emit('initialize', { orders: data.getAllOrders() });
+    // Send list of orders when a client connects
+    socket.emit('initialize', { orders: data.getAllOrders() });
 
-  // When a connected client emits an "addOrder" message
-  socket.on('addOrder', function(order) {
-    data.addOrder(order);
-    // send updated info to all connected clients,
-    // note the use of io instead of socket
-    io.emit('currentQueue', { orders: data.getAllOrders() });
-  });
+    // When a connected client emits an "addOrder" message
+    socket.on('addOrder', function(order) {
+        data.addOrder(order);
+        // send updated info to all connected clients,
+        // note the use of io instead of socket
+        io.emit('currentQueue', { orders: data.getAllOrders() });
+    });
 
 });
 
 /* eslint-disable-next-line no-unused-vars */
 const server = http.listen(app.get('port'), function() {
-  console.log('Server listening on port ' + app.get('port'));
+    console.log('Server listening on port ' + app.get('port'));
 });

@@ -6,37 +6,51 @@
     margin-left: auto;
     margin-right: auto;
 }
+
 #profile_info {
     margin-top: 90px;
     text-align: center;
 }
+
 .user_input {
     margin-bottom: 10px;
     width: 300px;
     height: 10px;
 }
+
+
 /* Chrome, Safari, Edge, Opera */
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
+
 .range_indicator {
     font-size: 20pt;
 }
+
+
 /* Firefox */
+
 input[type=number] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
     width: 300px;
     height: 10px;
 }
+
 #submit_button {
     height: 50px;
     width: 250px;
     margin-bottom: 50px;
     background: #ff807a;
     color: #000;
+<<<<<<< HEAD
 }
 #submit_button:hover {
     cursor: pointer;
 }
+=======
+}
+>>>>>>> a7269a79c12fd7db62f4346128e20064f6837476

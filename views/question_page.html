@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>Question page</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/question_page.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/question_page_vue.js" defer></script>
+</head>
+
+<body>
+    <main id="main_box">
+        <h1>Question Page</h1>
+        <div id="user_img"></div>
+
+        <a href="#" v-on:click="decrementNumber()">
+            <div id="left_button">
+            </div>
+        </a>
+        <a href="#" v-on:click="incrementNumber()">
+            <div id="right_button">
+            </div>
+        </a>
+        <div id="question" v-if="questionNumber <= 3">
+            <h2>question {{questionNumber}}/3</h2>
+            <p>{{questions[questionNumber-1]}}</p>
+            <button class="q_button" id="q_yes" v-on:click="addAnswerYes">Yes</button>
+            <button class="q_button" id="q_no" v-on:click="addAnswerNo">No</button><br>
+
+        </div>
+        <div id="test" v-if="questionNumber == 4">
+            <h2>Submit your info</h2>
+            <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
+            <div class="list_box">
+                <ol>
+                    <li v-for="question in questions">
+                        {{question}}
+                    </li>
+                </ol>
+            </div>
+            <div class="list_box">
+                <ol>
+                    <li v-for="answer in answers">
+                        {{answer}}
+                    </li>
+                </ol>
+            </div>
+            <button class="q_button" id="q_no" v-on:click="submitAnswers">Submit answers</button><br>
+        </div>
+
+
+    </main>
+</body>
+
+<footer>
+
+</footer>
+
+</html>

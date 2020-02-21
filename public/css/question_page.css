@@ -20,6 +20,14 @@
     cursor: pointer;
 }
 
+#q_yes:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
 #q_yes:hover {
     opacity: 0.5;
 }
@@ -30,6 +38,14 @@
     margin-bottom: 50px;
     background: red;
     cursor: pointer;
+}
+
+#q_no:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
 }
 
 #q_no:hover {

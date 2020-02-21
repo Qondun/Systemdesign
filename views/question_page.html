@@ -48,6 +48,7 @@
                 </ol>
             </div>
             <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
+            <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed</p>
         </div>
 
 

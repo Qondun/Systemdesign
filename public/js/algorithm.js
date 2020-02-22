@@ -27,8 +27,7 @@ const Algorithm  = new Vue({
             if(Algorithm.pairs == undefined){
                 Algorithm.pairs = [];
                 Algorithm.testSetup();
-                Algorithm.stdPair();
-            }
+                Algorithm.pair(0);
 
 
             //disables or enables button depending on number of selected pairs
@@ -54,6 +53,15 @@ const Algorithm  = new Vue({
                         selected: false
                     });
             }
+        },
+        pair: function(round){
+            //Very temporary!
+            while(round > 0){
+                let man = this.men.shift();
+                this.men.push(man);
+                round--;
+            }
+            this.stdPair()
         },
         addPerson: function(person, isMan, pic){
             if(isMan){

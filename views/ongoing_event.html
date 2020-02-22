@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/arranger_style.css">
+		<script src="https://vuejs.org/js/vue.js" defer></script>
+    	<script src="js/arranger.js" defer></script>
+		<title>
+			SpeedArranger - Ongoing Event
+		</title>
+	</head>
+	<body>
+	<main id="myID">
+		<div class="title">
+			<h1>SpeedArranger<br>
+			Round {{ roundNumber }}/3
+			</h1>
+		</div>
+		<section class="menu" id="mainMenu" v-if="ongoingRound == false">
+			<input class="menuButton" type="submit" id="startRoundButton" value="Start round" v-if="eventDone == false" v-on:click="startRound">
+			<form action="arranger">
+				<input class="menuButton" type="submit" value="End event">
+			</form>
+		</section>
+		<section class="menu" id="mainMenu" v-if="ongoingRound == true">
+			<div id="timer">
+				<h2 v-if="ongoingRound == true">{{ time }}</h2>
+			</div>
+			<input class="menuButton" type="submit" value="End round" v-on:click="endRound">
+		</section>
+		</main>
+	</body>
+</html>

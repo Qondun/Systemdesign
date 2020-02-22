@@ -1,0 +1,38 @@
+main {
+	background-color: white;
+}
+
+.menu {
+	height: auto;
+	width: 480px;
+	background-color: black;
+	color: white;
+	margin: auto;
+}
+
+#timer {
+	margin: auto;
+	text-align: center;
+} 
+
+
+
+.menuButton {
+	height: 100px;
+	width: 480px;
+}
+
+.title {
+	overflow: hidden;
+	height: 100px;
+	width: 100%;	
+}
+
+.title h1 {
+	text-align: center;
+}
+
+.title img{
+	opacity: 0.5;
+	margin: -100px 0 0 0;
+}

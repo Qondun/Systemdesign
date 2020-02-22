@@ -1,6 +1,6 @@
 #chosenGrid{
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
 }
 #chosenPicture{
     height: 200px;
@@ -22,7 +22,6 @@
     margin-top: 10px;
 }
 #chosenName{
-    grid-column: 2;
     margin: auto;
 }
 #allUnmatched{
@@ -49,4 +48,15 @@
 .matchButton{ 
     font-size: large;
     margin: auto;
+}
+.matchButton:hover{
+    cursor: pointer;
+}
+.largeButton{
+    font-size: x-large;
+    margin: auto;
+}
+#chosenInfo{
+    border:  #555555 dashed 1px;
+    padding: 3px;
 }

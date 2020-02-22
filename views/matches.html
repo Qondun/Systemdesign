@@ -19,8 +19,8 @@
         <p id="rubrik">All matches</p>
         <hr>
         <div id="allMatches">
-            <div v-for="pair in pairs">
-                <div class="singlePair" v-on:click="selectPair(pair.index)"
+            <div v-for="(pair, key) in pairs">
+                <div class="singlePair" v-on:click="selectPair(key)"
                     v-bind:style="pair.selected ? 'filter: grayscale(100%);' : 'filter: grayscale(0%);'">
                     <img :src="pair.man.picture" class="manPic"></img>
                     <img :src="pair.woman.picture" class="womanPic"></img>
@@ -32,9 +32,11 @@
         </div>
         <div id="nextButtonContainer">
             <!--href="/rematches"-->
-            <a>
-                <Button id="nextButton" v-on:click="toRematch">Next</Button>
+            <a href="/rematches">
+                <Button  id="nextButton" v-on:click="toRematch">Next</Button>
             </a>
+            <div id="popupText">Please select two pairs to unmatch!
+            </div>
         </div>
     </main>
 </body>

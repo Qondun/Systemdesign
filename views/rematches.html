@@ -19,17 +19,19 @@
         <hr>
 
         <div id="chosenGrid">
-            <button id="leftButton">Vänster</button>
             <img id ="chosenPicture" v-bind:src="chosenPerson.picture">
-            <button id="leftButton">Höger</button>
+            <p id="chosenInfo">Lorem Ipsum</p>
+            <button class="largeButton" id="leftButton" v-on:click="changePerson(false)">Vänster</button>
+            <button class="largeButton" id="leftButton" v-on:click="changePerson(true)">Höger</button>
+            <button class="largeButton" id="switchButton" v-on:click="changeGender">Byt</button>
             <p id="chosenName">{{chosenPerson.name}}</p>
         </div>
         <hr>
         <div id="allUnmatched">
-            <div v-for="person in unmatchedWomen">
+            <div v-for="(person, key) in differentGender">
                 <div class="singlePerson">
                     <img :src="person.picture" class="Picture"></img>
-                    <button class="matchButton">Matcha ihop!</button>
+                    <button class="matchButton" v-on:click="reMatch(key)">Matcha ihop!</button>
                     <span class="nameLabel">{{person.name}}</span>
                 </div>
             </div>

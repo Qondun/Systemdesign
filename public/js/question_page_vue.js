@@ -2,7 +2,7 @@ const vm = new Vue({
     el: '#main_box',
     data: {
         questions: ['lorem ipsum1', 'lorem ipsum2', 'lorem ipsum3'],
-        answers: ['Not answerd', 'Not answerd', 'Not answerd'],
+        answers: ['Not answered', 'Not answered', 'Not answered'],
         questionsDone: false,
         questionNumber: '1',
         answerNumber: '1',
@@ -24,15 +24,12 @@ const vm = new Vue({
 
             }
         },
-        addAnswerYes: function() {
-            this.answers[this.questionNumber - 1] = "Yes";
-        },
-        addAnswerNo: function() {
-            this.answers[this.questionNumber - 1] = "No";
+        addAnswer: function(ans) {
+            this.answers[this.questionNumber -1] = ans;
         },
         submitAnswers: function() {
             this.triedSubmitting = true;
-            if (!this.answers.includes('Not answerd')) {
+            if (!this.answers.includes('Not answered')) {
                 console.log(this.answers);
                 this.questionsDone = true;
             }

@@ -6,14 +6,18 @@ const vm = new Vue({
       time: '00:00:00.000',
       roundNumber: '1',
       ongoingRound: false,
-      eventDone: false
+      eventDone: false,
+      users: '20',
+      usersDone: '0'
     },
     methods: {
         startRound: function (){
+          if(confirm("Start next round?")){
             this.ongoingRound = true;
+            this.usersDone = 0;
             reset();
-
-            //start();
+            start();
+          }
         },
         endRound: function(){
         let rn = this.roundNumber;
@@ -25,13 +29,22 @@ const vm = new Vue({
         this.roundNumber = rn;
         this.ongoingRound = false;
       },
+        endEvent: function(){
+          if(confirm("End event?")){
+            window.location.assign("/arranger");
+          }
+        },
       notifyUsers: function(){
-        console.log("Notifying users");
+        if(this.usersDone+5 <= this.users){
+          this.usersDone = this.usersDone + 5;
+        }else{
+          this.usersDone = this.users;
+        }
       }
     }
 })
 
-document.getElementById("startRoundButton").addEventListener("click",start);
+start();
 
 var timeBegan = null
 , timeStopped = null

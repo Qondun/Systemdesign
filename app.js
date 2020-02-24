@@ -96,7 +96,7 @@ io.on('connection', function(socket) {
     io.emit('pairsFromServer',  data.getAllPairs() );
   });
     socket.on('roundToServer', function(round) {
-      this.data.round = round
+      data.round = round
       // send updated info to all connected clients,
 	// note the use of io instead of socket
 	io.emit('roundFromServer',  data.round );

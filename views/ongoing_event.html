@@ -16,9 +16,12 @@
 		</div>
 		<section class="menu" id="mainMenu" v-if="ongoingRound == false">
 			<input class="menuButton" type="submit" id="startRoundButton" value="Start round" v-if="eventDone == false" v-on:click="startRound">
-			<form action="arranger">
+			<!--<form action="arranger">
 				<input class="menuButton" type="submit" value="End event">
-			</form>
+			</form>-->
+			<a href="/arranger">
+				<input class="menuButton" type="submit" value="End event">
+			</a>
 			<a href="/matches">
 				<input class="menuButton" type="submit" value="Show matches">
 			</a>

@@ -10,7 +10,7 @@
   <body>
     <main id="main_box">
       <h1>Create your profile</h1>
-      <a href="#">
+      <a href="/user_menu">
         <div id="back_button">
         </div>
       </a>
@@ -23,7 +23,7 @@
           <label>City</label><br>
           <input type="text" placeholder="Enter city" required="required" v-model="city" class="user_input"></input><br>
           <label>Age</label><br>
-          <input type="number" min="18" max="100" placeholder="Enter age" class="user_input"></input><br>
+          <input type="number" min="18" placeholder="Enter age" class="user_input"></input><br>
 
           <label>Lorem ipsum</label><br>
           <label class="range_indicator">-</label>
@@ -40,7 +40,8 @@
           <input type="range" min="1" max="5" v-model="range3" class="user_input"></input>
           <label class="range_indicator">+</label><br>
         </form>
-        <button id="submit_button" v-on:click="test()">Submit info</button>
+        <label v-if="submitted == true">Your information was submitted</label><br>
+        <button id="submit_button" v-on:click="test()" href="/user_menu">Submit info</button>
       </section>
     </main>
   </body>

@@ -1,13 +1,30 @@
 body {
     background: #000000;
     font-family: Arial;
+    height: 100%
 }
+
 #main_box {
     width: 480px;
-    background: #fff;
+    background: #eeeeee;
     margin: auto;
+    min-height: 100%;
 }
+
 #main_box h1 {
     margin: auto;
     text-align: center;
+}
+
+#back_button {
+    width: 20px;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 30px solid black;
+    float: left;
+}
+
+#back_button:hover {
+    opacity: 0.5;
 }

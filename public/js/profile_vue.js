@@ -10,7 +10,7 @@ const vm = new Vue({
     },
     methods: {
         test: function(){
-            console.log(this.fullname);
+            console.log(this.range2);
             window.location.assign('/user_menu');
         }
     }

@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Rematching</title>
+    <meta charset="utf-8" />
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="js/rematching.js" defer></script>
+    <link rel="stylesheet" href="css/rematches.css" defer>
+    <script src="/socket.io/socket.io.js" defer></script>
+</head>
+
+<body>
+    <main id="main">
+        <a href="matches">
+            <div id="back_button">
+            </div>
+        </a>
+        <p id="rubrik">Matcha om</p>
+        <hr>
+
+        <div id="chosenGrid">
+            <img id ="chosenPicture" v-bind:src="chosenPerson.picture">
+            <p id="chosenInfo">Lorem Ipsum</p>
+            <button class="largeButton" id="leftButton" v-on:click="changePerson(false)">Vänster</button>
+            <button class="largeButton" id="leftButton" v-on:click="changePerson(true)">Höger</button>
+            <button class="largeButton" id="switchButton" v-on:click="changeGender">Byt</button>
+            <p id="chosenName">{{chosenPerson.name}}</p>
+        </div>
+        <hr>
+        <div id="allUnmatched">
+            <div v-for="(person, key) in differentGender">
+                <div class="singlePerson">
+                    <img :src="person.picture" class="Picture"></img>
+                    <button class="matchButton" v-on:click="reMatch(key)">Matcha ihop!</button>
+                    <span class="nameLabel">{{person.name}}</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<footer>
+
+</footer>
+
+</html>

@@ -22,6 +22,12 @@ app.use('/vue',
 app.get('/profile_page', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/profile_page.html'));
 });
+app.get('/matches', function(req, res) {
+  res.sendFile(path.join(__dirname, '/views/matches.html'));
+});
+app.get('/rematches', function(req, res) {
+  res.sendFile(path.join(__dirname, '/views/rematches.html'));
+});
 app.get('/example', function(req, res) {
   res.sendFile(path.join(__dirname, '/views/example.html'));
 })
@@ -49,8 +55,8 @@ function Data() {
   Adds an order to to the queue
 */
 Data.prototype.addOrder = function(order) {
-  // Store the order in an "associative array" with orderId as key
-  this.orders[order.orderId] = order;
+  // Store the order in an "associative array" with orderId as key¨
+  this.orders = order;
 };
 
 Data.prototype.getAllOrders = function() {

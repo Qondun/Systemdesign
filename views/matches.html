@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>All matches</title>
+    <meta charset="utf-8" />
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="js/algorithm.js" defer></script>
+    <link rel="stylesheet" href="css/matches.css" defer>
+    <script src="/socket.io/socket.io.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <a href="/ongoing_event">
+            <div id="back_button">
+            </div>
+        </a>
+        <p id="rubrik">All matches</p>
+        <hr>
+        <div id="allMatches">
+            <div v-for="(pair, key) in pairs">
+                <div class="singlePair" v-on:click="selectPair(key)"
+                    v-bind:style="pair.selected ? 'filter: grayscale(100%);' : 'filter: grayscale(0%);'">
+                    <img :src="pair.man.picture" class="manPic"></img>
+                    <img :src="pair.woman.picture" class="womanPic"></img>
+                    <span class="manName">{{pair.man.name}}</span>
+                    <span class="womanName">{{pair.woman.name}}</span>
+                    <span class="matchIndicator">{{pair.percentMatch}}%<span>
+                </div>
+            </div>
+        </div>
+        <div id="nextButtonContainer">
+            <!--href="/rematches"-->
+            <a href="/rematches">
+                <Button  id="nextButton" v-on:click="toRematch">Next</Button>
+            </a>
+            <div id="popupText">Please select two pairs to unmatch!
+            </div>
+        </div>
+    </main>
+</body>
+<footer>
+
+</footer>
+
+</html>

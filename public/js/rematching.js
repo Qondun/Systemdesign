@@ -17,11 +17,11 @@ const rematching = new Vue({
     },
     created: function () {
         socket.on('initialize', function (data) {
-            this.pairs = data.orders.pairs;
+            this.pairs = data.pairs;
             this.update();
         }.bind(this));
-        socket.on('currentQueue', function (data) {
-            this.pairs = data.orders.pairs;
+        socket.on('pairsFromServer', function (data) {
+            this.pairs = data.pairs;
             this.update();
         }.bind(this));
     },
@@ -86,7 +86,7 @@ const rematching = new Vue({
             
             if(this.sameGender.length == 0){
 
-                socket.emit('addOrder', 
+                socket.emit('pairsToServer', 
                     {pairs: this.newPairs});
                 window.location.href = "/matches"
             }

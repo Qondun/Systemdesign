@@ -29,18 +29,17 @@ const Algorithm  = new Vue({
                 Algorithm.testSetup();
                 Algorithm.pair(0);
 
-
             //disables or enables button depending on number of selected pairs
             for (let pair of this.pairs){
                 if(pair.selected){
                     this.numberOfSelected++;
                 }
             }
+        }
             let bt = document.getElementById("nextButton");
             let popText = document.getElementById("popupText");
             if(this.numberOfSelected<2) {bt.disabled = true; popText.style.visibility = "visible";}
             else {bt.disabled = false; popText.style.visibility = "hidden";}
-
 
         },
         stdPair: function(){

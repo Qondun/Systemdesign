@@ -49,7 +49,7 @@ app.get('/ongoing_round', function(req, res) {
 // prepare for multiple instances of data if necessary
 function Data() {
   this.pairs = {};
-  this.round = {};
+  this.round = 1;
 }
 
 /*
@@ -91,13 +91,13 @@ io.on('connection', function(socket) {
     data.pairsToServer(pairs);
     // send updated info to all connected clients,
     // note the use of io instead of socket
-    io.emit('pairsFromServer',  data.getAllPairs() );
+    io.emit('pairsFromServer',  {pairs: data.getAllPairs()});
   });
     socket.on('roundToServer', function(round) {
       data.roundToServer(round);
       // send updated info to all connected clients,
       // note the use of io instead of socket
-      io.emit('roundFromServer',  data.getRound() );
+      io.emit('roundFromServer',  {round: data.getRound() });
     })
 });
 

@@ -14,7 +14,7 @@ const Algorithm = new Vue({
     },
     created: function () {
         socket.on('initialize', function (data) {
-            this.pairs = data.pairs.pairs;
+            this.pairs = data.pairs;
             this.setup();
         }.bind(this));
         socket.on('pairsFromServer', function (data) {
@@ -32,6 +32,7 @@ const Algorithm = new Vue({
 
             this.numberOfSelected = 0;
             //disables or enables button depending on number of selected pairs
+            console.log(this.men);
             for (let pair of this.pairs) {
                 if (pair.selected) {
                     this.numberOfSelected++;
@@ -42,7 +43,6 @@ const Algorithm = new Vue({
             let popText = document.getElementById("popupText");
             if (this.numberOfSelected < 2) { bt.disabled = true; popText.style.visibility = "visible"; }
             else { bt.disabled = false; popText.style.visibility = "hidden"; }
-
         },
         stdPair: function () {
             for (var i = 0; i < this.men.length; i++) {
@@ -121,9 +121,7 @@ const btn = new Vue({
     el: '#nextButton',
     methods: {
         toRematch: function () {
-            socket.emit('pairsToServer',
-                { pairs: Algorithm.pairs }
-            );
+            socket.emit('pairsToServer', Algorithm.pairs);
         }
     }
 })

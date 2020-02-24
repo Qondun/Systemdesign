@@ -11,7 +11,7 @@ const vm = new Vue({
   },
   created: function () {
     socket.on('initialize', function (data) {
-      this.roundNumber = data.round.round;
+      this.roundNumber = data.round;
       console.log(data.round);
       this.setup();
     }.bind(this));
@@ -23,7 +23,7 @@ const vm = new Vue({
   methods: {
     setup: function () {
       if (this.roundNumber == undefined) {
-        socket.emit('roundToServer', { round: 1 });
+        socket.emit('roundToServer', 1);
         this.roundNumber = 1;
       }
     },
@@ -40,11 +40,11 @@ const vm = new Vue({
       }
       this.roundNumber = rn;
       this.ongoingRound = false;
-      socket.emit('roundToServer', { round: this.roundNumber });
+      socket.emit('roundToServer', this.roundNumber);
     },
     endEvent: function(){
       this.roundNumber = 1;
-      socket.emit('roundToServer', { round: this.roundNumber});
+      socket.emit('roundToServer', this.roundNumber);
     }
   }
 })

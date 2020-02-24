@@ -56,10 +56,10 @@ app.get('/ongoing_round', function(req, res) {
 
 app.get('/question_page', function(req, res) {
     res.sendFile(path.join(__dirname, '/views/question_page.html'));
-});      
 
+});
 app.get('/show_info', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/show_info.html'));
+    res.sendFile(path.join(__dirname, '/views/show_info.html'));
 });
 
 // Store data in an object to keep the global namespace clean and

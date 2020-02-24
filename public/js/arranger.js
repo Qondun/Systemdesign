@@ -11,6 +11,8 @@ const vm = new Vue({
     methods: {
         startRound: function (){
             this.ongoingRound = true;
+            reset();
+
             //start();
         },
         endRound: function(){
@@ -22,6 +24,9 @@ const vm = new Vue({
         }
         this.roundNumber = rn;
         this.ongoingRound = false;
+      },
+      notifyUsers: function(){
+        console.log("Notifying users");
       }
     }
 })

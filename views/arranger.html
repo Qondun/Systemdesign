@@ -1,23 +1,30 @@
 <html>
-	<head>
-		<script src="http://localhost:3000/socket.io/socket.io.js"></script>
-		<link rel="stylesheet" type="text/css" href="/css/arranger_style.css">
-    	<script src="https://vuejs.org/js/vue.js" defer></script>
-		<script src="/socket.io/socket.io.js" defer></script>
-		<title>
-			SpeedArranger
-		</title>
-	</head>
-	<main>
+  <head>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/arranger_style.css">
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="js/arranger.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <title>
+      SpeedArranger
+    </title>
+  </head>
+  <body>
+    <main id="myID">
+      <header>
 	<div class="title">
-		<h1>SpeedArranger</h1>	
+	  <h1>SpeedArranger</h1>	
+	  <h2>
+	    {{users}} registered users
+	  </h2>
 	</div>
-	<body>
-		<section class="menu">
-			<a href="/ongoing_event">
-				<input class="menuButton" type="submit" value="Start event">
-			</a>
-		</section>
-	</body>
-	</main>
+      </header>
+      <br>
+      <section class="menu">
+	<a href="/ongoing_event">
+	  <input class="menuButton" type="submit" value="Start event">
+	</a>
+      </section>
+    </main>
+  </body>
 </html>

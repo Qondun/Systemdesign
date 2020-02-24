@@ -1,6 +1,17 @@
 const vm = new Vue({
     el: '#main_box',
     data: {
-        matches: ['John Doe', 'Jane Doe'],
+        fullname: '',
+        city: '',
+        range1: '',
+        range2: '',
+        range3: '',
+        submitted: false,
+    },
+    methods: {
+        test: function(){
+            console.log(this.fullname);
+            window.location.assign('/user_menu');
+        }
     }
 })

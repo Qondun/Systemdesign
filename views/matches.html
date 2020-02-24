@@ -3,17 +3,25 @@
     <title>Your matches</title>
     <meta charset="utf-8" />    
     <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/matches.css">
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="js/matches_vue.js" defer></script>
   </head>
   <body>
     <main id="main_box">
       <h1>Your matches</h1>
+  
       <a href="/user_menu">
         <div id="back_button"></div>
-      </a> 
-      <div v-for="match in matches">
-        <p>{{match.name}}</p>
+      </a>
+
+      <div id="user_wrapper">
+        <a id="user_link" href="#" v-for="match in matches" v-on:click="selectMatch(match)"value="match.email">
+          <div id="user_box">
+            
+            <p>{{match.name}}, {{match.age}}</p>
+          </div>
+        </a>
       </div>
     </main>
     

@@ -16,7 +16,8 @@ const vm = new Vue({
             age: '43',
             email: 'jd3@gmail.com'
         },
-        matches: []
+        matches: [],
+        selectedMatch
     },
     created: function () {
         this.matches = [this.person1, this.person2, this.person3];

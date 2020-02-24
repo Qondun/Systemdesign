@@ -1,0 +1,10 @@
+#user_box {
+    background: #ff807a;
+    height: 120px;
+    width: 400px;
+    margin: auto;
+    color: #000;
+}
+#user_wrapper a {
+    text-decoration: none;
+}

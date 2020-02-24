@@ -47,6 +47,7 @@ input[type=number] {
     background: #ff807a;
     color: #000;
 }
+
 #submit_button:hover {
     cursor: pointer;
     opacity: 0.5;

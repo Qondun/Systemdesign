@@ -25,7 +25,7 @@ const vm = new Vue({
             }
         },
         addAnswer: function(ans) {
-            this.answers[this.questionNumber -1] = ans;
+            this.answers[this.questionNumber - 1] = ans;
         },
         submitAnswers: function() {
             this.triedSubmitting = true;

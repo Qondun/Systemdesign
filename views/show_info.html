@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Show info</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/show_info.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/show_info.js" defer></script>
+</head>
+
+<body>
+    <main id="main_box">
+        <h1>Information about date</h1>
+        <div id="user_img"></div>
+        <section id="date_info">
+            <h2 id="name">Name: John Doe</h2>
+            <h2 id="age">Age: 22</h2>
+            <h2 id="table">Match: 99%</h2>
+            <h2 id="match%">Table: A14</h2>
+        </section>
+        <div>
+            <button id="ok_button" v-on:click="okSubmit">Ok</button><br>
+            <p id="cm" v-if="okPressed == true">You confirmed the match!</p>
+        </div>
+
+    </main>
+</body>
+<footer>
+
+</footer>
+
+</html>

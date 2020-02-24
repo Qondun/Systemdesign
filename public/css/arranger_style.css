@@ -1,38 +1,52 @@
+body {
+	min-height: 100%;	
+	background-color: #eeeeee;
+	color: #000;
+}
+
 main {
-	background-color: white;
+	height: 100%;
 }
 
 .menu {
 	height: auto;
 	width: 480px;
-	background-color: black;
-	color: white;
 	margin: auto;
 }
 
 #timer {
 	margin: auto;
 	text-align: center;
+	font-size: 48pt;
 } 
 
+#notifyMenu {
+	text-align: center;
+}
 
+#userPanel{
+	text-align: center;
+}
 
 .menuButton {
 	height: 100px;
 	width: 480px;
+	color: #000;
+	margin-bottom: 10px;
+	background: #ff807a;
+}
+
+.menuButton:hover {
+	opacity: 0.5;
 }
 
 .title {
-	overflow: hidden;
 	height: 100px;
 	width: 100%;	
-}
-
-.title h1 {
+	margin-bottom: 35px;
 	text-align: center;
 }
 
-.title img{
-	opacity: 0.5;
-	margin: -100px 0 0 0;
+.title h2 {
+	font-style: italic;
 }

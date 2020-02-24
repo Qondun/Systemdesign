@@ -27,15 +27,15 @@ app.get('/user_menu', function(req, res) {
 });
 
 app.get('/user_matches', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/user_matches.html'));
+    res.sendFile(path.join(__dirname, '/views/user_matches.html'));
 });
 
 app.get('/matches', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/matches.html'));
+    res.sendFile(path.join(__dirname, '/views/matches.html'));
 });
 
 app.get('/rematches', function(req, res) {
-  res.sendFile(path.join(__dirname, '/views/rematches.html'));
+    res.sendFile(path.join(__dirname, '/views/rematches.html'));
 });
 
 app.get('/example', function(req, res) {
@@ -43,15 +43,15 @@ app.get('/example', function(req, res) {
 });
 
 app.get('/arranger', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/arranger.html'));
+    res.sendFile(path.join(__dirname, 'views/arranger.html'));
 });
 
 app.get('/ongoing_event', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/ongoing_event.html'));
+    res.sendFile(path.join(__dirname, 'views/ongoing_event.html'));
 });
 
 app.get('/ongoing_round', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/ongoing_round.html'));
+    res.sendFile(path.join(__dirname, 'views/ongoing_round.html'));
 });
 
 app.get('/question_page', function(req, res) {
@@ -59,6 +59,9 @@ app.get('/question_page', function(req, res) {
 });
 app.get('/show_info', function(req, res) {
     res.sendFile(path.join(__dirname, '/views/show_info.html'));
+});
+app.get('/share_info', function(req, res) {
+	  res.sendFile(path.join(__dirname, 'views/share_info.html'));
 });
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary

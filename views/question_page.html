@@ -11,9 +11,11 @@
 
 <body>
     <main id="main_box">
+        <section v-if="currentDate!=null">
         <h1>Question Page</h1>
-        <div id="user_img"></div>
-
+        <div id="user_img">
+            <img v-bind:src="currentDate.img">
+        </div>
         <a href="#" v-if="questionNumber > 1" v-on:click="decrementNumber()">
             <div id="left_button">
             </div>
@@ -23,7 +25,7 @@
             </div>
         </a>
         <div id="question" v-if="questionNumber <= 3">
-            <h2>question {{questionNumber}}/3</h2>
+            <h2>Question {{questionNumber}}/3</h2>
             <p>{{questions[questionNumber-1]}}</p>
             <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
             <button id="q_no" v-on:click="addAnswer('No')">No</button><br>
@@ -48,8 +50,7 @@
             <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
             <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
         </div>
-
-
+        </section>
     </main>
 </body>
 

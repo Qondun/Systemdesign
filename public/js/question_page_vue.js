@@ -1,12 +1,13 @@
 const vm = new Vue({
     el: '#main_box',
     data: {
-        questions: ['lorem ipsum1', 'lorem ipsum2', 'lorem ipsum3'],
+        questions: ['Did you enjoy the date?', 'Did you think the age gap was too big?','Did you find this match to be correct for you?'],
         answers: ['Not answered', 'Not answered', 'Not answered'],
         questionsDone: false,
         questionNumber: '1',
         answerNumber: '1',
-        triedSubmitting: false
+        triedSubmitting: false,
+        currentDate: null
     },
     methods: {
         incrementNumber: function() {
@@ -32,10 +33,18 @@ const vm = new Vue({
             this.triedSubmitting = true;
             if (!this.answers.includes('Not answered')) {
                 console.log(this.answers);
+                window.location.assign("/show_info");
                 this.questionsDone = true;
             }
 
+        },
+        setDate: function(name, age, match, table, img){
+            let myDate = {name, age, match, table, img};
+            this.currentDate = myDate;
         }
     }
 
 })
+
+vm.setDate("Johnny",78,62,"E12",'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Bernie_Sanders_July_2019_retouched.jpg/800px-Bernie_Sanders_July_2019_retouched.jpg');
+console.log(vm.currentDate.img);

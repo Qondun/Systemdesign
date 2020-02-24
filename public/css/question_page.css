@@ -12,6 +12,12 @@
     margin-right: auto;
 }
 
+#user_img img {
+    height: 100%;
+    width: 100%;
+    position: relative; 
+}
+
 #q_yes {
     height: 50px;
     width: 110px;
@@ -19,6 +25,7 @@
     background: green;
     cursor: pointer;
 }
+
 
 #q_yes:active {
     background: #e5e5e5;
@@ -140,4 +147,5 @@
 
 #answer_list {
     list-style-type: none;
+    margin-bottom: 20px;
 }

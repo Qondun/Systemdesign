@@ -16,21 +16,25 @@
 		</div>
 		<section class="menu" id="mainMenu" v-if="ongoingRound == false">
 			<input class="menuButton" type="submit" id="startRoundButton" value="Start round" v-if="eventDone == false" v-on:click="startRound">
-			<!--<form action="arranger">
-				<input class="menuButton" type="submit" value="End event">
-			</form>-->
-			<a href="/arranger">
-				<input class="menuButton" type="submit" value="End event">
-			</a>
-			<a href="/matches">
-				<input class="menuButton" type="submit" value="Show matches">
-			</a>
+			<input class="menuButton" type="submit" value="Show matches" v-on:click="showMatches">
+			<input class="menuButton" type="submit" value="End event" v-on:click="endEvent">
 		</section>
 		<section class="menu" id="mainMenu" v-if="ongoingRound == true">
 			<div id="timer">
 				<h2 v-if="ongoingRound == true">{{ time }}</h2>
 			</div>
 			<input class="menuButton" type="submit" value="End round" v-on:click="endRound">
+		</section>
+		<br>
+		<section class="menu" id="notifyMenu" v-if="roundNumber>1 && ongoingRound==false">
+			<div v-if="usersDone<users">
+				Waiting for reviews<br>
+				{{usersDone}}/{{users}} users done
+				<input class="menuButton" type="submit" id="notifyButton" value="Notify Users" v-on:click="notifyUsers">
+			</div>
+			<div v-if="usersDone==users">
+				Everyone is ready!
+			</div>
 		</section>
 		</main>
 	</body>

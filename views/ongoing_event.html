@@ -10,9 +10,8 @@
 	<body>
 	<main id="myID">
 		<div class="title">
-			<h1>SpeedArranger<br>
-			Round {{ roundNumber }}/3
-			</h1>
+			<h1>SpeedArranger</h1>
+			<h2>Round {{ roundNumber }}/3 </h2>
 		</div>
 		<section class="menu" id="mainMenu" v-if="ongoingRound == false">
 			<input class="menuButton" type="submit" id="startRoundButton" value="Start round" v-if="eventDone == false" v-on:click="startRound">

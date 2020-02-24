@@ -1,22 +1,13 @@
-function user(name,age,email,number,matches){
-    this.name = name;
-    this.age = age;
-    this.email = email;
-    this.number = number;
-    this.matches = matches;
-}
-
-let person1 = new user('John Doe', '40', 'jd@gmail.com', []);
-console.log(person1.name);
-
 const vm = new Vue({
     el: '#main_box',
     data: {
-        person1: ''
+        person1: ['John Doe', '40', 'jd@gmail.com', []],
+        person2: ['John Doe2', '40', 'jd2@gmail.com', []],
+        person3: ['John Doe', '40', 'jd@gmail.com', [this.person1, this.person2]],
     },
     methods: {
-        createUser (name, age, email, number, matches) {
-            
+        test (){
+            console.log(this.person3);
         }
     }
 })

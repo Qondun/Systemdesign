@@ -25,8 +25,8 @@
         <div id="question" v-if="questionNumber <= 3">
             <h2>question {{questionNumber}}/3</h2>
             <p>{{questions[questionNumber-1]}}</p>
-            <button id="q_yes" v-on:click="addAnswerYes">Yes</button>
-            <button id="q_no" v-on:click="addAnswerNo">No</button><br>
+            <button id="q_yes" v-on:click="addAnswerYes" v-if="answers[questionNumber -1] == 'Not answerd' || answers[questionNumber -1] == 'No'">Yes</button>
+            <button id="q_no" v-on:click="addAnswerNo" v-if="answers[questionNumber -1] == 'Not answerd' || answers[questionNumber -1] == 'Yes'">No</button><br>
             <p>{{answers[questionNumber-1]}}</p>
         </div>
         <div id="test" v-if="questionNumber == 4">

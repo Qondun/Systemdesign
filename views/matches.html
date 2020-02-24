@@ -11,7 +11,10 @@
       <a href="/user_menu">
         <div id="back_button"></div>
       </a>
-      <p> {{ person1.name }}</p>
+      <!--v-on:click="matchInfo()"--> 
+      <div v-for="match in matches">
+        {{match}}
+      </div>
     </main>
   </body>
   <footer>

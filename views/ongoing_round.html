@@ -1,20 +1,21 @@
 <html>
+	<main>
 	<head>
 		<link rel="stylesheet" type="text/css" href="/css/arranger_style.css">
-    	<script src="https://vuejs.org/js/vue.js" defer></script>
+		<script src="https://vuejs.org/js/vue.js" defer></script>
     	<script src="js/arranger.js" defer></script>
 		<title>
-			SpeedArranger
+			SpeedArranger - Ongoing Round
 		</title>
 	</head>
-	<main>
-	<div class="title">
-		<h1>SpeedArranger</h1>	
-	</div>
 	<body>
+		<div class="title">
+			<h1>SpeedArranger</h1>
+		</div>
+
 		<section class="menu">
 			<form action="ongoing_event">
-				<input class="menuButton" type="submit" value="Start event">
+				<input class="menuButton" type="submit" value="End round" v-on:clic="nextRound">
 			</form>
 		</section>
 	</body>

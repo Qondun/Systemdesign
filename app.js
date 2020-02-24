@@ -35,6 +35,10 @@ app.get('/ongoing_event', function(req, res) {
 });
 
 
+app.get('/ongoing_round', function(req, res) {
+  res.sendFile(path.join(__dirname, 'views/ongoing_round.html'));
+});
+
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {

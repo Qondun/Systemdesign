@@ -19,10 +19,10 @@
 			<input class="menuButton" type="submit" value="Show matches" v-on:click="showMatches" v-if="eventDone == false">
 			<input class="menuButton" type="submit" value="End event" v-on:click="endEvent">
 		</section>
+		<section class="menu" id="timer" v-if="ongoingRound==true">
+			<h1 v-if="ongoingRound == true">{{ time }}</h1>
+		</section>
 		<section class="menu" id="mainMenu" v-if="ongoingRound == true">
-			<div id="timer">
-				<h2 v-if="ongoingRound == true">{{ time }}</h2>
-			</div>
 			<input class="menuButton" type="submit" value="End round" v-on:click="endRound">
 		</section>
 		<br>

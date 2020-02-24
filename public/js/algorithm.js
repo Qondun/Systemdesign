@@ -10,25 +10,48 @@ const Algorithm = new Vue({
         umatchedMen: [],
         unmatchedWomen: [],
         newPairs: [],
-        numberOfSelected: 0
+        numberOfSelected: 0,
+        round: 0,
+        latestMatching: 0
     },
     created: function () {
         socket.on('initialize', function (data) {
             this.pairs = data.pairs;
+            this.round = data.round;
+            this.latestMatching = data.latestMatching;
+            console.log(this.round);
             this.setup();
         }.bind(this));
         socket.on('pairsFromServer', function (data) {
             this.pairs = data.pairs;
             this.setup();
         }.bind(this));
+        socket.on('roundFromServer', function (data) {
+            this.round = data.round;
+        }.bind(this));
     },
     methods: {
         setup: function () {
-            if (this.pairs[0] == undefined) { //Bygger på att det alltid kommer finnas ett par.
+            console.log(this.round + ", " + this.latestMatching);
+            if (this.pairs[0] == undefined) { //Bygger på att det alltid kommer finnas minst ett par.
                 Algorithm.pairs = [];
                 Algorithm.testSetup();
-                Algorithm.pair(0);
+
+                Algorithm.pair(3);
                 socket.emit('pairsToServer', Algorithm.pairs);
+            }
+            else if(this.latestMatching < this.round){
+                this.men =[];
+                this.women = [];
+                for(let pair of this.pairs){
+                    this.men.push(pair.man);
+                    this.women.push(pair.woman);
+                }
+                this.pairs=[];
+                Algorithm.pair(3);
+                socket.emit('pairsToServer', Algorithm.pairs);
+                this.latestMatching = this.round;
+                socket.emit('setLatestMatching', this.round);
             }
 
             this.numberOfSelected = 0;
@@ -57,12 +80,14 @@ const Algorithm = new Vue({
         },
         pair: function (round) {
             //Very temporary!
-            while (round > 0) {
+            round = 2; //Gör något åt denna!
+            while (round > 1) {
                 let man = this.men.shift();
                 this.men.push(man);
                 round--;
             }
-            this.stdPair()
+            socket.emit('setLatestMatching', this.round);
+            this.stdPair();
         },
         addPerson: function (person, isMan, pic) {
             if (isMan) {

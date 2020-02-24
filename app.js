@@ -50,6 +50,7 @@ app.get('/ongoing_round', function(req, res) {
 function Data() {
   this.pairs = {};
   this.round = 1;
+  this.latestMatching = 0;
 }
 
 /*
@@ -98,7 +99,13 @@ io.on('connection', function(socket) {
       // send updated info to all connected clients,
       // note the use of io instead of socket
       io.emit('roundFromServer',  {round: data.getRound() });
-    })
+    });
+    socket.on('setLatestMatching', function(round) {
+      data.latestMatching = round;
+      // send updated info to all connected clients,
+      // note the use of io instead of socket
+      io.emit('getLatestMatching',  {latestMatching: data.latestMatching });
+    });
 });
 
 /* eslint-disable-next-line no-unused-vars */

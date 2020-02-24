@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Example</title>
+    <title>Your matches</title>
     <meta charset="utf-8" />    
     <link rel="stylesheet" type="text/css" href="/css/common.css">
     <script src="https://vuejs.org/js/vue.js"></script>
@@ -8,14 +8,15 @@
   </head>
   <body>
     <main id="main_box">
+      <h1>Your matches</h1>
       <a href="/user_menu">
         <div id="back_button"></div>
-      </a>
-      <!--v-on:click="matchInfo()"--> 
+      </a> 
       <div v-for="match in matches">
-        {{match}}
+        <p>{{match.name}}</p>
       </div>
     </main>
+    
   </body>
   <footer>
     

@@ -17,10 +17,35 @@ const vm = new Vue({
             email: 'jd3@gmail.com'
         },
         matches: [],
-        selectedMatch
+        
+        selectedName: '',
+        selectedAge: '',
+        selectedEmail: '',
+        showMatch: false,
     },
     created: function () {
         this.matches = [this.person1, this.person2, this.person3];
+    },
+    methods: {
+        selectMatch: function(match) {
+            this.selectedName = match.name;
+            this.selectedAge = match.age;
+            this.selectedEmail = match.email;
+            this.showMatch = true;
+        },
+        closeMatch: function() {
+            this.showMatch = false;
+        },
+        copyText: function(id) {
+            let test = document.querySelector(id);
+            console.log(test);
+            test.setAttribute('type', 'text');
+            test.select();
+            document.execCommand('copy');
+            test.setAttribute('type', 'hidden')
+            window.getSelection().removeAllRanges()
+        }
     }
+    
     
 })

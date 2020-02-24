@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Your matches</title>
+    <meta charset="utf-8" />    
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/user_matches.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/user_matches_vue.js" defer></script>
+  </head>
+  <body>
+    <main id="main_box">
+      <h1>Your matches</h1>
+  
+      <a href="/user_menu" v-if="!showMatch">
+        <div id="back_button"></div>
+      </a>
+      <a href="/user_matches" v-if="showMatch">
+        <div id="back_button"></div>
+      </a>
+
+      <div id="user_wrapper" v-if="!showMatch">
+        <a id="user_link" v-for="match in matches" v-on:click="selectMatch(match)">
+          <div id="user_box">
+            <h2>{{match.name}}, {{match.age}}</h2>
+          </div>
+        </a>
+      </div>
+      
+      <div id="selected_match_box" v-if="showMatch">
+        <h2>{{selectedName}}</h2>
+        <img id="user_img"><img>
+        <ul id="user_info">
+          <li>
+            <input type="hidden" v-bind:value="selectedEmail" readonly id="email">{{selectedEmail}}</input>
+            <button v-on:click="copyText('#email')">Copy</button>
+          </li>
+          <li>
+            <input type="hidden" v-bind:value="selectedName" readonly id="name">{{selectedName}}</input>
+            <button v-on:click="copyText('#name')">Copy</button>
+          </li>
+        </ul>
+      </div>
+    </main>
+    
+  </body>
+  <footer>
+    
+  </footer>
+</html>

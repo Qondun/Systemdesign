@@ -30,10 +30,11 @@ const vm = new Vue({
             }
         },
         addAnswer: function(ans) {
-            this.answers[this.questionNumber - 1] = ans;
+            this.answers[this.questionNumber] = ans;
             this.incrementNumber();
         },
         submitAnswers: function() {
+            console.log(this.answers);
             this.triedSubmitting = true;
             if (!this.answers.includes('Not answered')) {
                 console.log(this.answers);

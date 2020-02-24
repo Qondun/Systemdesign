@@ -16,7 +16,7 @@
 		</div>
 		<section class="menu" id="mainMenu" v-if="ongoingRound == false">
 			<input class="menuButton" type="submit" id="startRoundButton" value="Start round" v-if="eventDone == false" v-on:click="startRound">
-			<input class="menuButton" type="submit" value="Show matches" v-on:click="showMatches">
+			<input class="menuButton" type="submit" value="Show matches" v-on:click="showMatches" v-if="eventDone == false">
 			<input class="menuButton" type="submit" value="End event" v-on:click="endEvent">
 		</section>
 		<section class="menu" id="mainMenu" v-if="ongoingRound == true">

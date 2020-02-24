@@ -3,9 +3,9 @@
     <title>Your matches</title>
     <meta charset="utf-8" />    
     <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/matches.css">
+    <link rel="stylesheet" type="text/css" href="/css/user_matches.css">
     <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="js/matches_vue.js" defer></script>
+    <script src="js/user_matches_vue.js" defer></script>
   </head>
   <body>
     <main id="main_box">
@@ -14,7 +14,7 @@
       <a href="/user_menu" v-if="!showMatch">
         <div id="back_button"></div>
       </a>
-      <a href="/matches" v-if="showMatch">
+      <a href="/user_matches" v-if="showMatch">
         <div id="back_button"></div>
       </a>
 

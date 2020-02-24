@@ -80,6 +80,10 @@ Data.prototype.pairsToServer = function(pairs) {
 Data.prototype.getAllPairs = function() {
   return this.pairs;
 };
+
+const data = new Data();
+
+
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
   socket.emit('initialize', data.getAllPairs());
@@ -94,28 +98,12 @@ io.on('connection', function(socket) {
     socket.on('roundToServer', function(round) {
       this.data.round = round
       // send updated info to all connected clients,
-      // note the use of io instead of socket
-      io.emit('roundFromServer',  data.round );
+	// note the use of io instead of socket
+	io.emit('roundFromServer',  data.round );
     })
 });
 
-            const data = new Data();
-
-            io.on('connection', function(socket) {
-                // Send list of orders when a client connects
-                socket.emit('initialize', { orders: data.getAllOrders() });
-
-                // When a connected client emits an "addOrder" message
-                socket.on('addOrder', function(order) {
-                    data.addOrder(order);
-                    // send updated info to all connected clients,
-                    // note the use of io instead of socket
-                    io.emit('currentQueue', { orders: data.getAllOrders() });
-                });
-
-            });
-
-            /* eslint-disable-next-line no-unused-vars */
-            const server = http.listen(app.get('port'), function() {
-                console.log('Server listening on port ' + app.get('port'));
-            });
+/* eslint-disable-next-line no-unused-vars */
+const server = http.listen(app.get('port'), function() {
+    console.log('Server listening on port ' + app.get('port'));
+});

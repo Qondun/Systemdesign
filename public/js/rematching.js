@@ -17,7 +17,7 @@ const rematching = new Vue({
     },
     created: function () {
         socket.on('initialize', function (data) {
-            this.pairs = data.pairs;
+            this.pairs = data.pairs.pairs;
             this.update();
         }.bind(this));
         socket.on('pairsFromServer', function (data) {

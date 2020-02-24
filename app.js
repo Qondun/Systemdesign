@@ -49,12 +49,21 @@ app.get('/ongoing_round', function(req, res) {
 // prepare for multiple instances of data if necessary
 function Data() {
   this.pairs = {};
-  this.round = 0;
+  this.round = {};
 }
 
 /*
   Adds an order to to the queue
 */
+Data.prototype.getAllData = function() {
+  /*return {
+    pairs: this.pairs,
+    round: this.round
+  }*/
+  return this;
+
+};
+
 Data.prototype.pairsToServer = function(pairs) {
   this.pairs = pairs;
 };
@@ -63,11 +72,19 @@ Data.prototype.getAllPairs = function() {
   return this.pairs;
 };
 
+Data.prototype.roundToServer = function(round) {
+  this.round = round;
+};
+
+Data.prototype.getRound = function() {
+  return this.round;
+};
+
 const data = new Data();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
-  socket.emit('initialize', data.getAllPairs());
+  socket.emit('initialize', data.getAllData());
 
   // When a connected client emits an "addOrder" message
   socket.on('pairsToServer', function(pairs) {
@@ -77,10 +94,10 @@ io.on('connection', function(socket) {
     io.emit('pairsFromServer',  data.getAllPairs() );
   });
     socket.on('roundToServer', function(round) {
-      this.data.round = round
+      data.roundToServer(round);
       // send updated info to all connected clients,
       // note the use of io instead of socket
-      io.emit('roundFromServer',  data.round );
+      io.emit('roundFromServer',  data.getRound() );
     })
 });
 

@@ -12,7 +12,6 @@ const vm = new Vue({
   created: function () {
     socket.on('initialize', function (data) {
       this.roundNumber = data.round;
-      console.log(data.round);
       this.setup();
     }.bind(this));
     socket.on('roundFromServer', function (data) {
@@ -25,6 +24,7 @@ const vm = new Vue({
       if (this.roundNumber == undefined) {
         socket.emit('roundToServer', 1);
         this.roundNumber = 1;
+        console.log("Denna text verkar aldrig visas?"); //Se över denna funktion
       }
     },
     startRound: function () {

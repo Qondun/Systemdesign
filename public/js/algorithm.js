@@ -24,15 +24,15 @@ const Algorithm = new Vue({
     },
     methods: {
         setup: function () {
-            if (Algorithm.pairs == undefined) {
+            if (this.pairs[0] == undefined) { //Bygger på att det alltid kommer finnas ett par.
                 Algorithm.pairs = [];
                 Algorithm.testSetup();
                 Algorithm.pair(0);
+                socket.emit('pairsToServer', Algorithm.pairs);
             }
 
             this.numberOfSelected = 0;
             //disables or enables button depending on number of selected pairs
-            console.log(this.men);
             for (let pair of this.pairs) {
                 if (pair.selected) {
                     this.numberOfSelected++;

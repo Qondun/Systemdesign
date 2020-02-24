@@ -88,7 +88,7 @@ io.on('connection', function(socket) {
 
   // When a connected client emits an "addOrder" message
   socket.on('pairsToServer', function(pairs) {
-    data.pairsToServer(pairs);
+    data.pairsToServer(pairs)
     // send updated info to all connected clients,
     // note the use of io instead of socket
     io.emit('pairsFromServer',  {pairs: data.getAllPairs()});

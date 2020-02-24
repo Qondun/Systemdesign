@@ -1,8 +1,9 @@
 <html>
 	<head>
+		<script src="http://localhost:3000/socket.io/socket.io.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/arranger_style.css">
     	<script src="https://vuejs.org/js/vue.js" defer></script>
-    	<script src="js/arranger.js" defer></script>
+		<script src="/socket.io/socket.io.js" defer></script>
 		<title>
 			SpeedArranger
 		</title>
@@ -13,9 +14,9 @@
 	</div>
 	<body>
 		<section class="menu">
-			<form action="ongoing_event">
+			<a href="/ongoing_event">
 				<input class="menuButton" type="submit" value="Start event">
-			</form>
+			</a>
 		</section>
 	</body>
 	</main>

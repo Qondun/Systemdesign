@@ -8,7 +8,7 @@ const vm = new Vue({
         currentDate: null,
         done: false,
         okPressed: false,
-        round: 0
+        round: 1
     },
     created: function () {
         socket.on('initialize', function (data) {

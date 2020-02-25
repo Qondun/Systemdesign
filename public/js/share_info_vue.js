@@ -1,7 +1,7 @@
 const vm = new Vue({
     el: '#main_box',
     data: {
-        dates: ['John Doe', 'John Doee', 'John Doeee'],
+        dates: ['Johnny', 'Johnny', 'Johnny'],
         answers: ['Not answered', 'Not answered', 'Not answered'],
         questionsDone: false,
         questionNumber: '1',

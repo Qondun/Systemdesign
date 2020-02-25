@@ -28,7 +28,6 @@ const vm = new Vue({
         socket.on('roundFromServer', function (data) {
             this.round = data.round;
         }.bind(this));
-        this.answers = [this.overallRating].concat(this.answers);
     },
     methods: {
                 incrementNumber: function() {
@@ -47,7 +46,7 @@ const vm = new Vue({
             }
         },
         addAnswer: function(ans) {
-            this.answers[this.questionNumber] = ans;
+            this.answers[this.questionNumber - 1] = ans;
             this.incrementNumber();
         },
         submitAnswers: function() {

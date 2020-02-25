@@ -11,19 +11,27 @@
 
 <body>
     <main id="main_box">
+    <section v-if="dateAvailible==true">
         <h1>Information about date</h1>
-        <div id="user_img"></div>
-        <section id="date_info">
-            <h2 id="name">Name: John Doe</h2>
-            <h2 id="age">Age: 22</h2>
-            <h2 id="table">Match: 99%</h2>
-            <h2 id="match%">Table: A14</h2>
-        </section>
-        <div>
-            <button id="ok_button" v-on:click="okSubmit">Ok</button><br>
-            <p id="cm" v-if="okPressed == true">You confirmed the match!</p>
+        <img id="user_img" v-bind:src="currentDate.img">
+        <div id="date_info">
+            <h2 id="name">Name: {{currentDate.name}}</h2>
+            <h2 id="age">Age: {{currentDate.age}}</h2>
+            <h2 id="table">Match: {{currentDate.match}}%</h2>
+            <h2 id="match%">Table: {{currentDate.table}}</h2>
         </div>
-
+        <div id="dateConfirmation">
+            <button id="ok_button" v-on:click="okSubmit" v-if="okPressed==false">Ok</button><br>
+            <p v-if="okPressed == true">Enjoy your date!</p>
+        </div>
+    </section>
+    <section v-if="dateAvailible==false">
+        <div id="waitingForNext">
+            <div>
+                <h2>Waiting for next date</h2>
+            </div>
+        </div>
+    </section>
     </main>
 </body>
 <footer>

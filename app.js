@@ -56,10 +56,12 @@ app.get('/ongoing_round', function(req, res) {
 
 app.get('/question_page', function(req, res) {
     res.sendFile(path.join(__dirname, '/views/question_page.html'));
+
 });
 app.get('/show_info', function(req, res) {
     res.sendFile(path.join(__dirname, '/views/show_info.html'));
 });
+
 app.get('/share_info', function(req, res) {
 	  res.sendFile(path.join(__dirname, 'views/share_info.html'));
 });
@@ -82,7 +84,6 @@ Data.prototype.getAllPairs = function() {
 };
 
 const data = new Data();
-
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects

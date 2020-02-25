@@ -12,6 +12,12 @@
     margin-right: auto;
 }
 
+#user_img img {
+    height: 100%;
+    width: 100%;
+    position: relative; 
+}
+
 #q_yes {
     height: 50px;
     width: 110px;
@@ -19,6 +25,7 @@
     background: green;
     cursor: pointer;
 }
+
 
 #q_yes:active {
     background: #e5e5e5;
@@ -111,6 +118,13 @@
     opacity: 0.5;
 }
 
+#overall {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
 #question {
     width: 80%;
     height: 200px;
@@ -125,7 +139,7 @@
     text-align: center;
 }
 
-#test {
+#confirm_page {
     width: 80%;
     height: 200px;
     margin: auto;
@@ -140,4 +154,5 @@
 
 #answer_list {
     list-style-type: none;
+    margin-bottom: 20px;
 }

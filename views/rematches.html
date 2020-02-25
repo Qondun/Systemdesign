@@ -15,15 +15,15 @@
             <div id="back_button">
             </div>
         </a>
-        <p id="rubrik">Matcha om</p>
+        <p id="rubrik">Rematch</p>
         <hr>
 
         <div id="chosenGrid">
             <img id ="chosenPicture" v-bind:src="chosenPerson.picture">
-            <p id="chosenInfo">Lorem Ipsum</p>
-            <button class="largeButton" id="leftButton" v-on:click="changePerson(false)">Vänster</button>
-            <button class="largeButton" id="leftButton" v-on:click="changePerson(true)">Höger</button>
-            <button class="largeButton" id="switchButton" v-on:click="changeGender">Byt</button>
+            <p id="chosenInfo">(Information will be displayed here.)</p>
+            <button class="largeButton" id="leftButton" v-on:click="changePerson(false)">Previous person</button>
+            <button class="largeButton" id="leftButton" v-on:click="changePerson(true)">Next person</button>
+            <button class="largeButton" id="switchButton" v-on:click="changeGender">Swap</button>
             <p id="chosenName">{{chosenPerson.name}}</p>
         </div>
         <hr>
@@ -31,7 +31,7 @@
             <div v-for="(person, key) in differentGender">
                 <div class="singlePerson">
                     <img :src="person.picture" class="Picture"></img>
-                    <button class="matchButton" v-on:click="reMatch(key)">Matcha ihop!</button>
+                    <button class="matchButton" v-on:click="reMatch(key)">Match!</button>
                     <span class="nameLabel">{{person.name}}</span>
                 </div>
             </div>

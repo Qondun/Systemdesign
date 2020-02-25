@@ -25,7 +25,7 @@
             </div>
         </a>
         <div id="question" v-if="questionNumber <= 3">
-            <h2>question {{questionNumber}}/3</h2>
+            <h2>Question {{questionNumber}}/3</h2>
             <p>Would you like to share your contact information with {{dates[questionNumber-1].name}}?</p>
             <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
             <button id="q_no" v-on:click="addAnswer('No')">No</button><br>

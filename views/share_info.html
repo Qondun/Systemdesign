@@ -28,28 +28,26 @@
             <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
             <button id="q_no" v-on:click="addAnswer('No')">No</button><br>
         </div>
-        <div id="test" v-if="questionNumber == 4">
+        <div id="confirm_page" v-if="questionNumber == 4">
             <h2>Answer confirmation</h2>
             <div class="list_box">
-                <ul>
-                    <li v-for="date in dates">
-                        {{date}}
-                    </li>
-                </ul>
+              <ul>
+                <li v-for="date in dates">
+                  {{date}}
+                </li>
+              </ul>
             </div>
             <div class="list_box">
-                <ol id="answer_list">
-                    <li v-for="answer in answers">
-                        {{answer}}
-                    </li>
-                </ol>
+              <ol id="answer_list">
+                <li v-for="answer in answers">
+                  {{answer}}
+                </li>
+              </ol>
             </div>
             <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
             <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
             <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
         </div>
-
-
     </main>
 </body>
 

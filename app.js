@@ -106,7 +106,6 @@ const data = new Data();
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
   socket.emit('initialize', data.getAllData());
-
   // When a connected client emits an "addOrder" message
   socket.on('pairsToServer', function(pairs) {
     data.pairsToServer(pairs)

@@ -33,6 +33,7 @@ const vm = new Vue({
             if (!this.answers.includes('Not answered')) {
                 console.log(this.answers);
                 this.questionsDone = true;
+                window.location.assign("/user_menu");
             }
 
         }

@@ -87,7 +87,7 @@ const data = new Data();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
-  socket.emit('initialize', data.getAllPairs());
+  socket.emit('initialize', data);
 
   // When a connected client emits an "addOrder" message
   socket.on('pairsToServer', function(pairs) {
@@ -98,6 +98,7 @@ io.on('connection', function(socket) {
   });
     socket.on('roundToServer', function(round) {
       data.round = round
+      console.log("Tog emot round: " + round);
       // send updated info to all connected clients,
 	// note the use of io instead of socket
 	io.emit('roundFromServer',  data.round );

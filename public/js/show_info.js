@@ -1,3 +1,6 @@
+'use strict';
+const socket = io();
+
 const vm = new Vue({
     el: '#main_box',
     data: {
@@ -5,10 +8,20 @@ const vm = new Vue({
         currentDate: null,
         done: false,
         okPressed: false,
+        round: 0
+    },
+    created: function () {
+        socket.on('initialize', function (data) {
+            this.round = data.round;
+        }.bind(this));
+        socket.on('roundFromServer', function (data) {
+            this.round = data.round;
+        }.bind(this));
     },
     methods: {
         okSubmit: function() {
             this.okPressed = true;
+            console.log(this.round);
             setInterval(function() { window.location.assign("/question_page")  }, 3000);
         },
         setDate: function(name, age, match, table, img){
@@ -17,6 +30,7 @@ const vm = new Vue({
             this.dateAvailible = true;
         },
         completeDate: function(){
+
             this.currentDate = null;
             this.dateAvailible = false;
             setTimeout(function(){

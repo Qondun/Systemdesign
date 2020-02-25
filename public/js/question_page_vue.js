@@ -1,3 +1,7 @@
+'use strict';
+const socket = io();
+
+
 const vm = new Vue({
     el: '#main_box',
     data: {
@@ -8,9 +12,17 @@ const vm = new Vue({
         questionNumber: '0',
         answerNumber: '1',
         triedSubmitting: false,
-        currentDate: null
+        currentDate: null,
+        round: 0
     },
     created: function () {
+        socket.on('initialize', function (data) {
+            this.round = data.round;
+            console.log("question page: " + data.round);
+        }.bind(this));
+        socket.on('roundFromServer', function (data) {
+            this.round = data.round;
+        }.bind(this));
         this.answers = [this.overallRating].concat(this.answers);
     },
     methods: {
@@ -37,10 +49,18 @@ const vm = new Vue({
             console.log(this.answers);
             this.triedSubmitting = true;
             if (!this.answers.includes('Not answered')) {
-                console.log(this.answers);
-                window.location.assign("/show_info");
-                this.questionsDone = true;
+                if(this.round >= 3){
+                    window.location.href = "/share_info"; //Byta ut
+                    this.questionsDone = true;
+                }
+                else{
+                    socket.emit('roundToServer', this.round + 1)
+                    window.location.assign("/show_info");
+                    this.questionsDone = true;
+                }
+
             }
+            
         },
         setDate: function(name, age, match, table, img){
             let myDate = {name, age, match, table, img};

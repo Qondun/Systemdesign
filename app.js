@@ -54,10 +54,6 @@ app.get('/ongoing_round', function(req, res) {
     res.sendFile(path.join(__dirname, 'views/ongoing_round.html'));
 });
 
-app.get('/question_page', function(req, res) {
-    res.sendFile(path.join(__dirname, '/views/question_page.html'));
-
-});
 app.get('/show_info', function(req, res) {
     res.sendFile(path.join(__dirname, '/views/show_info.html'));
 });

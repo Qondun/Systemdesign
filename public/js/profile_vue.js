@@ -10,8 +10,10 @@ const vm = new Vue({
     },
     methods: {
         test: function(){
+            if(confirm("Send info?")){
             console.log(this.fullname);
             window.location.assign('/user_menu');
+            }
         }
     }
 })

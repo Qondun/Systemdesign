@@ -3,8 +3,12 @@
     height: 400px;
     background: #6b6666;
     margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 90px;
+}
+
+#user_img img {
+    height: 100%;
+    width: 100%;
 }
 
 #date_info {
@@ -17,11 +21,165 @@
     background: #ff807a;
     height: 50px;
     width: 110px;
-    margin-top: 50px;
-    margin-left: 180px;
+    margin: auto;
     cursor: pointer;
 }
 
 #cm {
     margin-left: 150px;
+}
+
+#dateConfirmation {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#waitingForNext {
+    width: auto;
+    margin: auto;
+    text-align: center;
+}
+
+#questions {
+    margin-top: 100px;
+    text-align: center;
+}
+
+#q_yes {
+    height: 50px;
+    width: 110px;
+    margin-bottom: 50px;
+    background: green;
+    cursor: pointer;
+}
+
+
+#q_yes:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+#q_yes:hover {
+    opacity: 0.5;
+}
+
+#q_no {
+    height: 50px;
+    width: 110px;
+    margin-bottom: 50px;
+    background: red;
+    cursor: pointer;
+}
+
+#q_no:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+#q_no:hover {
+    opacity: 0.5;
+}
+
+#left_button {
+    width: 20px;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 30px solid black;
+    float: left;
+}
+
+#left_button:hover {
+    opacity: 0.5;
+}
+
+#right_button {
+    width: 20px;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid black;
+    float: right;
+}
+
+#right_button:hover {
+    opacity: 0.5;
+}
+
+#previous_q {
+    margin-left: 10px;
+}
+
+#next_q {
+    margin-right: 10px;
+    float: right;
+}
+
+#n_p_button {
+    margin-top: 40px;
+}
+
+.q_button {
+    background: #ff807a;
+    height: 50px;
+    width: 110px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+.q_button:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+.q_button:hover {
+    opacity: 0.5;
+}
+
+#overall {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+#question {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+#answer {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+#confirm_page {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+.list_box {
+    width: 50%;
+    margin: auto;
+    float: left;
+}
+
+#answer_list {
+    list-style-type: none;
+    margin-bottom: 20px;
 }

@@ -86,8 +86,7 @@ const rematching = new Vue({
             
             if(this.sameGender.length == 0){
 
-                socket.emit('pairsToServer', 
-                    {pairs: this.newPairs});
+                socket.emit('pairsToServer', this.newPairs);
                 window.location.href = "/matches"
             }
             else if(this.index > this.sameGender.length -1 ) {

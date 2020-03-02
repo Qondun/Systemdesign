@@ -4,7 +4,7 @@ const socket = io();
 const vm = new Vue({
     el: '#main_box',
     data: {
-        questions: ['Did you enjoy the date?', 'Did you think the age gap was too big?','Did you find this match to be correct for you?'],
+        questions: ['Did you enjoy the date?', 'Did you find the age difference to be good?','Did you find this match to be correct for you?'],
         overallRating: '5',
         answers: ['Not answered', 'Not answered', 'Not answered'],
         questionsDone: false,

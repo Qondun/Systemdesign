@@ -94,7 +94,9 @@
     border-right: 30px solid black;
     float: left;
 }
-
+#left_button p {
+    margin-left: 50px;
+}
 #left_button:hover {
     opacity: 0.5;
 }
@@ -107,7 +109,9 @@
     border-left: 30px solid black;
     float: right;
 }
-
+#right_button p {
+    margin-right: 50px;
+}
 #right_button:hover {
     opacity: 0.5;
 }

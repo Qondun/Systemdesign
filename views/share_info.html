@@ -17,12 +17,14 @@
         </div>
 
         <a href="#" v-if="questionNumber > 1" v-on:click="decrementNumber()">
-            <div id="left_button">
-            </div>
+          <div class="button_text_left" id="left_button">
+            <p>Previous</p>
+          </div>
         </a>
         <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
-            <div id="right_button">
-            </div>
+          <div class="button_text_right" id="right_button">
+            <p>Next</p>
+          </div>
         </a>
         <div id="question" v-if="questionNumber <= 3">
             <h2>Question {{questionNumber}}/3</h2>

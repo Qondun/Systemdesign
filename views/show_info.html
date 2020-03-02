@@ -18,13 +18,14 @@
             <img v-bind:src="currentDate.img">
         </div>
         <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
-
-            <div id="left_button">
-            </div>
+          <p id="button_text_left">Previous</p>
+          <div id="left_button">
+          </div>
         </a>
         <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
-            <div id="right_button">
-            </div>
+          <p class="button_text_right">Next</p>
+          <div class="question_button" id="right_button">
+          </div>
         </a>
         
         <div id="overall" v-if="questionNumber == 0">

@@ -66,7 +66,7 @@
             <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
         </div>
     </section>
-    <section v-if="dateAvailible==true && showQuestions == false">
+    <section v-if="dateAvailable==true && showQuestions == false">
         <h1>Information about date</h1>
         <div id="user_img">
             <img v-bind:src="currentDate.img">
@@ -82,7 +82,7 @@
             <p v-if="okPressed == true">Enjoy your date!</p>
         </div>
     </section>
-    <section v-if="dateAvailible==false">
+    <section v-if="dateAvailable==false">
         <div id="waitingForNext">
             <div>
                 <h2>Waiting for next date<br>

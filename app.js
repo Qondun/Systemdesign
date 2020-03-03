@@ -121,6 +121,9 @@ io.on('connection', function(socket) {
       // note the use of io instead of socket
       io.emit('getLatestMatching',  {latestMatching: data.latestMatching });
     });
+    socket.on('startRoundToServer', function(data) {
+	io.emit('startRoundFromServer', {});
+    });
 });
 
 /* eslint-disable-next-line no-unused-vars */

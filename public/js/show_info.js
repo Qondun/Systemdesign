@@ -11,7 +11,7 @@ const vm = new Vue({
         questionNumber: '0',
         answerNumber: '1',
         triedSubmitting: false,
-        dateAvailible: false,
+        dateAvailable: false,
         dates: [{ name: 'Johnny', age: '78', table: 'A12', match: 62, image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
                 { name: 'Arnold', age: '72', table: 'B3', match: 99, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
                 { name: 'Keanu', age: '55', table: 'C9', match: 88, image: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'}],
@@ -27,6 +27,11 @@ const vm = new Vue({
         }.bind(this));
         socket.on('roundFromServer', function (data) {
             this.round = data.round;
+        }.bind(this));
+	socket.on('startRoundFromServer', function (data) {
+	    console.log("DATE AVAILABLE!");
+	    let date = vm.dates[vm.round-1];
+            vm.setDate(date.name,date.age,date.match,date.table,date.image);
         }.bind(this));
     },
     methods: {
@@ -58,7 +63,7 @@ const vm = new Vue({
                     this.questionsDone = true;
                 }
                 else{
-                    socket.emit('roundToServer', this.round + 1)
+                    //socket.emit('roundToServer', this.round + 1)
                     window.location.assign("/show_info");
                     this.questionsDone = true;
                 }
@@ -74,16 +79,18 @@ const vm = new Vue({
         setDate: function(name, age, match, table, img){
             let myDate = {name, age, match, table, img};
             this.currentDate = myDate;
-            this.dateAvailible = true;
+            this.dateAvailable = true;
         },
         completeDate: function(){
             this.showQuestions = false;
             this.currentDate = null;
-            this.dateAvailible = false;
-            setTimeout(function(){
+            this.dateAvailable = false;
+//	    let date = vm.dates[vm.round-1];
+  //          vm.setDate(date.name,date.age,date.match,date.table,date.image);
+            /*setTimeout(function(){
                 let date = vm.dates[vm.round-1];
                 vm.setDate(date.name,date.age,date.match,date.table,date.image);
-            },5000)
+            },5000)*/
         }
     }
 })

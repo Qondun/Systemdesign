@@ -32,6 +32,7 @@ const vm = new Vue({
         },
         startRound: function () {
             if (confirm("Start next round?")) {
+		socket.emit('startRoundToServer', {});
                 this.ongoingRound = true;
                 this.usersDone = 0;
                 reset();

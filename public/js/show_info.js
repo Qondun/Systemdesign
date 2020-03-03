@@ -29,10 +29,12 @@ const vm = new Vue({
             this.round = data.round;
         }.bind(this));
 	socket.on('startRoundFromServer', function (data) {
-	    console.log("DATE AVAILABLE!");
 	    let date = vm.dates[vm.round-1];
             vm.setDate(date.name,date.age,date.match,date.table,date.image);
         }.bind(this));
+	socket.on('quitQuestions', function (data) {
+     
+	});
     },
     methods: {
                 incrementNumber: function() {

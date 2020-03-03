@@ -22,34 +22,62 @@
             <div id="left_button">
             </div>
         </a>
-        <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
+        <a href="#" v-if="questionNumber < 5" v-on:click="incrementNumber()">
             <div id="right_button">
             </div>
         </a>
         
         <div id="overall" v-if="questionNumber == 0">
-          <h2>Overall rating of date</h2>
+          <h2>Question {{questionNumber+1}}/5</h2>
+          <p>{{questions[questionNumber]}}</p>
           <label class="range_indicator">-</label>
-          <input type="range" min="0" max="10" v-model="overallRating" class="user_input"></input>
+          <input type="range" min="0" max="10" v-model="answers.rating" class="user_input"></input>
           <label class="range_indicator">+</label><br>
         </div>
         
-        <div id="question" v-if="questionNumber > 0 && questionNumber <= 3">
-            <h2>Question {{questionNumber}}/3</h2>
-            <p>{{questions[questionNumber-1]}}</p>
+        <div id="question" v-if="questionNumber > 0 && questionNumber < 4">
+            <h2>Question {{questionNumber+1}}/5</h2>
+            <p>{{questions[questionNumber]}}</p>
             <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
             <button id="q_no" v-on:click="addAnswer('No')">No</button><br>
         </div>
+
+        <div id="question" v-if="questionNumber == 4">
+            <h2>Question {{questionNumber+1}}/5</h2>
+            <p>{{questions[questionNumber]}}</p>
+            <input type="text" placeholder="Comments..." v-model="answers.comment">
+        </div>
         
-        <div id="confirm_page" v-if="questionNumber == 4">
+        <div id="confirm_page" v-if="questionNumber == 5">
             <h2>Answer confirmation</h2>
             <div class="list_box">
               <ul>
                 <li>
                   Overall rating of date
                 </li>
-                <li v-for="question in questions">
-                  {{question}}
+                <li>
+                  {{answers.rating}}
+                  
+                </li>
+                
+                <li>
+                  {{answers.a1}}
+                  
+                </li>
+                
+                <li>
+                  {{answers.a2}}
+                  
+                </li>
+                
+                <li>
+                  {{answers.a3}}
+                  
+                </li>
+                
+                <li>
+                  {{answers.comment}}
+                  
                 </li>
               </ul>
             </div>

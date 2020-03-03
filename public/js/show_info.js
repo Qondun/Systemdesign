@@ -9,7 +9,7 @@ const vm = new Vue({
         answers: {rating: 5, a1: 'Not answered', a2: 'Not answered', a3: 'Not answered', comment: ''},
         questionsDone: false,
         questionsDone: false,
-        questionNumber: '0',
+        questionNumber: 0,
         answerNumber: '1',
         triedSubmitting: false,
         dateAvailible: false,
@@ -47,21 +47,20 @@ const vm = new Vue({
         },
         addAnswer: function(ans) {
             switch(this.questionNumber){
-                case 0:
+            case 0:
                 this.answers.rating = ans;
                 break;
-                case 1:
-
+            case 1:
+                this.answers.a1 = ans;
                 break;
-                case 2:
-
+            case 2:
+                this.answers.a2 = ans;
                 break;
-                case 3:
-
+            case 3:
+                this.answers.a3 = ans;
                 break;
-
-                case 4:
-
+            default:
+                this.answers.comment = ans;
                 break;
             }
             this.answers[this.questionNumber - 1] = ans;

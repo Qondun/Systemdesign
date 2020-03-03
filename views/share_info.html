@@ -16,16 +16,20 @@
             <img v-bind:src="currentDate.image">
         </div>
 
-        <a href="#" v-if="questionNumber > 1" v-on:click="decrementNumber()">
-          <div class="button_text_left" id="left_button">
-            <p>Previous</p>
-          </div>
-        </a>
-        <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
-          <div class="button_text_right" id="right_button">
-            <p>Next</p>
-          </div>
-        </a>
+        <div id="button_box_left">
+          <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
+            <div id="left_button">
+            </div>
+            <label>Previous</label>
+          </a>
+        </div>
+        <div id="button_box_right">
+          <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
+            <div class="question_button" id="right_button">
+            </div>
+            <label>Next</label>
+          </a>
+        </div>
         <div id="question" v-if="questionNumber <= 3">
             <h2>Question {{questionNumber}}/3</h2>
             <p>Would you like to share your contact information with {{dates[questionNumber-1].name}}?</p>

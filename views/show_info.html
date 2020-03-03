@@ -16,18 +16,21 @@
         <section v-if="showQuestions == true">
          <div id="user_img">
             <img v-bind:src="currentDate.img">
+         </div>
+        <div id="button_box_left">
+          <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
+            <div id="left_button">
+            </div>
+            <label>Previous</label>
+          </a>
         </div>
-        <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
-          <p id="button_text_left">Previous</p>
-          <div id="left_button">
-          </div>
-        </a>
-        <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
-          <p class="button_text_right">Next</p>
-          <div class="question_button" id="right_button">
-          </div>
-        </a>
-        
+        <div id="button_box_right">
+          <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
+            <div class="question_button" id="right_button">
+            </div>
+            <label>Next</label>
+          </a>
+        </div>
         <div id="overall" v-if="questionNumber == 0">
           <h2>Overall rating of date</h2>
           <label class="range_indicator">-</label>
@@ -47,20 +50,12 @@
             <div class="list_box">
               <ul>
                 <li>
-                  Overall rating of date
+                  <span id="question_in_list">Overall rating of date</span><br><span id="answer_in_list">{{overallRating}}</span>
                 </li>
-                <li v-for="question in questions">
-                  {{question}}
+                <li v-for="(question, key) in questions">
+                  <span id="question_in_list">{{question}}</span><br><span id="answer_in_list">{{answers[key]}}</span>
                 </li>
               </ul>
-            </div>
-            <div class="list_box">
-              <ol id="answer_list">
-                <li>{{overallRating}}</li>
-                <li v-for="answer in answers">
-                  {{answer}}
-                </li>
-              </ol>
             </div>
             <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
             <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>

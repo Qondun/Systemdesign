@@ -4,9 +4,10 @@ const socket = io();
 const vm = new Vue({
     el: '#main_box',
     data: {
-        questions: ['Did you enjoy the date?', 'Did you think the age gap was too big?','Did you find this match to be correct for you?'],
+        questions: ['Overall rating?', 'Did you enjoy the date?', 'Did you think the age gap was too big?','Did you find this match to be correct for you?', "Comments?"],
         overallRating: '5',
-        answers: ['Not answered', 'Not answered', 'Not answered'],
+        answers: {rating: 5, a1: 'Not answered', a2: 'Not answered', a3: 'Not answered', comment: ''},
+        questionsDone: false,
         questionsDone: false,
         questionNumber: '0',
         answerNumber: '1',
@@ -30,8 +31,8 @@ const vm = new Vue({
         }.bind(this));
     },
     methods: {
-                incrementNumber: function() {
-            if (this.questionNumber < 4) {
+            incrementNumber: function() {
+            if (this.questionNumber < this.questions.length) {
                 let qn = this.questionNumber;
                 qn++;
                 this.questionNumber = qn;
@@ -42,10 +43,27 @@ const vm = new Vue({
                 let qn = this.questionNumber;
                 qn--;
                 this.questionNumber = qn;
-
             }
         },
         addAnswer: function(ans) {
+            switch(this.questionNumber){
+                case 0:
+                this.answers.rating = ans;
+                break;
+                case 1:
+
+                break;
+                case 2:
+
+                break;
+                case 3:
+
+                break;
+
+                case 4:
+
+                break;
+            }
             this.answers[this.questionNumber - 1] = ans;
             this.incrementNumber();
         },

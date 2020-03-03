@@ -29,11 +29,14 @@ const vm = new Vue({
             this.round = data.round;
         }.bind(this));
 	socket.on('startRoundFromServer', function (data) {
+	    this.showQuestions = false;
+	    this.okPressed = false;
+	    this.triedSubmitting = false;
 	    let date = vm.dates[vm.round-1];
             vm.setDate(date.name,date.age,date.match,date.table,date.image);
         }.bind(this));
 	socket.on('quitQuestions', function (data) {
-     
+
 	});
     },
     methods: {
@@ -76,7 +79,8 @@ const vm = new Vue({
         okSubmit: function() {
             this.okPressed = true;
             console.log(this.round);
-            setInterval(function() { vm.showQuestions = true }, 3000);
+	    vm.showQuestions = true;
+            //setInterval(function() { vm.showQuestions = true }, 3000);
         },
         setDate: function(name, age, match, table, img){
             let myDate = {name, age, match, table, img};

@@ -52,40 +52,27 @@
             <h2>Answer confirmation</h2>
             <div class="list_box">
               <ul>
-                <li>
-                  Overall rating of date
-                </li>
-                <li>
-                  {{answers.rating}}
-                  
-                </li>
-                
-                <li>
-                  {{answers.a1}}
-                  
-                </li>
-                
-                <li>
-                  {{answers.a2}}
-                  
-                </li>
-                
-                <li>
-                  {{answers.a3}}
-                  
-                </li>
-                
-                <li>
-                  {{answers.comment}}
-                  
+                <li v-for="question in questions">
+                  {{question}}
                 </li>
               </ul>
             </div>
             <div class="list_box">
               <ol id="answer_list">
-                <li>{{overallRating}}</li>
-                <li v-for="answer in answers">
-                  {{answer}}
+                <li>
+                  {{answers.rating}}
+                </li>
+                <li>
+                  {{answers.a1}}
+                </li>
+                <li>
+                  {{answers.a2}}
+                </li>
+                <li>
+                  {{answers.a3}}
+                </li>
+                <li>
+                  {{answers.comment}}
                 </li>
               </ol>
             </div>

@@ -6,7 +6,7 @@ const vm = new Vue({
     el: '#myID',
     data: {
         time: '00:00:00.000',
-        roundNumber: '1',
+        roundNumber: 1,
         ongoingRound: false,
         eventDone: false,
         users: '20',
@@ -41,16 +41,21 @@ const vm = new Vue({
         },
         endRound: function () {
             let rn = this.roundNumber;
+	    rn++;
+            if (rn > 3) {
+                this.eventDone = true;
+            }/*
             if (rn < 3) {
                 rn++;
             } else {
                 this.eventDone = true;
-            }
+            }*/
             this.roundNumber = rn;
             this.ongoingRound = false;
             socket.emit('roundToServer', this.roundNumber);
             ongoing_event.round = this.roundNumber;
             ongoing_event.setup();
+	    socket.emit('quitDateToServer', {});
         },
         endEvent: function () {
             if (confirm("End event?")) {

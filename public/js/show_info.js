@@ -35,9 +35,12 @@ const vm = new Vue({
 	    let date = vm.dates[vm.round-1];
             vm.setDate(date.name,date.age,date.match,date.table,date.image);
         }.bind(this));
-	socket.on('quitQuestions', function (data) {
-
-	});
+	socket.on('quitDateFromServer', function (data) {
+	    console.log("Quit!");
+	    this.okPressed = true;
+	    this.showQuestions = true;
+	    //this.dateAvailable = false;
+	}.bind(this));
     },
     methods: {
                 incrementNumber: function() {
@@ -63,7 +66,7 @@ const vm = new Vue({
             console.log(this.answers);
             this.triedSubmitting = true;
             if (!this.answers.includes('Not answered')) {
-                if(this.round >= 3){
+                if(this.round > 3){
                     window.location.href = "/share_info"; //Byta ut
                     this.questionsDone = true;
                 }
@@ -79,7 +82,7 @@ const vm = new Vue({
         okSubmit: function() {
             this.okPressed = true;
             console.log(this.round);
-	    vm.showQuestions = true;
+	    //vm.showQuestions = true;
             //setInterval(function() { vm.showQuestions = true }, 3000);
         },
         setDate: function(name, age, match, table, img){

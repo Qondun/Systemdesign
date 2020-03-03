@@ -122,8 +122,10 @@ io.on('connection', function(socket) {
       io.emit('getLatestMatching',  {latestMatching: data.latestMatching });
     });
     socket.on('startRoundToServer', function(data) {
-	io.emit('quitQuestions', {});
 	io.emit('startRoundFromServer', {});
+    });
+    socket.on('quitDateToServer', function(data) {
+	io.emit('quitDateFromServer', {});
     });
 });
 

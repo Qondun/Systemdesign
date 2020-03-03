@@ -14,7 +14,12 @@
     <main id="myID">
       <div class="title">
 	<h1>SpeedArranger</h1>
-	<h2>Round {{ roundNumber }}/3 </h2>
+	<div v-if="roundNumber <= 3">
+	  <h2>Round {{ roundNumber }}/3 </h2>
+	</div>
+	<div v-if="roundNumber > 3">
+	  <h2>All rounds finished </h2>
+	</div>
       </div>
       <section class="menu" id="mainMenu" v-if="ongoingRound == false">
 	<input class="menuButton" type="submit" id="startRoundButton" value="Start round" v-if="eventDone == false" v-on:click="startRound">

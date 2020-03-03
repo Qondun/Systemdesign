@@ -69,19 +69,20 @@ const vm = new Vue({
         submitAnswers: function() {
             console.log(this.answers);
             this.triedSubmitting = true;
-            if (!this.answers.includes('Not answered')) {
-                if(this.round >= 3){
-                    window.location.href = "/share_info"; //Byta ut
-                    this.questionsDone = true;
+            for(var i = 0; i < this.questions.length; i++){
+                console.log(i);
+                if(this.getAnswer(i) == 'Not answered') {
+                    return;
                 }
-                else{
-                    socket.emit('roundToServer', this.round + 1)
-                    window.location.assign("/show_info");
-                    this.questionsDone = true;
-                }
-
             }
-            
+            this.questionsDone = true;
+            if(this.round >= 3){
+                window.location.href = "/share_info"; //Byta ut
+            }
+            else{
+                socket.emit('roundToServer', this.round + 1)
+                window.location.assign("/show_info");
+            }
         },
         okSubmit: function() {
             this.okPressed = true;
@@ -101,6 +102,25 @@ const vm = new Vue({
                 let date = vm.dates[vm.round-1];
                 vm.setDate(date.name,date.age,date.match,date.table,date.image);
             },5000)
+        },
+        getAnswer: function(i){
+            switch(i){
+            case 0:
+                return this.answers.rating;
+                break;
+            case 1:
+                return this.answers.a1;
+                break;
+            case 2:
+                return this.answers.a2;
+                break;
+            case 3:
+                return this.answers.a3;
+                break;
+            default:
+                return this.answers.comment;
+                break;
+            }
         }
     }
 })

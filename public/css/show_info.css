@@ -1,3 +1,6 @@
+h2 {
+    margin-top: 50px;
+}
 #user_img {
     width: 300px;
     height: 400px;
@@ -30,7 +33,7 @@
 }
 
 #dateConfirmation {
-    margin-top: 50px;
+    margin-top: 150px;
     text-align: center;
 }
 
@@ -86,6 +89,15 @@
     opacity: 0.5;
 }
 
+#button_box_left {
+    float: left;
+}
+#button_box_left label {
+    float: right;
+    color: #000;
+    text-decoration: none;
+    margin: 10px 0 0 10px;
+}
 #left_button {
     width: 20px;
     height: 0;
@@ -94,11 +106,18 @@
     border-right: 30px solid black;
     float: left;
 }
-
 #left_button:hover {
     opacity: 0.5;
 }
-
+#button_box_right {
+    float: right;
+}
+#button_box_right label {
+    float: left;
+    color: #000;
+    text-decoration: none;
+    margin: 10px 10px;
+}
 #right_button {
     width: 20px;
     height: 0;
@@ -107,7 +126,6 @@
     border-left: 30px solid black;
     float: right;
 }
-
 #right_button:hover {
     opacity: 0.5;
 }
@@ -129,7 +147,7 @@
     background: #ff807a;
     height: 50px;
     width: 110px;
-    margin-bottom: 50px;
+    margin-top: 30px;
     cursor: pointer;
 }
 
@@ -174,12 +192,17 @@
 }
 
 .list_box {
-    width: 50%;
-    margin: auto;
-    float: left;
+    width: 100%;
+    text-align: initial;
 }
-
-#answer_list {
-    list-style-type: none;
-    margin-bottom: 20px;
+#question_in_list {
+    float: left;
+    font-weight: bold;
+}
+#answer_in_list {
+    margin-top: 5px;
+    float: right;
+}
+.list_box li {
+    margin-bottom: 40px;
 }

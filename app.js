@@ -67,8 +67,9 @@ function Data() {
   this.profiles = [ { id: 'dummyProfile', answers: []}];
   this.pairs = {};
   this.round = 1;
-    this.latestMatching = 0;
-    this.reviewsDone = 0;
+  this.latestMatching = 0;
+  this.reviewsDone = 0;
+  this.currentId = 0;
 }
 
 /*
@@ -89,6 +90,11 @@ Data.prototype.pairsToServer = function(pairs) {
 
 Data.prototype.getAllPairs = function() {
   return this.pairs;
+};
+
+Data.prototype.getId = function() {
+  this.currentId++;
+  return this.currentId;
 };
 
 Data.prototype.roundToServer = function(round) {
@@ -144,6 +150,10 @@ io.on('connection', function(socket) {
     });
     socket.on('quitDateToServer', function(data) {
 	io.emit('quitDateFromServer', {});
+    });
+    socket.on('iWantId', function(nothin) {
+	    io.emit('idFromServer', {id: data.getId()});
+      console.log("Created user: " + data.currentId);
     });
 });
 

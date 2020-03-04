@@ -36,8 +36,12 @@ input::-webkit-inner-spin-button {
 }
 
 .range_indicator {
-    margin-top: 20px;
-    font-size: 30pt;
+    margin-top: 10px;
+    font-size: 20pt;
+}
+
+#questions {
+    padding-top: 10px;
 }
 
 

@@ -76,6 +76,7 @@ const vm = new Vue({
                 }
             }
             this.questionsDone = true;
+            socket.emit('answersToServer','dummyProfile',this.answers);
             if(this.round >= 3){
                 window.location.href = "/share_info"; //Byta ut
             }

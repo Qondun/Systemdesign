@@ -83,10 +83,16 @@
         </div>
     </section>
     <section v-if="dateAvailable==false">
-        <div id="waitingForNext">
+      <div id="waitingForNext">
+	<div v-if="round <= 3">
+	  <h2>Waiting for next date<br>
+            Currently on date {{round}}/3</h2>
+	</div>
+	<div v-if="round > 3">
+	  <h2>All rounds finished</h2>
+	</div>
             <div>
-                <h2>Waiting for next date<br>
-                Currently on date {{round}}/3</h2>
+                
             </div>
         </div>
     </section>

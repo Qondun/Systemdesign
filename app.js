@@ -64,7 +64,10 @@ app.get('/share_info', function(req, res) {
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
-  this.profiles = [ { id: 'dummyProfile', answers: []}];
+    this.profiles = [ { name: 'Pontus', id: 'dummyProfile', answers: [], shares: [], matches: []},
+                      { name: 'Johnny', id: '1', answers: [], shares: ['dummyProfile'], matches: []},
+                      { name: 'Arnold', id: '2', answers: [], shares: ['dummyProfile'], matches: []},
+                     { name: 'Keanu', id: '3', answers: [], shares: ['dummyProfile'], matches: []}];
   this.pairs = {};
   this.round = 1;
     this.latestMatching = 0;
@@ -96,9 +99,7 @@ Data.prototype.roundToServer = function(round) {
 };
 
 Data.prototype.answersToServer = function(id,answers){
-    let profile = this.profiles.find(function(element){
-        return element.id == id; 
-    });
+    let profile = this.getProfile(id);
     if(profile){
         profile.answers.push(answers);
         let ans = profile.answers[0];
@@ -106,6 +107,41 @@ Data.prototype.answersToServer = function(id,answers){
         this.reviewsDone++;
     }
 }
+
+// Shares is an array of profile ids
+Data.prototype.sharesToServer = function(id, shares){
+    let profile = this.getProfile(id);
+    let myShares = shares;
+    if(profile){
+        for(var shareId of myShares){
+            profile.shares.push(shareId);
+            console.log("Profile " + profile.id + " shared contact info with " + shareId);
+        }
+        this.updateMatches(id);
+    }
+}
+
+Data.prototype.updateMatches = function(id){
+    let myProfile = this.getProfile(id);
+    if(myProfile){
+        let shares = myProfile.shares;
+        for(var shareId of shares){
+            let profile = this.getProfile(shareId);
+            if (profile && profile.shares.includes(id)){
+                myProfile.matches.push({id: shareId, name: profile.name});
+                profile.matches.push({id: myProfile.id, name: myProfile.name});
+                console.log("succesful match! " + shareId + " with " + myProfile.id);
+            }
+        }
+    }
+}
+
+Data.prototype.getProfile = function(id){
+    return this.profiles.find(function(element){
+        return element.id == id; 
+    });
+}
+                             
 
 Data.prototype.getRound = function() {
   return this.round;
@@ -126,6 +162,12 @@ io.on('connection', function(socket) {
     socket.on('answersToServer', function(id,answers) {
         // Send answers to the server, push it to profile with id id
         data.answersToServer(id,answers); 
+    });
+    socket.on('getProfile', function(id) {
+        io.emit('profileFromServer', id, data.getProfile(id));
+    });
+    socket.on('sharesToServer', function(id,shares){
+        data.sharesToServer(id,shares);
     });
     socket.on('roundToServer', function(round) {
       data.roundToServer(round);

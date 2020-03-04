@@ -3,6 +3,7 @@
     <title>Your matches</title>
     <meta charset="utf-8" />    
     <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/user_matches.css">
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="js/user_matches_vue.js" defer></script>
@@ -19,13 +20,12 @@
       </a>
 
       <div id="user_wrapper" v-if="!showMatch">
-        <a id="user_link" v-for="match in matches" v-on:click="selectMatch(match)">
+        <a id="user_link" v-for="match in profile.matches" v-on:click="selectMatch(match)">
           <div id="user_box">
-            <h2>{{match.name}}, {{match.age}}</h2>
+            <h2>{{ match.name }}</h2>
           </div>
         </a>
       </div>
-      
       <div id="selected_match_box" v-if="showMatch">
         <h2>{{selectedName}}</h2>
         <img id="user_img"><img>

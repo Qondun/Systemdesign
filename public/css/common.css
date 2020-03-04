@@ -1,7 +1,7 @@
 body {
     background: #000000;
     font-family: Arial;
-    height: 100%
+    height: auto;
 }
 
 #main_box {
@@ -27,4 +27,10 @@ body {
 
 #back_button:hover {
     opacity: 0.5;
+}
+.button_text_left {
+    margin-left: 50px;
+}
+.button_text_right {
+    margin-right: 50px;
 }

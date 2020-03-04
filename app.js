@@ -64,9 +64,11 @@ app.get('/share_info', function(req, res) {
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
+  this.profiles = [ { id: 'dummyProfile', answers: []}];
   this.pairs = {};
   this.round = 1;
-  this.latestMatching = 0;
+    this.latestMatching = 0;
+    this.reviewsDone = 0;
 }
 
 /*
@@ -93,6 +95,18 @@ Data.prototype.roundToServer = function(round) {
   this.round = round;
 };
 
+Data.prototype.answersToServer = function(id,answers){
+    let profile = this.profiles.find(function(element){
+        return element.id == id; 
+    });
+    if(profile){
+        profile.answers.push(answers);
+        let ans = profile.answers[0];
+        console.log("Recieved answer to profile " + profile.id + " answers: " + ans.rating + " " + ans.a1 + " " + ans.a2 + " " + ans.a3 + " "  + ans.comment);
+        this.reviewsDone++;
+    }
+}
+
 Data.prototype.getRound = function() {
   return this.round;
 };
@@ -109,6 +123,10 @@ io.on('connection', function(socket) {
     // note the use of io instead of socket
     io.emit('pairsFromServer',  {pairs: data.getAllPairs()});
   });
+    socket.on('answersToServer', function(id,answers) {
+        // Send answers to the server, push it to profile with id id
+        data.answersToServer(id,answers); 
+    });
     socket.on('roundToServer', function(round) {
       data.roundToServer(round);
       // send updated info to all connected clients,

@@ -11,8 +11,9 @@ const vm = new Vue({
     methods: {
         test: function(){
             if(confirm("Send info?")){
-            console.log(this.fullname);
-            window.location.assign('/user_menu');
+		console.log(this.fullname);
+		window.location.href = '/user_menu?name='+this.fullname;
+            //window.location.assign('/user_menu');
             }
         }
     }

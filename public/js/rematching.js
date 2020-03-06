@@ -7,7 +7,9 @@ const rematching = new Vue({
         pairs: [],
         chosenPerson: {
             name: "",
-            picture: "http://guides.global/images/guides/global/dummy_web_page.jpg"
+            picture: "http://guides.global/images/guides/global/dummy_web_page.jpg",
+            age: "",
+            table: ""
         },
         sameGender: [],
         differentGender: [],
@@ -15,19 +17,19 @@ const rematching = new Vue({
         index: 0,
         chosenIsMan: true
     },
-    created: function () {
-        socket.on('initialize', function (data) {
+    created: function() {
+        socket.on('initialize', function(data) {
             this.pairs = data.pairs;
             this.update();
         }.bind(this));
-        socket.on('pairsFromServer', function (data) {
+        socket.on('pairsFromServer', function(data) {
             this.pairs = data.pairs;
             this.update();
         }.bind(this));
     },
     methods: {
 
-        update: function () {
+        update: function() {
             if (this.pairs != undefined) {
                 this.sameGender = [];
                 this.differentGender = [];
@@ -36,46 +38,46 @@ const rematching = new Vue({
                     if (pair.selected) {
                         this.sameGender.push(pair.man);
                         this.differentGender.push(pair.woman);
-                    }
-                    else{
+                    } else {
                         this.newPairs.push(pair);
                     }
                 }
                 this.chosenPerson = this.sameGender[0];
-            }
-            else{
+            } else {
                 this.chosenPerson = {
                     name: "N/A",
-                    picture: "http://guides.global/images/guides/global/dummy_web_page.jpg"
+                    picture: "http://guides.global/images/guides/global/dummy_web_page.jpg",
+                    age: "57",
+                    table: "A12",
+                    match: "97%",
                 }
             }
             this.index = 0;
         },
-        changePerson: function (forward) {
-            if(forward) {this.index++;}
-            else {this.index--;}
-            if(this.index < 0){this.index = this.sameGender.length -1}
+        changePerson: function(forward) {
+            if (forward) { this.index++; } else { this.index--; }
+            if (this.index < 0) { this.index = this.sameGender.length - 1 }
             this.index = this.index % this.sameGender.length;
             this.chosenPerson = (this.sameGender[this.index]);
         },
-        changeGender: function(){
+        changeGender: function() {
             let temp = this.sameGender;
             this.sameGender = this.differentGender;
             this.differentGender = temp;
             this.chosenPerson = this.sameGender[this.index];
             this.chosenIsMan = !this.chosenIsMan;
         },
-        reMatch: function(key){
-            if(this.chosenIsMan){
+        reMatch: function(key) {
+            if (this.chosenIsMan) {
                 this.newPairs.push({
                     man: this.sameGender[this.index],
-                    woman:  this.differentGender[key],
+                    woman: this.differentGender[key],
                     percentMatch: 95,
                     selected: false,
                 });
-            }else{
+            } else {
                 this.newPairs.push({
-                    man:  this.differentGender[key],
+                    man: this.differentGender[key],
                     woman: this.sameGender[this.index],
                     percentMatch: 95,
                     selected: false,
@@ -83,13 +85,12 @@ const rematching = new Vue({
             }
             this.sameGender.splice(this.index, 1);
             this.differentGender.splice(key, 1)
-            
-            if(this.sameGender.length == 0){
+
+            if (this.sameGender.length == 0) {
 
                 socket.emit('pairsToServer', this.newPairs);
                 window.location.href = "/matches"
-            }
-            else if(this.index > this.sameGender.length -1 ) {
+            } else if (this.index > this.sameGender.length - 1) {
                 this.index -= 1;
             }
             this.chosenPerson = this.sameGender[this.index];

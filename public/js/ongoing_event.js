@@ -73,13 +73,15 @@ const ongoing_event = new Vue({
             if (isMan) {
                 this.men.push({
                     name: person,
-                    picture: pic
+                    picture: pic,
+                    isMan: isMan
                 });
             }
             else {
                 this.women.push({
                     name: person,
-                    picture: pic
+                    picture: pic,
+                    isMan: isMan
                 });
             }
         },

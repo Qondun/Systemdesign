@@ -68,7 +68,10 @@ app.get('/share_info', function(req, res) {
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
-  this.profiles = [ { id: 'dummyProfile', answers: []}];
+    this.profiles = [ { name: 'Pontus', id: 'dummyProfile', answers: [], shares: [], matches: [], isMan: true, completed: true},
+                      { name: 'Johnny', id: 'std1', answers: [], shares: ['dummyProfile'], matches: [], isMan: true, completed: true},
+                      { name: 'Arnold', id: 'std2', answers: [], shares: ['dummyProfile'], matches: [], isMan: true, completed: true},
+                      { name: 'Keanu', id: 'std3', answers: [], shares: ['dummyProfile'], matches: [], isMan: true, completed: true}];
   this.pairs = {};
   this.round = 1;
   this.latestMatching = 0;
@@ -76,16 +79,8 @@ function Data() {
   this.currentId = 0;
 }
 
-/*
-  Adds an order to to the queue
-*/
 Data.prototype.getAllData = function() {
-  /*return {
-    pairs: this.pairs,
-    round: this.round
-  }*/
   return this;
-
 };
 
 Data.prototype.pairsToServer = function(pairs) {
@@ -106,9 +101,7 @@ Data.prototype.roundToServer = function(round) {
 };
 
 Data.prototype.answersToServer = function(id,answers){
-    let profile = this.profiles.find(function(element){
-        return element.id == id; 
-    });
+    let profile = this.getProfile(id);
     if(profile){
         profile.answers.push(answers);
         let ans = profile.answers[0];
@@ -116,6 +109,41 @@ Data.prototype.answersToServer = function(id,answers){
         this.reviewsDone++;
     }
 }
+
+// Shares is an array of profile ids
+Data.prototype.sharesToServer = function(id, shares){
+    let profile = this.getProfile(id);
+    let myShares = shares;
+    if(profile){
+        for(var shareId of myShares){
+            profile.shares.push(shareId);
+            console.log("Profile " + profile.id + " shared contact info with " + shareId);
+        }
+        this.updateMatches(id);
+    }
+}
+
+Data.prototype.updateMatches = function(id){
+    let myProfile = this.getProfile(id);
+    if(myProfile){
+        let shares = myProfile.shares;
+        for(var shareId of shares){
+            let profile = this.getProfile(shareId);
+            if (profile && profile.shares.includes(id)){
+                myProfile.matches.push({id: shareId, name: profile.name});
+                profile.matches.push({id: myProfile.id, name: myProfile.name});
+                console.log("succesful match! " + shareId + " with " + myProfile.id);
+            }
+        }
+    }
+}
+
+Data.prototype.getProfile = function(id){
+    return this.profiles.find(function(element){
+        return element.id == id; 
+    });
+}
+                             
 
 Data.prototype.getRound = function() {
   return this.round;
@@ -137,6 +165,26 @@ io.on('connection', function(socket) {
         // Send answers to the server, push it to profile with id id
         data.answersToServer(id,answers); 
     });
+    socket.on('getProfile', function(id) {
+        io.emit('profileFromServer', id, data.getProfile(id));
+    });
+    socket.on('sharesToServer', function(id,shares){
+        data.sharesToServer(id,shares);
+    });
+    socket.on('profileToServer', function(editedProfile){
+        for (let profile of data.profiles){
+            if(profile.id == editedProfile.id) {
+                editedProfile.matches = profile.matches;
+                editedProfile.shares = profile.shares;
+                profile.name = editedProfile.name;
+                profile.isMan = editedProfile.isMan;
+                profile.completed = true;
+                break;
+            }
+        }
+        console.log(editedProfile);
+        console.log(data.getProfile(editedProfile.id));
+    });
     socket.on('roundToServer', function(round) {
       data.roundToServer(round);
       // send updated info to all connected clients,
@@ -156,8 +204,9 @@ io.on('connection', function(socket) {
 	io.emit('quitDateFromServer', {});
     });
     socket.on('iWantId', function(nothin) {
-	    io.emit('idFromServer', {id: data.getId()});
-      console.log("Created user: " + data.currentId);
+        let newId = data.getId();
+        io.emit('idFromServer', {id: newId});
+        data.profiles.push({ name: '', id: newId.toString(), answers: [], shares: [], matches: [], isMan: false, completed: false});
     });
 });
 

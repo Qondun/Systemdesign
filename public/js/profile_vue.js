@@ -1,3 +1,6 @@
+'use strict';
+const socket = io();
+
 const vm = new Vue({
     el: '#main_box',
     data: {
@@ -8,13 +11,17 @@ const vm = new Vue({
         range3: '',
         id: window.location.href.split("?id=")[1],
         submitted: false,
+        pick: false
     },
     methods: {
         test: function(){
-            if(confirm("Send info?")){
-		console.log(this.fullname);
-		window.location.href = '/user_menu?id='+this.id;
-            //window.location.assign('/user_menu');
+            if(this.fullname == ''){
+                window.alert("Enter name before submitting!");
+            }
+            else if(confirm("Send info?")){
+                socket.emit('profileToServer', { name: this.fullname, id: this.id, answers: [], shares: [], matches: [], isMan: this.pick})
+                console.log(this.pick);
+		        window.location.href = '/user_menu?id='+this.id;
             }
         },
         goBack: function(){

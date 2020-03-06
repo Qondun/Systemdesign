@@ -1,6 +1,10 @@
+const socket = io();
+
 const vm = new Vue({
     el: '#main_box',
     data: {
+        id: 'dummyProfile',
+        profile: {},
         person1: {
             name: 'John Doe',
             age: '41',
@@ -25,7 +29,12 @@ const vm = new Vue({
         id: window.location.href.split("?id=")[1]
     },
     created: function () {
-        this.matches = [this.person1, this.person2, this.person3];
+        socket.on('profileFromServer', function(id,profile){
+            if(id == this.id){
+                this.profile = profile;
+            }
+        }.bind(this));
+        //this.matches = [this.person1, this.person2, this.person3];
     },
     methods: {
         selectMatch: function(match) {
@@ -54,7 +63,7 @@ const vm = new Vue({
                 window.location.href = window.location.href;
             }
         }
-    }
-    
-    
+    }    
 })
+
+socket.emit('getProfile','dummyProfile');

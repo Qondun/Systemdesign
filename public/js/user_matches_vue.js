@@ -22,6 +22,7 @@ const vm = new Vue({
         selectedAge: '',
         selectedEmail: '',
         showMatch: false,
+        id: window.location.href.split("?id=")[1]
     },
     created: function () {
         this.matches = [this.person1, this.person2, this.person3];
@@ -44,6 +45,14 @@ const vm = new Vue({
             document.execCommand('copy');
             test.setAttribute('type', 'hidden')
             window.getSelection().removeAllRanges()
+        },
+        goBack: function(forReal){
+            if(forReal){
+                window.location.href = "/user_menu?id="+this.id;
+            }
+            else{
+                window.location.href = window.location.href;
+            }
         }
     }
     

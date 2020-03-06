@@ -11,10 +11,10 @@
     <main id="main_box">
       <h1>Your matches</h1>
   
-      <a href="/user_menu" v-if="!showMatch">
+      <a v-on:click="goBack(true)" v-if="!showMatch">
         <div id="back_button"></div>
       </a>
-      <a href="/user_matches" v-if="showMatch">
+      <a v-on:click="goBack(false)" v-if="showMatch">
         <div id="back_button"></div>
       </a>
 

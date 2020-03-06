@@ -9,7 +9,8 @@ const vm = new Vue({
         currentDate: null,
         questionNumber: 1,
         answerNumber: 1,
-        triedSubmitting: false
+        triedSubmitting: false,
+        id: window.location.href.split("?id=")[1]
     },
     methods: {
         incrementNumber: function() {
@@ -39,7 +40,7 @@ const vm = new Vue({
             if (!this.answers.includes('Not answered')) {
                 console.log(this.answers);
                 this.questionsDone = true;
-                window.location.assign("/user_menu");
+                window.location.assign("/user_menu?id="+this.id);
             }
 
         }

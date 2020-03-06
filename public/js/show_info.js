@@ -20,6 +20,7 @@ const vm = new Vue({
         done: false,
         okPressed: false,
         round: 1,
+        id: window.location.href.split("?id=")[1],
         showQuestions: false
     },
     created: function () {
@@ -93,11 +94,10 @@ const vm = new Vue({
             this.questionsDone = true;
             socket.emit('answersToServer','dummyProfile',this.answers);
             if(this.round > 3){
-                window.location.href = "/share_info"; //Byta ut
+                window.location.href = "/share_info?id="+this.id;
             }
             else{
-                //socket.emit('roundToServer', this.round + 1)
-                window.location.assign("/show_info");
+                window.location.assign(window.location.href);
             }
         },
         okSubmit: function() {

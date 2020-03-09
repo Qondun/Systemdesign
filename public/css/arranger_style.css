@@ -1,7 +1,14 @@
 body {
-	min-height: 100%;	
-	background-color: #eeeeee;
-	color: #000;
+	  min-height: 100%;
+	  background-color: #eeeeee;
+	  color: #000;
+}
+
+header {
+    background: #ff807a;
+    width: 100%;
+    margin: auto;
+    height: 210px;
 }
 
 main {
@@ -10,8 +17,8 @@ main {
 
 .menu {
 	height: auto;
-	width: 480px;
 	margin: auto;
+  text-align: center;
 }
 
 #timer {
@@ -29,16 +36,20 @@ main {
 }
 
 .menuButton {
-	height: 100px;
-	width: 480px;
-	box-shadow: 3px 3px #000;
+	height: 70px;
+	width: 33%;
+  float: left;
 	color: #000;
 	margin-bottom: 10px;
 	background: #ff807a;
+  margin: auto;
 }
-
 .menuButton:hover {
-	opacity: 0.5;
+	  background: #ee7068;
+    cursor: pointer;
+}
+.menuButton p {
+    margin-top: 30px;
 }
 
 .title {
@@ -50,4 +61,22 @@ main {
 
 .title h2 {
 	font-style: italic;
+}
+
+.table_person_box {
+    width: 100px;
+    height: 100px;
+    color: #000;
+    border: 2px dashed;
+}
+#tables_box {
+    margin-top: 100px;
+    position: absolute;
+    width: 100%;
+}
+#match_box {
+    width: 20%;
+    height: 200px;
+    float: left;
+    margin-bottom: 200px;
 }

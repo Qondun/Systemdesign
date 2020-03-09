@@ -65,12 +65,13 @@ const rematching = new Vue({
             this.chosenPerson = this.sameGender[this.index];
             this.chosenIsMan = !this.chosenIsMan;
         },
-        reMatch: function(key){
+        reMatch: function(key, table){
             if(this.chosenIsMan){
                 this.newPairs.push({
                     man: this.sameGender[this.index],
                     woman:  this.differentGender[key],
                     percentMatch: 95,
+                    table: table,
                     selected: false,
                 });
             }else{
@@ -78,6 +79,7 @@ const rematching = new Vue({
                     man:  this.differentGender[key],
                     woman: this.sameGender[this.index],
                     percentMatch: 95,
+                    table: table,
                     selected: false,
                 });
             }

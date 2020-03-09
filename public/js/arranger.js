@@ -10,7 +10,7 @@ const vm = new Vue({
         ongoingRound: false,
         eventDone: false,
         users: '20',
-        usersDone: '0'
+        usersDone: 0
     },
     created: function () {
         socket.on('initialize', function (data) {

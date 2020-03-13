@@ -66,9 +66,6 @@ const ongoing_event = new Vue({
                 socket.emit('se tLatestMatching', this.round);
             }
         },
-        selectPerson: function(person) {
-            this.selectedPerson = person;
-        },
         selectMan: function(man) {
             this.selectedMan = man;
         },
@@ -80,9 +77,6 @@ const ongoing_event = new Vue({
         },
         deselectWoman: function(){
             this.selectedWoman = null;
-        },
-        deselectPerson: function (){
-            this.selectedPerson = null;
         },
         stdPair: function() {
             for (var i = 0; i < this.men.length; i++) {

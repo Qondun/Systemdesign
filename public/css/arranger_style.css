@@ -80,3 +80,7 @@ main {
     float: left;
     margin-bottom: 200px;
 }
+.table_box {
+    width: 100px;
+    height: 100px;
+}

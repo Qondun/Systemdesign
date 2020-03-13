@@ -85,7 +85,7 @@ const ongoing_event = new Vue({
             socket.emit('setLatestMatching', this.round);
             this.stdPair();
         },
-        addPerson: function(person, isMan, pic, age) {
+        addPerson: function(person, isMan, pic, age, id) {
             if (isMan) {
                 this.men.push({
                     name: person,
@@ -93,7 +93,6 @@ const ongoing_event = new Vue({
                     age: age,
                     isMan: isMan,
                     id: id
-
                 });
             } else {
                 this.women.push({
@@ -136,18 +135,18 @@ const ongoing_event = new Vue({
                 }
                 }*/
             console.log(ev.target.getAttribute('value'));
-            this.draggedPerson = this.pairs[ev.target.getAttribute('value').index].man;
+            this.draggedPerson = this.pairs[ev.target.getAttribute('value')].man;
             console.log(this.draggedPerson);
         },
         drop: function (ev) {
             ev.preventDefault();
-            let myPair;
+            //let myPair;
             /*for(var pair of this.pairs){
                 if(pair.man == (ev.target.getAttribute('value')) || pair.woman == (ev.target.getAttribute('value'))){
                     myPair = pair;
                 }
                 }*/
-            myPair = this.pairs[ev.target.getAttribute('value').index];
+            let myPair = this.pairs[ev.target.getAttribute('value')];
             //var data = ev.dataTransfer.getData("text");
             //ev.target.appendChild(document.getElementById(data));
             var tmp;

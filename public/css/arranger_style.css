@@ -89,7 +89,31 @@ main {
 }
 
 .info_box {
+    height: 150px;
+    width: 200px;
     position: absolute;
     margin-left: 160px;
-    margin-bottom: 100px;
+    background: #ff807a;
+}
+
+.info_text{
+    color: white;
+    background: grey;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+
+#close_button {
+    margin-left: 165px;
+    width: 20px;
+    height: 20px;
+    background: #cccccc;
+    text-align: center;
+    box-shadow: 1px 1px #000;
+    position: relative;
+    border-radius: 4px;
+}
+#close_button:hover {
+    cursor: pointer;
 }

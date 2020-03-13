@@ -36,7 +36,7 @@
         </section>
       </header>
       <main>
-        <div id="tables_box">
+        <div id="tables_box" v-if="!ongoingRound">
           <div id="match_box" v-for="(pair,index) in pairs" >
             <div v-bind:value="index" class="table_person_box" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" id="male_table_box" >
               <img v-bind:value="index" v-bind:src="pair.man.picture" width="100" height="100" draggable="true"  ondragstart="ongoing_event.dragMan(event)">

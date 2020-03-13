@@ -89,7 +89,20 @@ main {
 }
 
 .info_box {
+    height: 100px;
+    width: 200px;
     position: absolute;
     margin-left: 100px;
-    margin-bottom: 100px;
+}
+
+.info_text{
+    color: white;
+    background: grey;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+
+.info_box button {
+    margin-left: 165px;
 }

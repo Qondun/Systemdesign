@@ -16,7 +16,8 @@ const ongoing_event = new Vue({
         eventDone: false,
         users: '20',
         usersDone: '0',
-        draggedPerson: ''
+        draggedPerson: null,
+        draggedPair: null
     },
     created: function() {
         socket.on('initialize', function(data) {
@@ -124,46 +125,55 @@ const ongoing_event = new Vue({
         allowDrop: function (ev) {
             ev.preventDefault();
         },
-        drag: function(ev) {
-            /*console.log(ev.dataTransfer.setData("text", ev.target.id));
-            for(var pair of this.pairs){
-                if(pair.man.id == ev.dataTransfer.setData("text", ev.target.id)){
-                    this.draggedPerson = pair.man;
-                }
-                else if(pair.woman.id == ev.dataTransfer.setData("text", ev.target.id)){
-                    this.draggedPerson = pair.woman;
-                }
-                }*/
-            console.log(ev.target.getAttribute('value'));
-            this.draggedPerson = this.pairs[ev.target.getAttribute('value')].man;
-            console.log(this.draggedPerson);
+        dragMan: function(ev) {
+            let pair = this.pairs[ev.target.getAttribute('value')];
+            let draggedPerson = pair.man;
+            this.draggedPerson = draggedPerson;
+            console.log("dragging: " + draggedPerson.name);
+            this.draggedPair = pair;
+        },
+        dragWoman: function(ev) {
+            let pair = this.pairs[ev.target.getAttribute('value')];
+            let draggedPerson = pair.woman;
+            this.draggedPerson = draggedPerson;
+            console.log("dragging: " + draggedPerson.name);
+            this.draggedPair = pair;
+        },
+        dragTable: function(ev) {
+            let pair = this.pairs[ev.target.getAttribute('value')];
+            this.draggedPair = pair;
         },
         drop: function (ev) {
             ev.preventDefault();
-            //let myPair;
-            /*for(var pair of this.pairs){
-                if(pair.man == (ev.target.getAttribute('value')) || pair.woman == (ev.target.getAttribute('value'))){
-                    myPair = pair;
-                }
-                }*/
-            let myPair = this.pairs[ev.target.getAttribute('value')];
-            //var data = ev.dataTransfer.getData("text");
-            //ev.target.appendChild(document.getElementById(data));
-            var tmp;
-            tmp = myPair.man.picture;
-            myPair.man.picture = this.draggedPerson.picture;
-            this.draggedPerson.picture = tmp;
-            /*if(this.draggedPerson.isMan){
-                tmp = myPair.man.picture;
-                myPair.man.picture = this.draggedPerson.picture;
-                this.draggedPerson.picture = tmp;
-            }
-            else {
-                tmp = myPair.woman.picture;
-                myPair.woman.picture = this.draggedPerson.picture;
-                this.draggedPerson.picture = tmp;
-            }*/
+            if (this.draggedPerson == null && this.draggedPair == null) return;
             
+            let droppedPair = this.pairs[ev.target.getAttribute('value')];
+
+            if(this.draggedPerson == null && this.draggedPair != null){
+                let manToSwap = droppedPair.man;
+                let womanToSwap = droppedPair.woman;
+                droppedPair.man = this.draggedPair.man;
+                droppedPair.woman = this.draggedPair.woman;
+                this.draggedPair.man = manToSwap;
+                this.draggedPair.woman = womanToSwap;
+                return;
+            }
+            
+            if(this.draggedPerson.isMan == true){
+                let manToSwap = droppedPair.man;
+                droppedPair.man = this.draggedPerson;
+                this.draggedPair.man = manToSwap;
+            }else{
+                let womanToSwap = droppedPair.woman;
+                droppedPair.woman = this.draggedPerson;
+                this.draggedPair.woman = womanToSwap;
+            }
+
+            this.draggedPerson = null;
+            this.draggedPair = null;
+        },
+        getGender: function (pair, gender){
+            return pair.man;
         },
         startRound: function () {
             if (confirm("Start next round?")) {

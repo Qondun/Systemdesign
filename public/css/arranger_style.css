@@ -69,6 +69,7 @@ main {
     color: #000;
     border: 2px dashed;
 }
+
 #tables_box {
     margin-top: 100px;
     position: absolute;
@@ -85,4 +86,10 @@ main {
 .table_box {
     width: 100px;
     height: 100px;
+}
+
+.info_box {
+    position: absolute;
+    margin-left: 100px;
+    margin-bottom: 100px;
 }

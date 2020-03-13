@@ -64,8 +64,8 @@ main {
 }
 
 .table_person_box {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     color: #000;
     border: 2px dashed;
 }
@@ -78,11 +78,11 @@ main {
 }
 #match_box {
     width: 20%;
-    height: 200px;
+    height: 150px;
     float: left;
     margin-bottom: 200px;
 }
 .table_box {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }

@@ -18,7 +18,9 @@ const ongoing_event = new Vue({
         usersDone: '0',
         draggedPerson: null,
         draggedPair: null,
-        selectedPerson: null
+        selectedPerson: null,
+        selectedMan: null,
+        selectedWoman: null
     },
     created: function() {
         socket.on('initialize', function(data) {
@@ -66,6 +68,18 @@ const ongoing_event = new Vue({
         },
         selectPerson: function(person) {
             this.selectedPerson = person;
+        },
+        selectMan: function(man) {
+            this.selectedMan = man;
+        },
+        selectWoman: function(woman){
+            this.selectedWoman = woman;
+        },
+        deselectMan: function(){
+            this.selectedMan = null;
+        },
+        deselectWoman: function(){
+            this.selectedWoman = null;
         },
         deselectPerson: function (){
             this.selectedPerson = null;

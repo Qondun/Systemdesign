@@ -89,8 +89,9 @@ main {
 }
 
 .info_box {
-    height: 100px;
-    width: 200px;
+    background: pink;
+    height: 150px;
+    width: 250px;
     position: absolute;
     margin-left: 100px;
 }
@@ -104,5 +105,6 @@ main {
 }
 
 .info_box button {
-    margin-left: 165px;
+    background: red;
+    margin-left: 200px;
 }

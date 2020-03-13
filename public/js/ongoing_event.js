@@ -17,7 +17,8 @@ const ongoing_event = new Vue({
         users: '20',
         usersDone: '0',
         draggedPerson: null,
-        draggedPair: null
+        draggedPair: null,
+        selectedPerson: null
     },
     created: function() {
         socket.on('initialize', function(data) {
@@ -62,6 +63,12 @@ const ongoing_event = new Vue({
                 this.latestMatching = this.round;
                 socket.emit('se tLatestMatching', this.round);
             }
+        },
+        selectPerson: function(person) {
+            this.selectedPerson = person;
+        },
+        deselectPerson: function (){
+            this.selectedPerson = null;
         },
         stdPair: function() {
             for (var i = 0; i < this.men.length; i++) {
@@ -119,7 +126,36 @@ const ongoing_event = new Vue({
             this.addPerson("Arnold", true,
                 "https://reterdeen.com/wp-content/uploads/2019/10/arnold.jpg", "72");
             this.addPerson("Kamilla", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamilloa", true,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamillan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamillsadan", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaan", false,
                 "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                        this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                        this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                                    this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                                    this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");  
+
 
         },
         allowDrop: function (ev) {

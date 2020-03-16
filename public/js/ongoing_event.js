@@ -191,10 +191,10 @@ const ongoing_event = new Vue({
         drop: function (ev) {
             ev.preventDefault();
             if (this.draggedPerson == null && this.draggedPair == null) return;
-            
+            console.log("dropped on index" + ev.target.getAttribute('value'));
             let droppedPair = this.pairs[ev.target.getAttribute('value')];
-
             if(this.draggedPerson == null && this.draggedPair != null){
+                console.log("Table swoopdiwoop");
                 let manToSwap = droppedPair.man;
                 let womanToSwap = droppedPair.woman;
                 droppedPair.man = this.draggedPair.man;

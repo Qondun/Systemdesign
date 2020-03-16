@@ -50,14 +50,15 @@
                </span>
             </div>
 
-            <div v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-              <div id="table" v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
+
+            <div id="table" v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
+              <div v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
                 <p id="percentText">
                   {{pair.percentMatch}}%
                 </p>
               </div>
             </div>
-    
+            
             <div v-bind:value="index" class="table_person_box" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" id="female_table_box">
               <span>
                 <div v-if="selectedWoman == pair.woman" class="info_box">

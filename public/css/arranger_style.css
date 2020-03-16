@@ -86,7 +86,9 @@ main {
     margin: auto;
     margin-bottom: 450px;
 }
+
 .table_box {
+    text-align: center;
     width: 150px;
     height: 150px;
 }

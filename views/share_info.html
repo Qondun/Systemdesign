@@ -4,6 +4,7 @@
     <title>Share info with other users</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/show_info.css">
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="js/share_info_vue.js" defer></script>
@@ -16,35 +17,34 @@
             <img v-bind:src="currentDate.image">
         </div>
 
-        <a href="#" v-if="questionNumber > 1" v-on:click="decrementNumber()">
+        <div id="button_box_left">
+          <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
             <div id="left_button">
             </div>
-        </a>
-        <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
-            <div id="right_button">
+            <label>Previous</label>
+          </a>
+        </div>
+        <div id="button_box_right">
+          <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
+            <div class="question_button" id="right_button">
             </div>
-        </a>
+            <label>Next</label>
+          </a>
+        </div>
         <div id="question" v-if="questionNumber <= 3">
             <h2>Question {{questionNumber}}/3</h2>
             <p>Would you like to share your contact information with {{dates[questionNumber-1].name}}?</p>
-            <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
+            <button id="q_yes" v-on:click="addAnswer(dates[questionNumber-1].id)">Yes</button>
             <button id="q_no" v-on:click="addAnswer('No')">No</button><br>
         </div>
         <div id="confirm_page" v-if="questionNumber == 4">
             <h2>Answer confirmation</h2>
             <div class="list_box">
               <ul>
-                <li v-for="date in dates">
-                  {{date.name}}
+                <li v-for="(date,key) in dates">
+                  <span id="question_in_list">{{date.name}}</span><br><span id="answer_in_list">{{answers[key]}}</span>
                 </li>
               </ul>
-            </div>
-            <div class="list_box">
-              <ol id="answer_list">
-                <li v-for="answer in answers">
-                  {{answer}}
-                </li>
-              </ol>
             </div>
             <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
             <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>

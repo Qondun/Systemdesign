@@ -28,3 +28,9 @@ body {
 #back_button:hover {
     opacity: 0.5;
 }
+.button_text_left {
+    margin-left: 50px;
+}
+.button_text_right {
+    margin-right: 50px;
+}

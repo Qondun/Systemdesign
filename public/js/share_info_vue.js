@@ -42,7 +42,7 @@ const vm = new Vue({
             this.triedSubmitting = true;
             if (!this.answers.includes('Not answered')) {
                 console.log(this.answers);
-                socket.emit('sharesToServer',this.id,this.answers);
+                socket.emit('sharesToServer', this.id ,this.answers);
                 this.questionsDone = true;
                 window.location.assign("/user_menu?id="+this.id);
             }

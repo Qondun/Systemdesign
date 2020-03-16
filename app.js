@@ -69,9 +69,15 @@ app.get('/share_info', function(req, res) {
 // prepare for multiple instances of data if necessary
 function Data() {
     this.profiles = [ { name: 'Pontus', id: 'dummyProfile', answers: [], shares: [], matches: [], isMan: true, completed: true},
-                      { name: 'Johnny', id: 'std1', answers: [], shares: ['1'], matches: [], isMan: true, completed: true},
-                      { name: 'Arnold', id: 'std2', answers: [], shares: ['1'], matches: [], isMan: true, completed: true},
-                      { name: 'Keanu', id: 'std3', answers: [], shares: ['1'], matches: [], isMan: true, completed: true}];
+                      { name: 'Johnny', id: 'std1', age: '78', answers: [], shares: ['1'], matches: [],
+			isMan: true, completed: true, email: "bs@mail.us", 
+			image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
+                      { name: 'Arnold', id: 'std2', age: '72', answers: [], shares: ['1'], matches: [], isMan: true, 
+			completed: true, email: "TheArnold@gmail.com", 
+			image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
+                      { name: 'Keanu', id: 'std3', age: '55', answers: [], shares: ['1'], matches: [], isMan: true,
+			completed: true, email: "Keanu@keanu.com", 
+			image: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'}];
     this.pairs = {};
     this.round = 1;
     this.latestMatching = 0;
@@ -127,6 +133,16 @@ Data.prototype.sharesToServer = function(id, shares){
     }
 }
 
+Data.prototype.collectMatches = function(id){
+    let profile = this.getProfile(id);
+    let myMatches = profile.matches;
+    let matches = [];
+    for (let match of myMatches){
+        matches.push(this.getProfile(match.id));
+    }
+    return matches;
+}
+
 Data.prototype.updateMatches = function(id){
     let myProfile = this.getProfile(id);
     if(myProfile){
@@ -174,6 +190,9 @@ io.on('connection', function(socket) {
     });
     socket.on('sharesToServer', function(id,shares){
         data.sharesToServer(id,shares);
+    });
+    socket.on('getMatchProfiles', function(id){
+        socket.emit('profileMatchesFromServer', data.collectMatches(id))
     });
     socket.on('profileToServer', function(editedProfile){
         for (let profile of data.profiles){

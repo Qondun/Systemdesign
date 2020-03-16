@@ -69,14 +69,16 @@ app.get('/share_info', function(req, res) {
 // prepare for multiple instances of data if necessary
 function Data() {
     this.profiles = [ { name: 'Pontus', id: 'dummyProfile', answers: [], shares: [], matches: [], isMan: true, completed: true},
-                      { name: 'Johnny', id: 'std1', answers: [], shares: ['dummyProfile'], matches: [], isMan: true, completed: true},
-                      { name: 'Arnold', id: 'std2', answers: [], shares: ['dummyProfile'], matches: [], isMan: true, completed: true},
-                      { name: 'Keanu', id: 'std3', answers: [], shares: ['dummyProfile'], matches: [], isMan: true, completed: true}];
-  this.pairs = {};
-  this.round = 1;
-  this.latestMatching = 0;
-  this.reviewsDone = 0;
-  this.currentId = 0;
+                      { name: 'Johnny', id: 'std1', answers: [], shares: ['1'], matches: [], isMan: true, completed: true},
+                      { name: 'Arnold', id: 'std2', answers: [], shares: ['1'], matches: [], isMan: true, completed: true},
+                      { name: 'Keanu', id: 'std3', answers: [], shares: ['1'], matches: [], isMan: true, completed: true}];
+    this.pairs = {};
+    this.round = 1;
+    this.latestMatching = 0;
+    this.reviewsDone = 0;
+    this.currentId = 0;
+    this.numberOfUsersReady = 0;
+    this.idReady = [];
 }
 
 Data.prototype.getAllData = function() {
@@ -116,8 +118,10 @@ Data.prototype.sharesToServer = function(id, shares){
     let myShares = shares;
     if(profile){
         for(var shareId of myShares){
-            profile.shares.push(shareId);
-            console.log("Profile " + profile.id + " shared contact info with " + shareId);
+	    if (shareId != 'No'){
+		profile.shares.push(shareId);
+		console.log("Profile " + profile.id + " shared contact info with " + shareId);
+	    }
         }
         this.updateMatches(id);
     }
@@ -130,7 +134,7 @@ Data.prototype.updateMatches = function(id){
         for(var shareId of shares){
             let profile = this.getProfile(shareId);
             if (profile && profile.shares.includes(id)){
-                myProfile.matches.push({id: shareId, name: profile.name});
+                myProfile.matches.push({id: shareId});
                 profile.matches.push({id: myProfile.id, name: myProfile.name});
                 console.log("succesful match! " + shareId + " with " + myProfile.id);
             }
@@ -207,6 +211,18 @@ io.on('connection', function(socket) {
         let newId = data.getId();
         io.emit('idFromServer', {id: newId});
         data.profiles.push({ name: '', id: newId.toString(), answers: [], shares: [], matches: [], isMan: false, completed: false});
+    });
+    socket.on('readyForEvent', function(id){
+	if(!data.idReady.includes(id)){
+	    data.numberOfUsersReady++;
+	    data.idReady.push(id);
+	    io.emit('numberOfUsersReady', {number: data.numberOfUsersReady});
+	}
+    });
+    socket.on('zeroUsers', function(){
+	data.numberOfUsersReady = 0;
+	data.idReady = [];
+	io.emit('numberOfUsersReady', {number: 0});
     });
 });
 

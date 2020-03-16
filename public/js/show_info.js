@@ -92,7 +92,7 @@ const vm = new Vue({
 
             }
             this.questionsDone = true;
-            socket.emit('answersToServer','dummyProfile',this.answers);
+            socket.emit('answersToServer',this.id,this.answers);
             if(this.round > 3){
                 window.location.href = "/share_info?id="+this.id;
             }

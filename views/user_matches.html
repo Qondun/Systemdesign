@@ -21,7 +21,7 @@
       </a>
 
       <div id="user_wrapper" v-if="!showMatch">
-        <a id="user_link" v-for="match in profile.matches" v-on:click="selectMatch(match)">
+        <a id="user_link" v-for="match in matches" v-on:click="selectMatch(match)">
           <div id="user_box">
             <h2>{{ match.name }}</h2>
           </div>

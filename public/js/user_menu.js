@@ -8,6 +8,7 @@ const user_menu = new Vue({
     },
     methods:{
         start_event: function(){
+	    socket.emit('readyForEvent', this.id);
             window.location.href = "/show_info?id=" + this.id;
         },
         goToProfilePage: function(){

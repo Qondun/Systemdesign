@@ -9,18 +9,22 @@ const vm = new Vue({
         roundNumber: 1,
         ongoingRound: false,
         eventDone: false,
-        users: '20',
+        users: 1,
         usersDone: 0
     },
     created: function () {
         socket.on('initialize', function (data) {
             this.roundNumber = data.round;
+	    this.users = data.numberOfUsersReady;
             this.setup();
         }.bind(this));
         socket.on('roundFromServer', function (data) {
             this.roundNumber = data.round;
             this.setup();
         }.bind(this));
+	socket.on('numberOfUsersReady', function (data){
+	    this.users = data.number;
+	}.bind(this));
     },
     methods: {
         setup: function () {
@@ -61,6 +65,7 @@ const vm = new Vue({
             if (confirm("End event?")) {
                 this.roundNumber = 1;
                 socket.emit('roundToServer', this.roundNumber);
+		socket.emit('zeroUsers');
                 socket.emit('setLatestMatching', 0);
                 window.location.assign("/arranger");
             }

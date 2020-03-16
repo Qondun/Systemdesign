@@ -14,6 +14,7 @@ const ongoing_event = new Vue({
         roundNumber: '1',
         ongoingRound: false,
         eventDone: false,
+        reviewDone: true,
         users: '20',
         usersDone: '0',
         draggedPerson: null,
@@ -223,6 +224,7 @@ const ongoing_event = new Vue({
             if (confirm("Start next round?")) {
                 this.ongoingRound = true;
                 this.usersDone = 0;
+                this.reviewDone = false;
                 reset();
                 start();
             }
@@ -253,6 +255,10 @@ const ongoing_event = new Vue({
                 this.usersDone = this.usersDone + 5;
             } else {
                 this.usersDone = this.users;
+            }
+
+            if(this.usersDone == 20){
+                this.reviewDone = true;
             }
         },
         showMatches: function () {

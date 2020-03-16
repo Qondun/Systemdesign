@@ -23,11 +23,6 @@
             </div>
           </a>
           
-	        <a v-on:click="showMatches" v-if="eventDone == false">
-            <div class="menuButton">
-              <p>Show Matches</p>
-            </div>
-          </a>
 	        <a v-on:click="endEvent">
             <div class="menuButton">
               <p>End event</p>
@@ -35,9 +30,10 @@
           </a>
         </section>
       </header>
+      
       <main>
-        <div id="tables_box" v-if="!ongoingRound">
-          <div id="match_box" v-for="(pair,index) in pairs" >
+        <div id="tables_box" v-if="!ongoingRound && reviewDone == true">
+          <div id="match_box" v-for="(pair,index) in pairs">
             <div v-bind:value="index" class="table_person_box" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" id="male_table_box" >
               <span>
                 <div v-if="selectedMan == pair.man" class="info_box">
@@ -50,13 +46,18 @@
                 {{ pair.man.age }}
                 </div>
                 </div>
-              <img v-bind:value="index" v-on:click="selectMan(pair.man)" v-bind:src="pair.man.picture" width="150" height="150" draggable="true"  ondragstart="ongoing_event.dragMan(event)">
+                <img v-bind:value="index" v-on:click="selectMan(pair.man)" v-bind:src="pair.man.picture" draggable="true"  ondragstart="ongoing_event.dragMan(event)" height="150" width="150">
                </span>
             </div>
 
             <div v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-              <img src="/img/table.png" height="150" width="150" v-bind:value="index" draggable="true"  ondragstart="ongoing_event.dragTable(event)">
+              <div id="table" v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
+                <p id="percentText">
+                  {{pair.percentMatch}}%
+                </p>
+              </div>
             </div>
+    
             <div v-bind:value="index" class="table_person_box" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" id="female_table_box">
               <span>
                 <div v-if="selectedWoman == pair.woman" class="info_box">
@@ -65,11 +66,11 @@
                   </div>
                   <div class="info_text">
                   <br>
-                {{ pair.woman.name }}
-                {{ pair.woman.age }}
+                  {{ pair.woman.name }}
+                  {{ pair.woman.age }}
+                  </div>
                 </div>
-                </div>
-                <img v-bind:value="index" v-on:click="selectWoman(pair.woman)" v-bind:src="pair.woman.picture" width="150" height="150" draggable="true"  ondragstart="ongoing_event.dragWoman(event)">
+                <img v-bind:value="index" v-on:click="selectWoman(pair.woman)" v-bind:src="pair.woman.picture" draggable="true"  ondragstart="ongoing_event.dragWoman(event)" height="150" width="150">
                 </span>
             </div>
             </div>
@@ -85,11 +86,11 @@
 	        <div v-if="usersDone<users">
 	          Waiting for reviews<br>
 	          {{usersDone}}/{{users}} users done
-	          <input class="menuButton" type="submit" id="notifyButton" value="Notify Users" v-on:click="notifyUsers">
+	          <button class="menuButton" id="notifyButton" v-on:click="notifyUsers">Notify users</button>
 	        </div>
-	        <div v-if="usersDone==users">
+	        <p v-if="usersDone==users">
 	          Everyone is ready!
-	        </div>
+	        </p>
         </section>
       </main>
     </div>

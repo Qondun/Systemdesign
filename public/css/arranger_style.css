@@ -85,10 +85,10 @@ main {
     float: left;
     margin: auto;
     margin-bottom: 450px;
+    text-align: center;
 }
 
 .table_box {
-    text-align: center;
     width: 150px;
     height: 150px;
 }
@@ -135,17 +135,21 @@ main {
     background-color: #bbb;
     border-radius: 50%;
     margin: auto;
-    margin-top: 40px;
+    /*margin-top: 40px;*/
+    margin-top: -100px;
+    margin-bottom: 40px;
     color: #000;
-    display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#percentText {
-    text-align: center;
     position: absolute;
     display: inline;
-    line-height: 100px;
+    line-height: 150px;
     vertical-align: middle;
+    opacity: 0.6;
+}
+#percentText {
+    
     font-size: 18pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }

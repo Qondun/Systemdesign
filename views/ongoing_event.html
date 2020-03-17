@@ -51,12 +51,12 @@
             </div>
 
 
-            <div id="table" v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
-              <div v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                <p id="percentText">
-                  {{pair.percentMatch}}%
-                </p>
-              </div>
+            <div v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
+              <p id="percentText" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)">
+                {{pair.percentMatch}}%
+              </p>
+              <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
+                </div>
             </div>
             
             <div v-bind:value="index" class="table_person_box" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" id="female_table_box">

@@ -61,35 +61,60 @@
                 </li>
               </ul>
             </div>
-            <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
-            <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
-            <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
-        </div>
-    </section>
-    <section v-if="dateAvailible==true && showQuestions == false">
-        <h1>Information about date</h1>
-        <div id="user_img">
-            <img v-bind:src="currentDate.img">
-        </div>
-        <div id="date_info">
-            <h2 id="name">Name: {{currentDate.name}}</h2>
-            <h2 id="age">Age: {{currentDate.age}}</h2>
-            <h2 id="table">Match: {{currentDate.match}}%</h2>
-            <h2 id="match%">Table: {{currentDate.table}}</h2>
-        </div>
-        <div id="dateConfirmation">
-            <button id="ok_button" v-on:click="okSubmit" v-if="okPressed==false">Ok</button><br>
-            <p v-if="okPressed == true">Enjoy your date!</p>
-        </div>
-    </section>
-    <section v-if="dateAvailible==false">
-        <div id="waitingForNext">
-            <div>
-                <h2>Waiting for next date<br>
-                Currently on date {{round}}/3</h2>
+            <div id="overall" v-if="questionNumber == 0">
+                <h2>Overall rating of date</h2>
+                <label class="range_indicator">-</label>
+                <input type="range" min="0" max="10" v-model="overallRating" class="user_input"></input>
+                <label class="range_indicator">+</label><br>
             </div>
-        </div>
-    </section>
+
+            <div id="question" v-if="questionNumber > 0 && questionNumber <= 3">
+                <h2>Question {{questionNumber}}/3</h2>
+                <p>{{questions[questionNumber-1]}}</p>
+                <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
+                <button id="q_no" v-on:click="addAnswer('No')">No</button><br>
+            </div>
+
+            <div id="confirm_page" v-if="questionNumber == 4">
+                <h2>Answer confirmation</h2>
+                <div class="list_box">
+                    <ul>
+                        <li>
+                            <span id="question_in_list">Overall rating of date</span><br><span id="answer_in_list">{{overallRating}}</span>
+                        </li>
+                        <li v-for="(question, key) in questions">
+                            <span id="question_in_list">{{question}}</span><br><span id="answer_in_list">{{answers[key]}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
+                <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
+                <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
+            </div>
+        </section>
+        <section v-if="dateAvailible==true && showQuestions == false">
+            <h1>Information about date</h1>
+            <div id="user_img">
+                <img v-bind:src="currentDate.img">
+            </div>
+            <div id="date_info">
+                <h2 id="name">Name: {{currentDate.name}}</h2>
+                <h2 id="age">Age: {{currentDate.age}}</h2>
+                <h2 id="table">Match: {{currentDate.match}}%</h2>
+                <h2 id="match%">Table: {{currentDate.table}}</h2>
+            </div>
+            <div id="dateConfirmation">
+                <button id="ok_button" v-on:click="okSubmit" v-if="okPressed==false">Ok</button><br>
+                <p v-if="okPressed == true">Enjoy your date!</p>
+            </div>
+        </section>
+        <section v-if="dateAvailible==false">
+            <div id="waitingForNext">
+                <div>
+                    <h2>Waiting for next date<br> Currently on date {{round}}/3</h2>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 <footer>

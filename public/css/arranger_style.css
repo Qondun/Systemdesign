@@ -12,7 +12,9 @@ header {
 }
 
 main {
-	height: 100%;
+	  height: 100%;
+    text-align: center;
+    font-size: 18pt;
 }
 
 .menu {
@@ -29,8 +31,20 @@ main {
 	font-size: 48pt;
 } 
 
+#endRButton {
+    float: none;
+}
+
 #notifyMenu {
-	text-align: center;
+	  text-align: center;
+    margin-top: 100px;
+}
+#notifyMenu p {
+    margin-bottom: 40px;
+}
+#notifyButton {
+    float: none;
+    margin-top: 100px;
 }
 
 #userPanel{
@@ -135,21 +149,20 @@ main {
     background-color: #bbb;
     border-radius: 50%;
     margin: auto;
-    /*margin-top: 40px;*/
-    margin-top: -100px;
+    margin-top: 40px;
     margin-bottom: 40px;
     color: #000;
-    position: absolute;
-    display: inline;
-    line-height: 150px;
-    vertical-align: middle;
-    opacity: 0.6;
-}
-#percentText {
-    
-    font-size: 18pt;
+    border: 2px solid;
     display: flex;
     justify-content: center;
     align-items: center;
     
+}
+#percentText {
+    font-size: 18pt;
+    position: absolute;
+    display: inline;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    vertical-align: middle;
 }

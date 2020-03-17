@@ -32,6 +32,9 @@
       </header>
       
       <main>
+        <p v-if="usersDone==users">
+	          Everyone is ready!
+	      </p>
         <div id="tables_box" v-if="!ongoingRound && reviewDone == true">
           <div id="match_box" v-for="(pair,index) in pairs">
             <div v-bind:value="index" class="table_person_box" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" id="male_table_box" >
@@ -52,11 +55,11 @@
 
 
             <div v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
-              <p id="percentText" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)">
-                {{pair.percentMatch}}%
-              </p>
               <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                </div>
+                <p id="percentText" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)">
+                  {{pair.percentMatch}}%
+                </p>
+              </div>
             </div>
             
             <div v-bind:value="index" class="table_person_box" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" id="female_table_box">
@@ -80,18 +83,16 @@
 	        <h1 v-if="ongoingRound == true">{{ time }}</h1>
         </section>
         <section class="menu" id="mainMenu" v-if="ongoingRound == true">
-	        <input class="menuButton" type="submit" value="End round" v-on:click="endRound">
+	        <button class="menuButton" id="endRButton" v-on:click="endRound">End round</button>
         </section>
         <br>
         <section class="menu" id="notifyMenu" v-if="roundNumber>1 && ongoingRound==false">
 	        <div v-if="usersDone<users">
-	          Waiting for reviews<br>
-	          {{usersDone}}/{{users}} users done
+	         <p>Waiting for reviews</p>
+	         <p>{{usersDone}}/{{users}} users done</p>
 	          <button class="menuButton" id="notifyButton" v-on:click="notifyUsers">Notify users</button>
 	        </div>
-	        <p v-if="usersDone==users">
-	          Everyone is ready!
-	        </p>
+	        
         </section>
       </main>
     </div>

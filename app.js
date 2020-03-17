@@ -118,7 +118,7 @@ function Data() {
             'https://upload.wikimedia.org/wikipedia/commons/5/53/Pewdiepie_head_shot.jpg',
             'https://imgs.aftonbladet-cdn.se/v2/images/8bf7de5d-528b-454d-a71f-b2f9ac03a12c?fit=crop&h=638&q=50&w=844&s=6784bffa6f872f1d1738316669da90bf79694aa8'
         ];
-    this.manNames = ['Bernie', 'Arnold', 'Keanu', 'Donald', 'Vladimir', 'Carl', 'Kim', 'Joakim', 'Felix', 'Björne'];
+    this.manNames = ['Bernie', 'Arnold', 'Keanu', 'Donald', 'Vladimir', 'Carl', 'Kim', 'Joakim', 'Felix', 'Bjorne'];
 }
 
 Data.prototype.getAllData = function() {
@@ -158,10 +158,10 @@ Data.prototype.sharesToServer = function(id, shares){
     let myShares = shares;
     if(profile){
         for(var shareId of myShares){
-	    if (shareId != 'No'){
-		profile.shares.push(shareId);
-		console.log("Profile " + profile.id + " shared contact info with " + shareId);
-	    }
+	        if (shareId != 'No'){
+		    profile.shares.push(shareId);
+		    console.log("Profile " + profile.id + " shared contact info with " + shareId);
+	        }
         }
         this.updateMatches(id);
     }
@@ -252,8 +252,8 @@ io.on('connection', function(socket) {
         if(moreMen < 0){
             while(moreMen < 0){
                 let newId = data.getId();
-                let pic = data.manPics[id % data.manPics.length];
-                let name = data.manNames[id % data.manNames.length];
+                let pic = data.manPics[newId % data.manPics.length];
+                let name = data.manNames[newId % data.manNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), answers: [], shares: ['1', '2', '3', '4', '5'], 
                     matches: [], dates: [], isMan: true, completed: true, 
 				     image: pic});
@@ -268,8 +268,8 @@ io.on('connection', function(socket) {
         else {
             while(moreMen > 0){
                 let newId = data.getId();
-                let pic = data.womanPics[id % data.womanPics.length];
-                let name = data.womanNames[id % data.womanNames.length];
+                let pic = data.womanPics[newId % data.womanPics.length];
+                let name = data.womanNames[newId % data.womanNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), answers: [], shares: ['1', '2', '3', '4', '5'], 
                     matches: [], dates: [], isMan: false, completed: true, 
                 image: pic});
@@ -279,8 +279,6 @@ io.on('connection', function(socket) {
             }   
         }
 	io.emit('numberOfUsersReady', {number: data.numberOfUsersReady});
-	console.log("\nFILLUP\n");
-	console.log(data.profiles);
     });
     socket.on('profileToServer', function(editedProfile){
         for (let profile of data.profiles){

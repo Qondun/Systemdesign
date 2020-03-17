@@ -222,3 +222,16 @@ h2 {
 .list_box li {
     margin-bottom: 60px;
 }
+
+#table_person_box {
+    width: 100px;
+    height: 100px;
+    color: #000;
+    border: 2px dashed;
+    padding-top: 50px;
+}
+
+#tables_box {
+    margin-top: 5px;
+    width: 100%;
+}

@@ -70,8 +70,12 @@
             <div id="date_info">
                 <h2 id="name">Name: {{currentDate.name}}</h2>
                 <h2 id="age">Age: {{currentDate.age}}</h2>
-                <h2 id="table">Match: {{currentDate.match}}%</h2>
-                <h2 id="match%">Table: {{currentDate.table}}</h2>
+                <h2 id="match%">Match: {{currentDate.match}}%</h2>
+                <div id="tables_box">
+                    <h2 id="table_person_box">Table: {{currentDate.table}}
+                    </h2>
+                </div>
+
             </div>
             <div id="dateConfirmation">
                 <button id="ok_button" v-on:click="okSubmit" v-if="okPressed==false">Ok</button><br>

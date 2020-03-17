@@ -16,80 +16,105 @@
         <section v-if="showQuestions == true">
          <div id="user_img">
             <img v-bind:src="currentDate.img">
+         </div>
+        <div id="button_box_left">
+          <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
+            <div class="question_button" id="left_button">
+            </div>
+            <label>Previous</label>
+          </a>
         </div>
-        <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
-
-            <div id="left_button">
+        <div id="button_box_right">
+        <a href="#" v-if="questionNumber < 5" v-on:click="incrementNumber()">
+            <div class="question_button" id="right_button">
             </div>
-        </a>
-        <a href="#" v-if="questionNumber < 4" v-on:click="incrementNumber()">
-            <div id="right_button">
-            </div>
-        </a>
-        
+            <label>Next</label>
+          </a>
+        </div>
         <div id="overall" v-if="questionNumber == 0">
-          <h2>Overall rating of date</h2>
+          <h2>Question {{questionNumber+1}}/5</h2>
+          <p>{{questions[questionNumber]}}</p>
           <label class="range_indicator">-</label>
-          <input type="range" min="0" max="10" v-model="overallRating" class="user_input"></input>
+          <input type="range" min="0" max="10" v-model="answers.rating" class="user_input"></input>
           <label class="range_indicator">+</label><br>
         </div>
         
-        <div id="question" v-if="questionNumber > 0 && questionNumber <= 3">
-            <h2>Question {{questionNumber}}/3</h2>
-            <p>{{questions[questionNumber-1]}}</p>
+        <div id="question" v-if="questionNumber > 0 && questionNumber < 4">
+            <h2>Question {{questionNumber+1}}/5</h2>
+            <p>{{questions[questionNumber]}}</p>
             <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
             <button id="q_no" v-on:click="addAnswer('No')">No</button><br>
         </div>
+
+        <div id="question" v-if="questionNumber == 4">
+            <h2>Question {{questionNumber+1}}/5</h2>
+            <p>{{questions[questionNumber]}}</p>
+            <input type="text" maxlength="140" placeholder="Comments..." v-model="answers.comment">
+        </div>
         
-        <div id="confirm_page" v-if="questionNumber == 4">
+        <div id="confirm_page" v-if="questionNumber == 5">
             <h2>Answer confirmation</h2>
             <div class="list_box">
               <ul>
-                <li>
-                  Overall rating of date
-                </li>
-                <li v-for="question in questions">
-                  {{question}}
+                <li v-for="(question, key) in questions">
+                  <span id="question_in_list">{{question}}</span><br><span id="answer_in_list">{{getAnswer(key)}}</span>
                 </li>
               </ul>
             </div>
-            <div class="list_box">
-              <ol id="answer_list">
-                <li>{{overallRating}}</li>
-                <li v-for="answer in answers">
-                  {{answer}}
-                </li>
-              </ol>
+            <div id="overall" v-if="questionNumber == 0">
+                <h2>Overall rating of date</h2>
+                <label class="range_indicator">-</label>
+                <input type="range" min="0" max="10" v-model="overallRating" class="user_input"></input>
+                <label class="range_indicator">+</label><br>
             </div>
-            <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
-            <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
-            <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
-        </div>
-    </section>
-    <section v-if="dateAvailible==true && showQuestions == false">
-        <h1>Information about date</h1>
-        <div id="user_img">
-            <img v-bind:src="currentDate.img">
-        </div>
-        <div id="date_info">
-            <h2 id="name">Name: {{currentDate.name}}</h2>
-            <h2 id="age">Age: {{currentDate.age}}</h2>
-            <h2 id="table">Match: {{currentDate.match}}%</h2>
-            <h2 id="match%">Table: {{currentDate.table}}</h2>
-        </div>
-        <div id="dateConfirmation">
-            <button id="ok_button" v-on:click="okSubmit" v-if="okPressed==false">Ok</button><br>
-            <p v-if="okPressed == true">Enjoy your date!</p>
-        </div>
-    </section>
-    <section v-if="dateAvailible==false">
-        <div id="waitingForNext">
-            <div>
-                <h2>Waiting for next date<br>
-                Currently on date {{round}}/3</h2>
+
+            <div id="question" v-if="questionNumber > 0 && questionNumber <= 3">
+                <h2>Question {{questionNumber}}/3</h2>
+                <p>{{questions[questionNumber-1]}}</p>
+                <button id="q_yes" v-on:click="addAnswer('Yes')">Yes</button>
+                <button id="q_no" v-on:click="addAnswer('No')">No</button><br>
             </div>
-        </div>
-    </section>
+
+            <div id="confirm_page" v-if="questionNumber == 4">
+                <h2>Answer confirmation</h2>
+                <div class="list_box">
+                    <ul>
+                        <li>
+                            <span id="question_in_list">Overall rating of date</span><br><span id="answer_in_list">{{overallRating}}</span>
+                        </li>
+                        <li v-for="(question, key) in questions">
+                            <span id="question_in_list">{{question}}</span><br><span id="answer_in_list">{{answers[key]}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
+                <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
+                <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>
+            </div>
+        </section>
+        <section v-if="dateAvailible==true && showQuestions == false">
+            <h1>Information about date</h1>
+            <div id="user_img">
+                <img v-bind:src="currentDate.img">
+            </div>
+            <div id="date_info">
+                <h2 id="name">Name: {{currentDate.name}}</h2>
+                <h2 id="age">Age: {{currentDate.age}}</h2>
+                <h2 id="table">Match: {{currentDate.match}}%</h2>
+                <h2 id="match%">Table: {{currentDate.table}}</h2>
+            </div>
+            <div id="dateConfirmation">
+                <button id="ok_button" v-on:click="okSubmit" v-if="okPressed==false">Ok</button><br>
+                <p v-if="okPressed == true">Enjoy your date!</p>
+            </div>
+        </section>
+        <section v-if="dateAvailible==false">
+            <div id="waitingForNext">
+                <div>
+                    <h2>Waiting for next date<br> Currently on date {{round}}/3</h2>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 <footer>

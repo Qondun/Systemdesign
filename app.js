@@ -73,7 +73,7 @@ function Data() {
         //{ name: 'Johnny', id: 'std1', age: '78', answers: [], shares: ['1'], matches: [],
 	//  isMan: true, completed: true, email: "bs@mail.us", 
 	//  image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
-        { name: 'Arnold', id: '101', age: '72', answers: [], shares: ['1'], matches: [], dates: [], isMan: true, 
+        /*{ name: 'Arnold', id: '101', age: '72', answers: [], shares: ['1'], matches: [], dates: [], isMan: true, 
 	  completed: true, email: "TheArnold@gmail.com", 
 	  image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
         { name: 'Keanu', id: '102', age: '55', answers: [], shares: ['1'], matches: [], dates: [], isMan: true,
@@ -84,7 +84,7 @@ function Data() {
 	  image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"},
 	{ name: 'Elsa', id: '104', age: '25', answers: [], shares: ['1'], matches: [], dates: [], isMan: false,
 	  completed: true, email: "elsa@elsa.com", 
-	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},
+	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},*/
 	/*{ name: 'Kamilla', id: '104', age: '25', answers: [], shares: ['1','2', '3'], matches: [], dates: [], isMan: false,
 	  completed: true, email: "elsa@elsa.com", 
 	  image: "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873"}*/],
@@ -96,11 +96,29 @@ function Data() {
     this.numberOfUsersReady = 0;
     this.idReady = [];
     this.womanPics = ["https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-		      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg",
-		      "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873"];
+		    "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg",
+            "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873",
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Melania_Trump_official_portrait.jpg/220px-Melania_Trump_official_portrait.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Queen_Silvia_of_Sweden%2C_June_8%2C_2013_%28cropped%29.jpg/320px-Queen_Silvia_of_Sweden%2C_June_8%2C_2013_%28cropped%29.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg/244px-Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Annie_L%C3%B6%C3%B6f_2019_%28cropped%29.jpg/225px-Annie_L%C3%B6%C3%B6f_2019_%28cropped%29.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/EBT_Almedalen_2018_%28cropped%29.jpg/225px-EBT_Almedalen_2018_%28cropped%29.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Queen_Elizabeth_II_March_2015.jpg/455px-Queen_Elizabeth_II_March_2015.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Katy_Perry_2019_by_Glenn_Francis.jpg/800px-Katy_Perry_2019_by_Glenn_Francis.jpg'
+        ];
+    this.womanNames = ['Ms. stock photo', 'Natalie', 'Emma', 'Melania', 'Silvia', 'Billie', 'Annie', 'Ebba', 'Elizabeth', 'Katy'];
     this.manPics = ['https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg',
 		    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg',
-		    'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'];
+            'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/250px-Donald_Trump_official_portrait.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Vladimir_Putin_%282020-02-20%29.jpg/473px-Vladimir_Putin_%282020-02-20%29.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Crafoord_Prize_D81_9141_%2842282165922%29_%28cropped%29.jpg/800px-Crafoord_Prize_D81_9141_%2842282165922%29_%28cropped%29.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kim_Jong_Un_with_Honor_Guard_portrait.jpg/800px-Kim_Jong_Un_with_Honor_Guard_portrait.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sabaton%2C_Joakim_Brod%C3%A9n_06.jpg/800px-Sabaton%2C_Joakim_Brod%C3%A9n_06.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/5/53/Pewdiepie_head_shot.jpg',
+            'https://imgs.aftonbladet-cdn.se/v2/images/8bf7de5d-528b-454d-a71f-b2f9ac03a12c?fit=crop&h=638&q=50&w=844&s=6784bffa6f872f1d1738316669da90bf79694aa8'
+        ];
+    this.manNames = ['Bernie', 'Arnold', 'Keanu', 'Donald', 'Vladimir', 'Carl', 'Kim', 'Joakim', 'Felix', 'Björne'];
 }
 
 Data.prototype.getAllData = function() {
@@ -220,6 +238,50 @@ io.on('connection', function(socket) {
     socket.on('getMatchProfiles', function(id){
         socket.emit('profileMatchesFromServer', data.collectMatches(id))
     });
+    socket.on('fillUp', function(id){
+        let moreMen = 0; //Increase for each man, decrease for each woman.
+        for (let profile of data.profiles){
+            if(profile.isMan){
+                moreMen++;
+            }
+            else{
+                moreMen--;
+            }
+        }
+
+        if(moreMen < 0){
+            while(moreMen < 0){
+                let newId = data.getId();
+                let pic = data.manPics[id % data.manPics.length];
+                let name = data.manNames[id % data.manNames.length];
+                data.profiles.push({ name: name, id: newId.toString(), answers: [], shares: ['1', '2', '3', '4', '5'], 
+                    matches: [], dates: [], isMan: true, completed: true, 
+				     image: pic});
+		console.log({ name: name, id: newId.toString(), answers: [], shares: ['1', '2', '3', '4', '5'], 
+                    matches: [], dates: [], isMan: true, completed: true, 
+			       image: pic});
+                moreMen++;
+                data.numberOfUsersReady++;
+	        data.idReady.push(newId);
+            }   
+        }
+        else {
+            while(moreMen > 0){
+                let newId = data.getId();
+                let pic = data.womanPics[id % data.womanPics.length];
+                let name = data.womanNames[id % data.womanNames.length];
+                data.profiles.push({ name: name, id: newId.toString(), answers: [], shares: ['1', '2', '3', '4', '5'], 
+                    matches: [], dates: [], isMan: false, completed: true, 
+                image: pic});
+                moreMen--;
+                data.numberOfUsersReady++;
+        	data.idReady.push(newId);
+            }   
+        }
+	io.emit('numberOfUsersReady', {number: data.numberOfUsersReady});
+	console.log("\nFILLUP\n");
+	console.log(data.profiles);
+    });
     socket.on('profileToServer', function(editedProfile){
         for (let profile of data.profiles){
             if(profile.id == editedProfile.id) {
@@ -229,10 +291,12 @@ io.on('connection', function(socket) {
                 profile.isMan = editedProfile.isMan;
                 profile.completed = true;
 		if(profile.isMan){
-		    profile.image = data.manPics[profile.id%3];
+            profile.image = "https://m.media-amazon.com/images/M/MV5BMTg1MjQ0MDg0Nl5BMl5BanBnXkFtZTcwNjYyNjI5Mg@@._V1_UY1200_CR88,0,630,1200_AL_.jpg";
+            //data.manPics[profile.id%3];
 		}
 		else{
-		    profile.image = data.womanPics[profile.id%3];
+            profile.image = "https://upload.wikimedia.org/wikipedia/commons/d/d9/191125_Taylor_Swift_at_the_2019_American_Music_Awards.png";
+            //data.womanPics[profile.id%3];
 		}
                 break;
             }

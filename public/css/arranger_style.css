@@ -105,6 +105,9 @@ main {
     margin-bottom: 450px;
     text-align: center;
 }
+#match_box:nth-child(5n) .info_box{
+    margin-left: -350px;
+}
 
 .table_box {
     width: 150px;

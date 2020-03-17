@@ -68,44 +68,60 @@ app.get('/share_info', function(req, res) {
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
-    this.profiles = [ { name: 'Pontus', id: 'dummyProfile', answers: [], shares: [], matches: [], isMan: true, completed: true},
-                      { name: 'Johnny', id: 'std1', age: '78', answers: [], shares: ['1'], matches: [],
-			isMan: true, completed: true, email: "bs@mail.us", 
-			image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
-                      { name: 'Arnold', id: 'std2', age: '72', answers: [], shares: ['1'], matches: [], isMan: true, 
-			completed: true, email: "TheArnold@gmail.com", 
-			image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
-                      { name: 'Keanu', id: 'std3', age: '55', answers: [], shares: ['1'], matches: [], isMan: true,
-			completed: true, email: "Keanu@keanu.com", 
-			image: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'}];
-    this.pairs = {};
+    // this.profiles = [],
+    this.profiles = [// { name: 'Pontus', id: 'dummyProfile', answers: [], shares: [], matches: [], isMan: true, completed: true},
+        //{ name: 'Johnny', id: 'std1', age: '78', answers: [], shares: ['1'], matches: [],
+	//  isMan: true, completed: true, email: "bs@mail.us", 
+	//  image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
+        { name: 'Arnold', id: '101', age: '72', answers: [], shares: ['1'], matches: [], dates: [], isMan: true, 
+	  completed: true, email: "TheArnold@gmail.com", 
+	  image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
+        { name: 'Keanu', id: '102', age: '55', answers: [], shares: ['1'], matches: [], dates: [], isMan: true,
+	  completed: true, email: "Keanu@keanu.com", 
+	  image: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'},
+        { name: 'Anna', id: '103', age: '35', answers: [], shares: ['2', '3'], matches: [], dates: [], isMan: false,
+	  completed: true, email: "anna@anna.com", 
+	  image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"},
+	{ name: 'Elsa', id: '104', age: '25', answers: [], shares: ['1'], matches: [], dates: [], isMan: false,
+	  completed: true, email: "elsa@elsa.com", 
+	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},
+	/*{ name: 'Kamilla', id: '104', age: '25', answers: [], shares: ['1','2', '3'], matches: [], dates: [], isMan: false,
+	  completed: true, email: "elsa@elsa.com", 
+	  image: "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873"}*/],
+    this.pairs = [];
     this.round = 1;
     this.latestMatching = 0;
     this.reviewsDone = 0;
     this.currentId = 0;
     this.numberOfUsersReady = 0;
     this.idReady = [];
+    this.womanPics = ["https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+		      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg",
+		      "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873"];
+    this.manPics = ['https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg',
+		    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg',
+		    'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'];
 }
 
 Data.prototype.getAllData = function() {
-  return this;
+    return this;
 };
 
 Data.prototype.pairsToServer = function(pairs) {
-  this.pairs = pairs;
+    this.pairs = pairs;
 };
 
 Data.prototype.getAllPairs = function() {
-  return this.pairs;
+    return this.pairs;
 };
 
 Data.prototype.getId = function() {
-  this.currentId++;
-  return this.currentId;
+    this.currentId++;
+    return this.currentId;
 };
 
 Data.prototype.roundToServer = function(round) {
-  this.round = round;
+    this.round = round;
 };
 
 Data.prototype.answersToServer = function(id,answers){
@@ -169,10 +185,20 @@ Data.prototype.getRound = function() {
   return this.round;
 };
 
+Data.prototype.sendDates = function() {
+    for(let pair of this.pairs){
+	console.log(pair);
+	io.emit('setDate', {id: pair.man.id, date: pair.woman});
+	io.emit('setDate', {id: pair.woman.id, date: pair.man});
+	this.getProfile(pair.man.id).dates.push(pair.woman);//{name: pair.woman.name, image: pair.woman.image});
+	this.getProfile(pair.woman.id).dates.push(pair.man);//{name: pair.man.name, image: pair.man.image});
+    }
+};
+
 const data = new Data();
 
 io.on('connection', function(socket) {
-  // Send list of orders when a client connects
+    // Send list of orders when a client connects
   socket.emit('initialize', data.getAllData());
   // When a connected client emits an "addOrder" message
   socket.on('pairsToServer', function(pairs) {
@@ -202,6 +228,12 @@ io.on('connection', function(socket) {
                 profile.name = editedProfile.name;
                 profile.isMan = editedProfile.isMan;
                 profile.completed = true;
+		if(profile.isMan){
+		    profile.image = data.manPics[profile.id%3];
+		}
+		else{
+		    profile.image = data.womanPics[profile.id%3];
+		}
                 break;
             }
         }
@@ -220,7 +252,14 @@ io.on('connection', function(socket) {
       // note the use of io instead of socket
       io.emit('getLatestMatching',  {latestMatching: data.latestMatching });
     });
-    socket.on('startRoundToServer', function(data) {
+    socket.on('startRoundToServer', function(nothing) {
+	console.log(data.pairs);
+	/*for(let pair of data.pairs){
+	    console.log(pair);
+	    io.emit('setDate', {id: pair.man.id, date: pair.woman});
+	    io.emit('setDate', {id: pair.woman.id, date: pair.man});
+	    }*/
+	data.sendDates();
 	io.emit('startRoundFromServer', {});
     });
     socket.on('quitDateToServer', function(data) {
@@ -229,7 +268,7 @@ io.on('connection', function(socket) {
     socket.on('iWantId', function(nothin) {
         let newId = data.getId();
         io.emit('idFromServer', {id: newId});
-        data.profiles.push({ name: '', id: newId.toString(), answers: [], shares: [], matches: [], isMan: false, completed: false});
+        data.profiles.push({ name: '', id: newId.toString(), answers: [], shares: [], matches: [], dates: [], isMan: false, completed: false});
     });
     socket.on('readyForEvent', function(id){
 	if(!data.idReady.includes(id)){

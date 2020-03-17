@@ -13,22 +13,31 @@ const ongoing_event = new Vue({
             this.pairs = data.pairs;
             this.round = data.round;
             this.latestMatching = data.latestMatching;
-            this.setup();
+            this.setup(data.profiles);
         }.bind(this));
         socket.on('pairsFromServer', function (data) {
             this.pairs = data.pairs;
-            this.setup();
+            this.setup(data.profiles);
         }.bind(this));
         socket.on('roundFromServer', function (data) {
             this.round = data.round;
         }.bind(this));
     },
     methods: {
-        setup: function () {
-            console.log(this.round + ", " + this.latestMatching);
-            if (this.pairs[0] == undefined) { //Bygger på att det alltid kommer finnas minst ett par.
+        setup: function (profiles) {
+            //console.log(this.round + ", " + this.latestMatching);
+            //if (this.pairs[0] == undefined) { //Bygger på att det alltid kommer finnas minst ett par.
+	    if(this.pairs[0] == undefined){
                 this.pairs = [];
-                this.testSetup();
+                //this.testSetup();
+		for(let profile of profiles){
+		    if(profile.isMan){
+			this.men.push(profile);
+		    }
+		    else{
+			this.women.push(profile);
+		    }
+		}
 
                 this.pair(this.round);
                 socket.emit('pairsToServer', this.pairs);
@@ -73,14 +82,14 @@ const ongoing_event = new Vue({
             if (isMan) {
                 this.men.push({
                     name: person,
-                    picture: pic,
+                    image: pic,
                     isMan: isMan
                 });
             }
             else {
                 this.women.push({
                     name: person,
-                    picture: pic,
+                    image: pic,
                     isMan: isMan
                 });
             }

@@ -9,8 +9,10 @@ const vm = new Vue({
         roundNumber: '1',
         ongoingRound: false,
         eventDone: false,
+        reviewDone: true,
         users: '20',
-        usersDone: 0
+        usersDone: 0,
+        
     },
     created: function () {
         socket.on('initialize', function (data) {
@@ -34,6 +36,7 @@ const vm = new Vue({
             if (confirm("Start next round?")) {
                 this.ongoingRound = true;
                 this.usersDone = 0;
+                this.reviewDone = false;
                 reset();
                 start();
             }
@@ -50,6 +53,14 @@ const vm = new Vue({
             socket.emit('roundToServer', this.roundNumber);
             ongoing_event.round = this.roundNumber;
             ongoing_event.setup();
+        },
+        startEvent: function () {
+            if(confirm("Start event?")){
+                this.roundNumber = 1;
+                socket.emit('roundToServer', this.roundNumber);
+                socket.emit('setLatestMatching', 0);
+                window.location.assign("/ongoing_event");
+            }
         },
         endEvent: function () {
             if (confirm("End event?")) {
@@ -69,6 +80,7 @@ const vm = new Vue({
         showMatches: function () {
             window.location.assign("/matches");
         },
+        
 
     }
 })

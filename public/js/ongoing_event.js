@@ -14,9 +14,14 @@ const ongoing_event = new Vue({
         roundNumber: '1',
         ongoingRound: false,
         eventDone: false,
+        reviewDone: true,
         users: '20',
         usersDone: '0',
-        draggedPerson: ''
+        draggedPerson: null,
+        draggedPair: null,
+        selectedPerson: null,
+        selectedMan: null,
+        selectedWoman: null
     },
     created: function() {
         socket.on('initialize', function(data) {
@@ -62,6 +67,18 @@ const ongoing_event = new Vue({
                 socket.emit('se tLatestMatching', this.round);
             }
         },
+        selectMan: function(man) {
+            this.selectedMan = man;
+        },
+        selectWoman: function(woman){
+            this.selectedWoman = woman;
+        },
+        deselectMan: function(){
+            this.selectedMan = null;
+        },
+        deselectWoman: function(){
+            this.selectedWoman = null;
+        },
         stdPair: function() {
             for (var i = 0; i < this.men.length; i++) {
                 this.pairs.push(
@@ -85,21 +102,24 @@ const ongoing_event = new Vue({
             socket.emit('setLatestMatching', this.round);
             this.stdPair();
         },
-        addPerson: function(person, isMan, pic, age) {
+        addPerson: function(person, isMan, pic, age, id) {
             if (isMan) {
                 this.men.push({
                     name: person,
                     picture: pic,
+                    city: 'Uppsala',
                     age: age,
+                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
                     isMan: isMan,
                     id: id
-
                 });
             } else {
                 this.women.push({
                     name: person,
                     picture: pic,
+                    city: 'Uppsala',
                     age: age,
+                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
                     isMan: isMan,
                     id: id
                 });
@@ -119,57 +139,96 @@ const ongoing_event = new Vue({
             this.addPerson("Arnold", true,
                 "https://reterdeen.com/wp-content/uploads/2019/10/arnold.jpg", "72");
             this.addPerson("Kamilla", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamilloa", true,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamillan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamillsadan", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaan", false,
                 "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+            this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                        this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                        this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                                    this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");
+                                    this.addPerson("Kamillsadana", true,
+                "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");            
+            this.addPerson("Kamilldsaddan", false,
+                           "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873", "32");  
+
 
         },
         allowDrop: function (ev) {
             ev.preventDefault();
         },
-        drag: function(ev) {
-            /*console.log(ev.dataTransfer.setData("text", ev.target.id));
-            for(var pair of this.pairs){
-                if(pair.man.id == ev.dataTransfer.setData("text", ev.target.id)){
-                    this.draggedPerson = pair.man;
-                }
-                else if(pair.woman.id == ev.dataTransfer.setData("text", ev.target.id)){
-                    this.draggedPerson = pair.woman;
-                }
-                }*/
-            console.log(ev.target.getAttribute('value'));
-            this.draggedPerson = this.pairs[ev.target.getAttribute('value').index].man;
-            console.log(this.draggedPerson);
+        dragMan: function(ev) {
+            let pair = this.pairs[ev.target.getAttribute('value')];
+            let draggedPerson = pair.man;
+            this.draggedPerson = draggedPerson;
+            console.log("dragging: " + draggedPerson.name);
+            this.draggedPair = pair;
+        },
+        dragWoman: function(ev) {
+            let pair = this.pairs[ev.target.getAttribute('value')];
+            let draggedPerson = pair.woman;
+            this.draggedPerson = draggedPerson;
+            console.log("dragging: " + draggedPerson.name);
+            this.draggedPair = pair;
+        },
+        dragTable: function(ev) {
+            let pair = this.pairs[ev.target.getAttribute('value')];
+            this.draggedPair = pair;
         },
         drop: function (ev) {
             ev.preventDefault();
-            let myPair;
-            /*for(var pair of this.pairs){
-                if(pair.man == (ev.target.getAttribute('value')) || pair.woman == (ev.target.getAttribute('value'))){
-                    myPair = pair;
-                }
-                }*/
-            myPair = this.pairs[ev.target.getAttribute('value').index];
-            //var data = ev.dataTransfer.getData("text");
-            //ev.target.appendChild(document.getElementById(data));
-            var tmp;
-            tmp = myPair.man.picture;
-            myPair.man.picture = this.draggedPerson.picture;
-            this.draggedPerson.picture = tmp;
-            /*if(this.draggedPerson.isMan){
-                tmp = myPair.man.picture;
-                myPair.man.picture = this.draggedPerson.picture;
-                this.draggedPerson.picture = tmp;
+            if (this.draggedPerson == null && this.draggedPair == null) return;
+            console.log("dropped on index" + ev.target.getAttribute('value'));
+            let droppedPair = this.pairs[ev.target.getAttribute('value')];
+            if(this.draggedPerson == null && this.draggedPair != null){
+                console.log("Table swoopdiwoop");
+                let manToSwap = droppedPair.man;
+                let womanToSwap = droppedPair.woman;
+                droppedPair.man = this.draggedPair.man;
+                droppedPair.woman = this.draggedPair.woman;
+                this.draggedPair.man = manToSwap;
+                this.draggedPair.woman = womanToSwap;
+                return;
             }
-            else {
-                tmp = myPair.woman.picture;
-                myPair.woman.picture = this.draggedPerson.picture;
-                this.draggedPerson.picture = tmp;
-            }*/
             
+            if(this.draggedPerson.isMan == true){
+                let manToSwap = droppedPair.man;
+                droppedPair.man = this.draggedPerson;
+                this.draggedPair.man = manToSwap;
+            }else{
+                let womanToSwap = droppedPair.woman;
+                droppedPair.woman = this.draggedPerson;
+                this.draggedPair.woman = womanToSwap;
+            }
+
+            this.draggedPerson = null;
+            this.draggedPair = null;
+        },
+        getGender: function (pair, gender){
+            return pair.man;
         },
         startRound: function () {
             if (confirm("Start next round?")) {
                 this.ongoingRound = true;
                 this.usersDone = 0;
+                this.reviewDone = false;
                 reset();
                 start();
             }
@@ -201,6 +260,16 @@ const ongoing_event = new Vue({
             } else {
                 this.usersDone = this.users;
             }
+
+            if(this.usersDone == 20){
+                this.reviewDone = true;
+            }
+        },
+        skipReview: function () {
+            if(confirm("Skip review phase?")){
+                this.reviewDone = true;
+            }
+            
         },
         showMatches: function () {
             window.location.assign("/matches");

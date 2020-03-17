@@ -12,6 +12,7 @@ header {
 }
 
 main {
+<<<<<<< HEAD
     height: 100%;
 }
 
@@ -19,6 +20,19 @@ main {
     height: auto;
     margin: auto;
     text-align: center;
+=======
+	  height: 100%;
+    text-align: center;
+    font-size: 18pt;
+}
+
+.menu {
+	height: auto;
+	margin: auto;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15pt;
+>>>>>>> pair2-pontus-changes
 }
 
 #timer {
@@ -27,8 +41,28 @@ main {
     font-size: 48pt;
 }
 
+#endRButton {
+    float: none;
+    margin-top: 85px;
+}
+
 #notifyMenu {
+<<<<<<< HEAD
     text-align: center;
+=======
+	  text-align: center;
+    margin-top: 100px;
+}
+#notifyMenu p {
+    margin-bottom: 40px;
+}
+#notifyMenu button {
+    float: none;
+}
+#notifyButton {    
+    margin-top: 100px;
+    margin-bottom: 100px;
+>>>>>>> pair2-pontus-changes
 }
 
 #userPanel {
@@ -36,6 +70,7 @@ main {
 }
 
 .menuButton {
+<<<<<<< HEAD
     height: 70px;
     width: 33%;
     float: left;
@@ -43,6 +78,15 @@ main {
     margin-bottom: 10px;
     background: #ff807a;
     margin: auto;
+=======
+	height: 70px;
+	width: 50%;
+  float: left;
+	color: #000;
+	margin-bottom: 10px;
+	background: #ff807a;
+  margin: auto;
+>>>>>>> pair2-pontus-changes
 }
 
 .menuButton:hover {
@@ -66,8 +110,8 @@ main {
 }
 
 .table_person_box {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     color: #000;
     border: 2px dashed;
 }
@@ -76,11 +120,90 @@ main {
     margin-top: 100px;
     position: absolute;
     width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 10px;
 }
 
 #match_box {
-    width: 20%;
-    height: 200px;
+    height: 150px;
     float: left;
+<<<<<<< HEAD
     margin-bottom: 200px;
 }
+=======
+    margin: auto;
+    margin-bottom: 450px;
+    text-align: center;
+}
+#match_box:nth-child(5n) .info_box{
+    margin-left: -350px;
+}
+
+.table_box {
+    width: 150px;
+    height: 150px
+}
+
+.info_box {
+    font-size: 20px;
+    text-align: left;
+    height: 300px;
+    width: 350px;
+    position: absolute;
+    margin-left: 150px;
+    background: #ff807a;
+}
+
+.info_text{
+    color: white;
+    background: grey;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+
+#close_button {
+    margin-left: 310px;
+    width: 20px;
+    height: 20px;
+    background: #cccccc;
+    text-align: center;
+    box-shadow: 1px 1px #000;
+    position: relative;
+    border-radius: 4px;
+}
+#close_button:hover {
+    cursor: pointer;
+}
+
+#startButton {
+    float: none;
+    height: 150px;
+    margin-top: 150px;
+    font-size: 18pt;
+}
+#table {
+    width: 100px;
+    height: 100px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #000;
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+#percentText {
+    font-size: 18pt;
+    position: absolute;
+    display: inline;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    vertical-align: middle;
+}
+>>>>>>> pair2-pontus-changes

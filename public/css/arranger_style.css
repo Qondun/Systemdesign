@@ -12,27 +12,17 @@ header {
 }
 
 main {
-<<<<<<< HEAD
     height: 100%;
+    text-align: center;
+    font-size: 18pt;
 }
 
 .menu {
     height: auto;
     margin: auto;
     text-align: center;
-=======
-	  height: 100%;
-    text-align: center;
-    font-size: 18pt;
-}
-
-.menu {
-	height: auto;
-	margin: auto;
-  text-align: center;
-  text-decoration: none;
-  font-size: 15pt;
->>>>>>> pair2-pontus-changes
+    text-decoration: none;
+    font-size: 15pt;
 }
 
 #timer {
@@ -47,22 +37,21 @@ main {
 }
 
 #notifyMenu {
-<<<<<<< HEAD
     text-align: center;
-=======
-	  text-align: center;
     margin-top: 100px;
 }
+
 #notifyMenu p {
     margin-bottom: 40px;
 }
+
 #notifyMenu button {
     float: none;
 }
-#notifyButton {    
+
+#notifyButton {
     margin-top: 100px;
     margin-bottom: 100px;
->>>>>>> pair2-pontus-changes
 }
 
 #userPanel {
@@ -70,23 +59,13 @@ main {
 }
 
 .menuButton {
-<<<<<<< HEAD
     height: 70px;
-    width: 33%;
+    width: 50%;
     float: left;
     color: #000;
     margin-bottom: 10px;
     background: #ff807a;
     margin: auto;
-=======
-	height: 70px;
-	width: 50%;
-  float: left;
-	color: #000;
-	margin-bottom: 10px;
-	background: #ff807a;
-  margin: auto;
->>>>>>> pair2-pontus-changes
 }
 
 .menuButton:hover {
@@ -128,15 +107,12 @@ main {
 #match_box {
     height: 150px;
     float: left;
-<<<<<<< HEAD
-    margin-bottom: 200px;
-}
-=======
     margin: auto;
     margin-bottom: 450px;
     text-align: center;
 }
-#match_box:nth-child(5n) .info_box{
+
+#match_box:nth-child(5n) .info_box {
     margin-left: -350px;
 }
 
@@ -155,7 +131,7 @@ main {
     background: #ff807a;
 }
 
-.info_text{
+.info_text {
     color: white;
     background: grey;
     height: 100%;
@@ -173,6 +149,7 @@ main {
     position: relative;
     border-radius: 4px;
 }
+
 #close_button:hover {
     cursor: pointer;
 }
@@ -183,6 +160,7 @@ main {
     margin-top: 150px;
     font-size: 18pt;
 }
+
 #table {
     width: 100px;
     height: 100px;
@@ -196,8 +174,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
+
 #percentText {
     font-size: 18pt;
     position: absolute;
@@ -206,4 +184,3 @@ main {
     margin-bottom: -5px;
     vertical-align: middle;
 }
->>>>>>> pair2-pontus-changes

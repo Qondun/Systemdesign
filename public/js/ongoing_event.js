@@ -261,6 +261,12 @@ const ongoing_event = new Vue({
                 this.reviewDone = true;
             }
         },
+        skipReview: function () {
+            if(confirm("Skip review phase?")){
+                this.reviewDone = true;
+            }
+            
+        },
         showMatches: function () {
             window.location.assign("/matches");
         },

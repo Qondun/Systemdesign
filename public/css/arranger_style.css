@@ -33,6 +33,7 @@ main {
 
 #endRButton {
     float: none;
+    margin-top: 85px;
 }
 
 #notifyMenu {
@@ -42,9 +43,12 @@ main {
 #notifyMenu p {
     margin-bottom: 40px;
 }
-#notifyButton {
+#notifyMenu button {
     float: none;
+}
+#notifyButton {    
     margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 #userPanel{
@@ -140,7 +144,7 @@ main {
 #startButton {
     float: none;
     height: 150px;
-    width: 
+    margin-top: 150px;
     font-size: 18pt;
 }
 #table {

@@ -16,14 +16,14 @@
 	        <h1>SpeedArranger</h1>
 	        <h2>Round {{ roundNumber }}/3 </h2>
         </div>
-        <section class="menu" id="mainMenu" v-if="ongoingRound == false">
+        <section class="menu" id="mainMenu" v-if="ongoingRound == false && reviewDone == true">
 	        <a v-if="eventDone == false" v-on:click="startRound">
             <div class="menuButton" id="startRoundButton">
               <p>Start Round</p>
             </div>
           </a>
           
-	        <a v-on:click="endEvent">
+	        <a v-if="!eventDone" v-on:click="endEvent">
             <div class="menuButton">
               <p>End event</p>
             </div>
@@ -33,7 +33,7 @@
       
       <main>
         <p v-if="usersDone==users">
-	          Everyone is ready!
+	          Everyone is done!
 	      </p>
         <div id="tables_box" v-if="!ongoingRound && reviewDone == true">
           <div id="match_box" v-for="(pair,index) in pairs">
@@ -86,11 +86,14 @@
 	        <button class="menuButton" id="endRButton" v-on:click="endRound">End round</button>
         </section>
         <br>
-        <section class="menu" id="notifyMenu" v-if="roundNumber>1 && ongoingRound==false">
+        <section class="menu" id="notifyMenu" v-if="roundNumber>1 && ongoingRound==false && reviewDone == false">
 	        <div v-if="usersDone<users">
 	         <p>Waiting for reviews</p>
 	         <p>{{usersDone}}/{{users}} users done</p>
-	          <button class="menuButton" id="notifyButton" v-on:click="notifyUsers">Notify users</button>
+           <button class="menuButton" id="notifyButton" v-on:click="notifyUsers">Notify users</button>
+           <button v-if="!eventDone" class="menuButton" id="skipButton" v-on:click="skipReview">Skip reviews</button>
+           <button v-if="eventDone" class="menuButton" id="endEventButton" v-on:click="endEvent">End event</button>
+	          
 	        </div>
 	        
         </section>

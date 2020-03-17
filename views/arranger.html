@@ -10,19 +10,20 @@
     </title>
   </head>
   <body>
-    <main id="myID">
+    <div id="myID">
       <header>
-	<div class="title">
-	  <h1>SpeedArranger</h1>	
-	  <h2>
-	    {{users}} registered users
-	  </h2>
-	</div>
+	      <div class="title">
+	        <h1>SpeedArranger</h1>	
+	        <h2>
+	          {{users}} registered users
+	        </h2>
+	      </div>
+        
       </header>
       <br>
-      <section class="menu">
-	<input class="menuButton" type="submit" value="Start event" v-on:click="startEvent">
+      <section class="menu" id="mainMenu">
+	<input class="menuButton" id="startButton" type="submit" value="Start event" v-on:click="startEvent">
       </section>
-    </main>
+    </div>
   </body>
 </html>

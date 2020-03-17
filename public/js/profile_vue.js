@@ -6,6 +6,7 @@ const vm = new Vue({
     data: {
         fullname: '',
         city: '',
+        age: 30,
         range1: '',
         range2: '',
         range3: '',
@@ -19,7 +20,7 @@ const vm = new Vue({
                 window.alert("Enter name before submitting!");
             }
             else if(confirm("Send info?")){
-                socket.emit('profileToServer', { name: this.fullname, id: this.id, answers: [], shares: [], matches: [], isMan: this.pick})
+                socket.emit('profileToServer', { name: this.fullname, id: this.id, age: this.age, answers: [], shares: [], matches: [], isMan: this.pick})
                 console.log(this.pick);
 		        window.location.href = '/user_menu?id='+this.id;
             }

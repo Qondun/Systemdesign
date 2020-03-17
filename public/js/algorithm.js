@@ -7,18 +7,18 @@ const Algorithm = new Vue({
         pairs: [],
         numberOfSelected: 0
     },
-    created: function () {
-        socket.on('initialize', function (data) {
+    created: function() {
+        socket.on('initialize', function(data) {
             this.pairs = data.pairs;
             this.setup();
         }.bind(this));
-        socket.on('pairsFromServer', function (data) {
+        socket.on('pairsFromServer', function(data) {
             this.pairs = data.pairs;
             this.setup();
         }.bind(this));
     },
     methods: {
-        setup: function () {
+        setup: function() {
             this.numberOfSelected = 0;
             //disables or enables button depending on number of selected pairs
             for (let pair of this.pairs) {
@@ -29,19 +29,28 @@ const Algorithm = new Vue({
 
             let bt = document.getElementById("nextButton");
             let popText = document.getElementById("popupText");
-            if (this.numberOfSelected < 2) { bt.disabled = true; popText.style.visibility = "visible"; }
-            else { bt.disabled = false; popText.style.visibility = "hidden"; }
+            if (this.numberOfSelected < 2) {
+                bt.disabled = true;
+                popText.style.visibility = "visible";
+            } else {
+                bt.disabled = false;
+                popText.style.visibility = "hidden";
+            }
         },
-        selectPair: function (index) {
+        selectPair: function(index) {
             this.pairs[index].selected = !this.pairs[index].selected;
 
             //disables or enables button depending on number of selected pairs
-            if (this.pairs[index].selected) { this.numberOfSelected++; }
-            else { this.numberOfSelected--; }
+            if (this.pairs[index].selected) { this.numberOfSelected++; } else { this.numberOfSelected--; }
             let bt = document.getElementById("nextButton");
             let popText = document.getElementById("popupText");
-            if (this.numberOfSelected < 2) { bt.disabled = true; popText.style.visibility = "visible"; }
-            else { bt.disabled = false; popText.style.visibility = "hidden"; }
+            if (this.numberOfSelected < 2) {
+                bt.disabled = true;
+                popText.style.visibility = "visible";
+            } else {
+                bt.disabled = false;
+                popText.style.visibility = "hidden";
+            }
         }
     }
 })
@@ -50,7 +59,7 @@ const Algorithm = new Vue({
 const btn = new Vue({
     el: '#nextButton',
     methods: {
-        toRematch: function () {
+        toRematch: function() {
             socket.emit('pairsToServer', Algorithm.pairs);
         }
     }

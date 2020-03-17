@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title>Rematching</title>
     <meta charset="utf-8" />
@@ -20,7 +21,8 @@
 
         <div id="chosenGrid">
             <img id ="chosenPicture" v-bind:src="chosenPerson.image">
-            <p id="chosenInfo">(Information will be displayed here.)</p>
+            <p id="chosenInfo">{{chosenPerson.name}}<br>{{chosenPerson.age}}<br>{{chosenPerson.table}}</p>
+
             <button class="largeButton" id="leftButton" v-on:click="changePerson(false)">Previous person</button>
             <button class="largeButton" id="leftButton" v-on:click="changePerson(true)">Next person</button>
             <button class="largeButton" id="switchButton" v-on:click="changeGender">Swap</button>
@@ -32,7 +34,7 @@
                 <div class="singlePerson">
                     <img :src="person.image" class="Picture"></img>
                     <button class="matchButton" v-on:click="reMatch(key)">Match!</button>
-                    <span class="nameLabel">{{person.name}}</span>
+                    <span class="nameLabel">{{person.name}}<br>{{person.age}}<br>{{person.table}}</span>
                 </div>
             </div>
         </div>

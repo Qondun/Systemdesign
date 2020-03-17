@@ -107,7 +107,9 @@ const ongoing_event = new Vue({
                 this.men.push({
                     name: person,
                     picture: pic,
+                    city: 'Uppsala',
                     age: age,
+                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
                     isMan: isMan,
                     id: id
                 });
@@ -115,7 +117,9 @@ const ongoing_event = new Vue({
                 this.women.push({
                     name: person,
                     picture: pic,
+                    city: 'Uppsala',
                     age: age,
+                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
                     isMan: isMan,
                     id: id
                 });

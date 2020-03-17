@@ -44,9 +44,21 @@
                     x
                   </div>
                   <div class="info_text">
-                  <br>
-                {{ pair.man.name }}
-                {{ pair.man.age }}
+                    Name: {{ pair.man.name }}
+                    <br>
+                    Age: {{ pair.man.age }}
+                    <br>
+                    Location: {{ pair.man.city }}
+                    <br>
+                    <br>
+                    Last date
+                    <ul>
+                      <li> Overall rating: {{pair.man.answers[0]}}
+                      <li> Enjoyed date: {{pair.man.answers[1]}}
+                      <li> Appropriate age: {{pair.man.answers[2]}}
+                      <li> Good match: {{pair.man.answers[3]}}
+                      <li> Comments: {{pair.man.answers[4]}}
+                    </ul>
                 </div>
                 </div>
                 <img v-bind:value="index" v-on:click="selectMan(pair.man)" v-bind:src="pair.man.picture" draggable="true"  ondragstart="ongoing_event.dragMan(event)" height="150" width="150">
@@ -69,9 +81,21 @@
                     x
                   </div>
                   <div class="info_text">
-                  <br>
-                  {{ pair.woman.name }}
-                  {{ pair.woman.age }}
+                    Name: {{ pair.woman.name }}
+                    <br>
+                    Age: {{ pair.woman.age }}
+                    <br>
+                    Location: {{ pair.woman.city }}
+                    <br>
+                    <br>
+                    Last date
+                    <ul>
+                      <li> Overall rating: {{pair.woman.answers[0]}}
+                      <li> Enjoyed date: {{pair.woman.answers[1]}}
+                      <li> Appropriate age: {{pair.woman.answers[2]}}
+                      <li> Good match: {{pair.woman.answers[3]}}
+                      <li> Comments: {{pair.woman.answers[4]}}
+                    </ul>
                   </div>
                 </div>
                 <img v-bind:value="index" v-on:click="selectWoman(pair.woman)" v-bind:src="pair.woman.picture" draggable="true"  ondragstart="ongoing_event.dragWoman(event)" height="150" width="150">

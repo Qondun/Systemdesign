@@ -34,8 +34,6 @@ const vm = new Vue({
     methods: {
             incrementNumber: function() {
             if (this.questionNumber < this.questions.length) {
-        incrementNumber: function() {
-            if (this.questionNumber < 4) {
                 let qn = this.questionNumber;
                 qn++;
                 this.questionNumber = qn;

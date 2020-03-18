@@ -3,27 +3,29 @@
 <head>
     <title>Profile</title>
     <meta charset="utf-8" />
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/common.css">
     <link rel="stylesheet" type="text/css" href="/css/profile_page.css">
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="js/profile_vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
 </head>
 
 <body>
     <main id="main_box">
         <h1>Create your profile</h1>
-        <a href="/user_menu">
+        <a v-on:click="goBack">
             <div id="back_button">
             </div>
         </a>
         <div id="user_img"></div>
         <section id="profile_info">
             <form id="profile_form">
-                <h2>Your information</h2>
-                <h3>Select your gender</h3>
-                <input type="radio" id="gender" name="gender">
+                <h3>Your information</h3>
+                <label>Select your gender</label><br>
+                <input type="radio" id="gender" name="gender" v-model="pick" value="true">
                 <label for="male">Man</label>
-                <input type="radio" id="gender" name="gender">
+                <input type="radio" id="gender" name="gender" v-model="pick" value="false">
                 <label for="female">Woman</label><br>
 
                 <h3>Full name</h3>
@@ -31,7 +33,7 @@
                 <h3>City</h3>
                 <input type="text" placeholder="Enter city" required="required" v-model="city" class="user_input"></input><br>
                 <h3>Age</h3>
-                <input type="number" min="18" placeholder="Enter age" class="user_input"></input><br>
+                <input type="number" min="18" placeholder="Enter age" class="user_input" v-model="age"></input><br>
 
                 <h4 id="questions">How much do you like to travel?</h4><br>
                 <label class="range_indicator">-</label>
@@ -49,7 +51,7 @@
                 <label class="range_indicator">+</label><br>
             </form>
             <label v-if="submitted == true">Your information was submitted</label><br>
-            <button id="submit_button" v-on:click="test()" href="/user_menu">Submit info</button>
+            <button id="submit_button" v-on:click="test()">Submit info</button>
         </section>
     </main>-
 </body>

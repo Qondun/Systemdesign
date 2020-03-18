@@ -20,9 +20,8 @@
         <hr>
 
         <div id="chosenGrid">
-            <img id="chosenPicture" v-bind:src="chosenPerson.picture">
+            <img id ="chosenPicture" v-bind:src="chosenPerson.image">
             <p id="chosenInfo">{{chosenPerson.name}}<br>{{chosenPerson.age}}<br>{{chosenPerson.table}}</p>
-
 
             <button class="largeButton" id="leftButton" v-on:click="changePerson(false)">Previous person</button>
             <button class="largeButton" id="leftButton" v-on:click="changePerson(true)">Next person</button>
@@ -33,7 +32,7 @@
         <div id="allUnmatched">
             <div v-for="(person, key) in differentGender">
                 <div class="singlePerson">
-                    <img :src="person.picture" class="Picture"></img>
+                    <img :src="person.image" class="Picture"></img>
                     <button class="matchButton" v-on:click="reMatch(key)">Match!</button>
                     <span class="nameLabel">{{person.name}}<br>{{person.age}}<br>{{person.table}}</span>
                 </div>

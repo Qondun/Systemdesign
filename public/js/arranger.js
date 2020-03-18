@@ -6,21 +6,25 @@ const vm = new Vue({
     el: '#myID',
     data: {
         time: '00:00:00.000',
-        roundNumber: '1',
+        roundNumber: 1,
         ongoingRound: false,
         eventDone: false,
-        users: '20',
+        users: 1,
         usersDone: 0
     },
     created: function () {
         socket.on('initialize', function (data) {
             this.roundNumber = data.round;
+	    this.users = data.numberOfUsersReady;
             this.setup();
         }.bind(this));
         socket.on('roundFromServer', function (data) {
             this.roundNumber = data.round;
             this.setup();
         }.bind(this));
+	socket.on('numberOfUsersReady', function (data){
+	    this.users = data.number;
+	}.bind(this));
     },
     methods: {
         setup: function () {
@@ -30,8 +34,13 @@ const vm = new Vue({
                 console.log("Denna text verkar aldrig visas?"); //Se över denna funktion
             }
         },
+	startEvent: function () {
+	    socket.emit('fillUp', 0);
+	    window.location.assign("/ongoing_event");
+	},
         startRound: function () {
             if (confirm("Start next round?")) {
+		socket.emit('startRoundToServer', {});
                 this.ongoingRound = true;
                 this.usersDone = 0;
                 reset();
@@ -40,21 +49,27 @@ const vm = new Vue({
         },
         endRound: function () {
             let rn = this.roundNumber;
+	    rn++;
+            if (rn > 3) {
+                this.eventDone = true;
+            }/*
             if (rn < 3) {
                 rn++;
             } else {
                 this.eventDone = true;
-            }
+            }*/
             this.roundNumber = rn;
             this.ongoingRound = false;
             socket.emit('roundToServer', this.roundNumber);
             ongoing_event.round = this.roundNumber;
             ongoing_event.setup();
+	    socket.emit('quitDateToServer', {});
         },
         endEvent: function () {
             if (confirm("End event?")) {
                 this.roundNumber = 1;
                 socket.emit('roundToServer', this.roundNumber);
+		socket.emit('zeroUsers');
                 socket.emit('setLatestMatching', 0);
                 window.location.assign("/arranger");
             }

@@ -17,7 +17,6 @@ h2 {
 
 #date_info {
     width: auto;
-    height: 150px;
     margin-left: 20px;
 }
 
@@ -35,11 +34,7 @@ h2 {
     margin-left: 150px;
 }
 
-#dateConfirmation {
-    margin: auto;
-    margin-top: 150px;
-    text-align: center;
-}
+
 
 #waitingForNext {
     width: auto;
@@ -157,7 +152,6 @@ h2 {
     background: #ff807a;
     height: 50px;
     width: 110px;
-    margin-top: 30px;
     cursor: pointer;
 }
 
@@ -226,14 +220,13 @@ h2 {
 .grid_container {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    grid-gap: 10px;
-    position: absolute;
-    padding: 10px;
+    width: 420px;
+    margin: auto;
+    margin-left: 10px;
+   
 }
-
-.table_box {
-    width: 150px;
-    height: 150px
+.grid_container h2{
+    float: left;
 }
 
 #table {
@@ -251,66 +244,12 @@ h2 {
     align-items: center;
 }
 
-#t_1 {
-    float: left;
-    margin-left: 5px;
+#dateConfirmation {
+    text-align: center;
+    width: 480px;
+    margin-bottom: 10px;
 }
 
-#t_2 {
-    float: left;
-    margin-left: 5px;
-}
-
-#t_3 {
-    float: left;
-    margin-left: 5px;
-}
-
-#t_4 {
-    float: left;
-    margin-left: 5px;
-    color: aqua;
-}
-
-#t_5 {
-    float: left;
-    margin-left: 5px;
-    background-color: green;
-}
-
-#t_6 {
-    float: left;
-    margin-left: 5px;
-}
-
-#t_7 {
-    float: left;
-    margin-left: 5px;
-}
-
-#t_8 {
-    float: left;
-    margin-left: 5px;
-}
-
-#t_9 {
-    float: left;
-    margin-left: 5px;
-}
-
-#t_10 {
-    float: left;
-    margin-left: 5px;
-}
-
-#name {
+.info {
     margin-top: 10px;
-}
-
-#age {
-    margin-top: 10px;
-}
-
-#match {
-    margin-top: 8px;
 }

@@ -98,56 +98,15 @@
                 <img v-bind:src="currentDate.img">
             </div>
             <div id="date_info">
-                <h2 id="name">Name: {{currentDate.name}}</h2>
-                <h2 id="age">Age: {{currentDate.age}}</h2>
-                <h2 id="match">Match: {{currentDate.match}}%</h2>
+                <h2 class="info">Name: {{currentDate.name}}</h2>
+                <h2 class="info">Age: {{currentDate.age}}</h2>
+                <h2 class="info">Match: {{currentDate.match}}%</h2>
 
-                <div class="grid_counter">
-                    <div v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
-                        <section id="t_1">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-                        <section id="t_2">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-                        <section id="t_3">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-                        <section id="t_4">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-
-                        </section>
-                        <section id="t_5">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-
-                        </section>
-                        <section id="t_6">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-                        <section id="t_7">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-                        <section id="t_8">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-                        <section id="t_9">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-                        <section id="t_10">
-                            <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            </div>
-                        </section>
-
-                    </div>
+                <h2>Table: </h2>
+                <div class="grid_container">
+                  <div v-for="index in 10" v-bind:value="index" id="table">
+                    <p>{{index}}</p>
+                  </div>
                 </div>
 
             </div>

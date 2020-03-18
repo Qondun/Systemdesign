@@ -21,7 +21,8 @@ const vm = new Vue({
         done: false,
         okPressed: false,
         round: 1,
-        showQuestions: false
+        showQuestions: false,
+        dateTable: 9
     },
     created: function() {
         socket.on('initialize', function(data) {
@@ -122,6 +123,13 @@ const vm = new Vue({
             default:
                 return this.answers.comment;
                 break;
+            }
+        },
+        tableColor: function(index){
+            if(index == this.dateTable){
+                return 'green';
+            }else {
+                return '#bbb';
             }
         }
     }

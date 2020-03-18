@@ -104,7 +104,7 @@
 
                 <h2>Table: </h2>
                 <div class="grid_container">
-                  <div v-for="index in 10" v-bind:value="index" id="table">
+                  <div v-for="index in 10" v-bind:value="index" v-bind:style="{ background: tableColor(index)}"id="table">
                     <p>{{index}}</p>
                   </div>
                 </div>

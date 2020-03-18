@@ -16,7 +16,7 @@ const vm = new Vue({
             if(id == this.id){
 		console.log(profile);
                 this.profile = profile;
-                console.log(this.profile);
+                console.log(this.profile.name + " " + this.profile.age);
                 
             }
         }.bind(this));

@@ -23,17 +23,17 @@
             <form id="profile_form">
                 <h3>Your information</h3>
                 <label>Select your gender</label><br>
-                <input type="radio" id="gender" name="gender" v-model="pick" value="true">
+                <input type="radio" id="gender" name="gender" v-model="profile.isMan" value="true">
                 <label for="male">Man</label>
-                <input type="radio" id="gender" name="gender" v-model="pick" value="false">
+                <input type="radio" id="gender" name="gender" v-model="profile.isMan" value="false">
                 <label for="female">Woman</label><br>
 
                 <h3>Full name</h3>
-                <input type="text" placeholder="Enter first- and Last name" required="required" v-model="fullname" class="user_input"></input><br>
+                <input type="text" placeholder="Enter first- and Last name" required="required" v-model="profile.name" class="user_input"></input><br>
                 <h3>City</h3>
-                <input type="text" placeholder="Enter city" required="required" v-model="city" class="user_input"></input><br>
+                <input type="text" placeholder="Enter city" required="required" v-model="profile.city" class="user_input"></input><br>
                 <h3>Age</h3>
-                <input type="number" min="18" placeholder="Enter age" class="user_input" v-model="age"></input><br>
+                <input type="number" min="18" placeholder="Enter age" class="user_input" v-model="profile.age"></input><br>
 
                 <h4 id="questions">How much do you like to travel?</h4><br>
                 <label class="range_indicator">-</label>

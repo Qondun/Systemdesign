@@ -89,6 +89,7 @@ const ongoing_event = new Vue({
             this.selectedWoman = null;
         },
         stdPair: function () {
+            
             for (var i = 0; i < this.men.length; i++) {
                 this.pairs.push(
                     {
@@ -99,17 +100,79 @@ const ongoing_event = new Vue({
                         selected: false
                     });
             }
+            
         },
+        compareId: function(person1, person2){
+            if ( person1.id < person2.id ){
+                return -1;
+              }
+              if ( person1.id > person2.id ){
+                return 1;
+              }
+              return 0;
+        },
+
+
         pair: function (round) {
-            //Very temporary!
+            console.log(this.men);
+            this.men.sort(this.compareId);
+            console.log(this.men);
+            this.women.sort(this.compareId);
+
+            let nextManToPair = 0;
+            let nextWoman = 0;
+
+                    // Så länge ej(visats omöjligt) och ej(är klara)
+            while(!(this.pairs == [] && nextWoman > this.women.length-1) && !(this.pairs.length == this.women.length)){
+                let womanIsMatched = false;
+                for(let pair of this.pairs){
+                    if(pair.index == nextWoman){
+                        womanIsMatched = true;
+                        break;
+                    }
+                }
+                
+                if(this.men[nextManToPair].dates.includes(this.women[nextWoman]) || womanIsMatched){ // Woman in pair == woman in dates??
+                    nextWoman++;
+                    if(nextWoman > this.women.length-1){
+                        if(pairs.length == 0){
+                            console.log("nextMan: " + nextManToPair + ", nextWoman: " + nextWoman);
+                           throw "Impossible pairing!";
+                        }
+                        let prevoiusPair = pairs.pop()
+                        
+                        nextManToPair--;
+                        nextWoman = previousPair.index + 1;
+                    }
+                }
+                else{
+                    this.pairs.push({
+                        man: this.men[nextManToPair], 
+                        woman: this.women[nextWoman],
+                        index: nextWoman,
+                        percentMatch: 99,
+                        table: nextManToPair,
+                        selected: false
+                    });
+                    nextManToPair++;
+                    nextWoman = 0;
+                }
+                
+            }
+
+                        
+
+
+
+            /*
             round = 2; //Gör något åt denna!
             while (round > 1) {
                 let man = this.men.shift();
                 this.men.push(man);
                 round--;
-            }
+            }*/
             socket.emit('setLatestMatching', this.roundNumber);
-            this.stdPair();
+            //this.stdPair();
         },
         addPerson: function (person, isMan, pic, age, id) {
             if (isMan) {

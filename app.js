@@ -73,16 +73,16 @@ function Data() {
         //{ name: 'Johnny', id: 'std1', age: '78', answers: [], shares: ['1'], matches: [],
 	//  isMan: true, completed: true, email: "bs@mail.us", 
 	//  image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
-        /*{ name: 'Arnold', id: '101', age: '72', answers: [], shares: ['1'], matches: [], dates: [], isMan: true, 
+        /*{ name: 'Arnold', id: '101', age: '72', answers: [], shares: ['1'], matches: [], dates: [], previousDates: [], isMan: true, 
 	  completed: true, email: "TheArnold@gmail.com", 
 	  image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
-        { name: 'Keanu', id: '102', age: '55', answers: [], shares: ['1'], matches: [], dates: [], isMan: true,
+        { name: 'Keanu', id: '102', age: '55', answers: [], shares: ['1'], matches: [], dates: [], previousDates: [], isMan: true,
 	  completed: true, email: "Keanu@keanu.com", 
 	  image: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'},
-        { name: 'Anna', id: '103', age: '35', answers: [], shares: ['2', '3'], matches: [], dates: [], isMan: false,
+        { name: 'Anna', id: '103', age: '35', answers: [], shares: ['2', '3'], matches: [], dates: [], previousDates: [], isMan: false,
 	  completed: true, email: "anna@anna.com", 
 	  image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"},
-	{ name: 'Elsa', id: '104', age: '25', answers: [], shares: ['1'], matches: [], dates: [], isMan: false,
+	{ name: 'Elsa', id: '104', age: '25', answers: [], shares: ['1'], matches: [], dates: [], previousDates: [], isMan: false,
 	  completed: true, email: "elsa@elsa.com",
 	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},*/
 	/*{ name: 'Kamilla', id: '104', age: '25', answers: [], shares: ['1','2', '3'], matches: [], dates: [], isMan: false,
@@ -208,8 +208,10 @@ Data.prototype.sendDates = function() {
 	console.log(pair);
 	io.emit('setDate', {id: pair.man.id, date: pair.woman});
 	io.emit('setDate', {id: pair.woman.id, date: pair.man});
-	this.getProfile(pair.man.id).dates.push(pair.woman);//{name: pair.woman.name, image: pair.woman.image});
-	this.getProfile(pair.woman.id).dates.push(pair.man);//{name: pair.man.name, image: pair.man.image});
+	this.getProfile(pair.man.id).dates.push(pair.woman);
+    this.getProfile(pair.woman.id).dates.push(pair.man);
+    this.getProfile(pair.man.id).previousDates.push(pair.woman);
+	this.getProfile(pair.woman.id).previousDates.push(pair.man);
     }
 };
 
@@ -255,7 +257,7 @@ io.on('connection', function(socket) {
                 let pic = data.manPics[newId % data.manPics.length];
                 let name = data.manNames[newId % data.manNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], 
-                    matches: [], dates: [], isMan: true, completed: true, 
+                    matches: [], dates: [], previousDates: [], isMan: true, completed: true, 
 				     image: pic});
                 moreMen++;
                 data.numberOfUsersReady++;
@@ -268,7 +270,7 @@ io.on('connection', function(socket) {
                 let pic = data.womanPics[newId % data.womanPics.length];
                 let name = data.womanNames[newId % data.womanNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], 
-                    matches: [], dates: [], isMan: false, completed: true, 
+                    matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
                 image: pic});
                 moreMen--;
                 data.numberOfUsersReady++;
@@ -328,7 +330,7 @@ io.on('connection', function(socket) {
     socket.on('iWantId', function(nothin) {
         let newId = data.getId();
         io.emit('idFromServer', {id: newId});
-        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: [], shares: [], matches: [], dates: [], isMan: false, completed: false});
+        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: [], shares: [], matches: [], dates: [], previousDates: [], isMan: false, completed: false});
     });
     socket.on('readyForEvent', function(id){
 	if(!data.idReady.includes(id)){

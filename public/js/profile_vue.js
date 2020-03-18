@@ -13,7 +13,7 @@ const vm = new Vue({
         id: window.location.href.split("?id=")[1],
         submitted: false,
         pick: false,
-        profile: {name: '', age: '', city: '', isMan: true, matches: [], shares: [], answers: []}
+        profile: {id: '', name: '', age: '', city: '', isMan: true, travel: 5, workout: 5, food: 5, matches: [], shares: [], answers: []}
     },
     created: function () {
         socket.emit('getProfile', this.id);

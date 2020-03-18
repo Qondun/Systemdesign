@@ -36,7 +36,7 @@ const ongoing_event = new Vue({
         }.bind(this));
         socket.on('roundFromServer', function (data) {
             this.roundNumber = data.round;
-          
+            this.setup(data.profiles);
         }.bind(this));
     },
     methods: {
@@ -72,8 +72,6 @@ const ongoing_event = new Vue({
                 this.pairs = [];
                 this.pair(this.roundNumber);
                 socket.emit('pairsToServer', this.pairs);
-                this.latestMatching = this.roundNumber;
-                socket.emit('setLatestMatching', this.roundNumber);
             }
         },
         selectMan: function (man) {
@@ -118,6 +116,7 @@ const ongoing_event = new Vue({
             this.men.sort(this.compareId);
             console.log(this.men);
             this.women.sort(this.compareId);
+            console.log(this.pairs);
 
             let nextManToPair = 0;
             let nextWoman = 0;
@@ -132,14 +131,14 @@ const ongoing_event = new Vue({
                     }
                 }
                 
-                if(this.men[nextManToPair].dates.includes(this.women[nextWoman]) || womanIsMatched){ // Woman in pair == woman in dates??
+                if(this.men[nextManToPair].previousDates.includes(this.women[nextWoman].id) || womanIsMatched){ // Woman in pair == woman in dates??
                     nextWoman++;
                     if(nextWoman > this.women.length-1){
-                        if(pairs.length == 0){
+                        if(this.pairs.length == 0){
                             console.log("nextMan: " + nextManToPair + ", nextWoman: " + nextWoman);
                            throw "Impossible pairing!";
                         }
-                        let prevoiusPair = pairs.pop()
+                        let previousPair = this.pairs.pop()
                         
                         nextManToPair--;
                         nextWoman = previousPair.index + 1;
@@ -159,11 +158,6 @@ const ongoing_event = new Vue({
                 }
                 
             }
-
-                        
-
-
-
             /*
             round = 2; //Gör något åt denna!
             while (round > 1) {
@@ -171,7 +165,9 @@ const ongoing_event = new Vue({
                 this.men.push(man);
                 round--;
             }*/
+            this.latestMatching = this.roundNumber;
             socket.emit('setLatestMatching', this.roundNumber);
+            
             //this.stdPair();
         },
         addPerson: function (person, isMan, pic, age, id) {
@@ -269,8 +265,8 @@ const ongoing_event = new Vue({
             this.roundNumber = rn;
             this.ongoingRound = false;
             socket.emit('roundToServer', this.roundNumber);
-            ongoing_event.roundNumber = this.roundNumber;
-            ongoing_event.setup();
+            this.roundNumber = this.roundNumber;
+            this.setup();
             socket.emit('quitDateToServer', {});
         },
         endEvent: function () {

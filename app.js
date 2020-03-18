@@ -255,7 +255,7 @@ io.on('connection', function(socket) {
                 let pic = data.manPics[newId % data.manPics.length];
                 let name = data.manNames[newId % data.manNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], 
-                                     matches: [], dates: [], isMan: true, city: 'Uppsala', travel: 5, workout: 5, food: 5, completed: true, 
+                                     matches: [], dates: [], previousDates = [], isMan: true, city: 'Uppsala', travel: 5, workout: 5, food: 5, completed: true, 
 				     image: pic});
                 moreMen++;
                 data.numberOfUsersReady++;
@@ -268,7 +268,7 @@ io.on('connection', function(socket) {
                 let pic = data.womanPics[newId % data.womanPics.length];
                 let name = data.womanNames[newId % data.womanNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], 
-                                     matches: [], dates: [], isMan: false, city: 'Uppsala', travel: 5, workout: 5, food: 5, completed: true, 
+                                     matches: [], dates: [], previousDates = [], isMan: false, city: 'Uppsala', travel: 5, workout: 5, food: 5, completed: true, 
                 image: pic});
                 moreMen--;
                 data.numberOfUsersReady++;
@@ -282,6 +282,7 @@ io.on('connection', function(socket) {
             if(profile.id == editedProfile.id) {
                 editedProfile.matches = profile.matches;
                 editedProfile.shares = profile.shares;
+                editedProfile.previousDate = profile.previousDates;
                 profile.name = editedProfile.name;
                 profile.isMan = editedProfile.isMan;
                 profile.city = editedProfile.city;

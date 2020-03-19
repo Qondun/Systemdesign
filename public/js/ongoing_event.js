@@ -36,7 +36,7 @@ const ongoing_event = new Vue({
         }.bind(this));
         socket.on('roundFromServer', function (data) {
             this.roundNumber = data.round;
-            
+            this.setup(null); //Hoppas att detta alltid funkar?
         }.bind(this));
     },
     methods: {
@@ -129,8 +129,8 @@ const ongoing_event = new Vue({
                         break;
                     }
                 }
-                console.log("new: " + this.men[nextManToPair].previousDates);
-                console.log(nextWoman + ", " + this.women[nextWoman]);
+                //console.log("new: " + this.men[nextManToPair].previousDates);
+                //console.log(nextWoman + ", " + this.women[nextWoman]);
                 if (this.men[nextManToPair].previousDates.includes(this.women[nextWoman].id) || womanIsMatched) { // Woman in pair == woman in dates??
                     nextWoman++;
                     while (nextWoman > this.women.length - 1) {

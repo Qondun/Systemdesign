@@ -12,6 +12,7 @@ const vm = new Vue({
         questionNumber: 0,
         answerNumber: '1',
         triedSubmitting: false,
+
         dateAvailable: false,
         dates: [{ name: 'Johnny', age: '78', table: 'A12', match: 62, image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
                 { name: 'Arnold', age: '72', table: 'B3', match: 99, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
@@ -21,8 +22,9 @@ const vm = new Vue({
         done: false,
         okPressed: false,
         round: 1,
+        showQuestions: false,
+        dateTable: 9,
         id: window.location.href.split("?id=")[1],
-        showQuestions: false
     },
     created: function() {
         socket.on('initialize', function(data) {
@@ -142,7 +144,13 @@ const vm = new Vue({
                 return this.answers.comment;
                 break;
             }
-
+        },
+        tableColor: function(index){
+            if(index == this.dateTable){
+                return 'green';
+            }else {
+                return '#bbb';
+            }
         }
     }
 })

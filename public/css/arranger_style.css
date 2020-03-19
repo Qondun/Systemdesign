@@ -1,7 +1,7 @@
 body {
-	  min-height: 100%;
-	  background-color: #eeeeee;
-	  color: #000;
+    min-height: 100%;
+    background-color: #eeeeee;
+    color: #000;
 }
 
 header {
@@ -12,57 +12,80 @@ header {
 }
 
 main {
-	height: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 18pt;
 }
 
 .menu {
-	height: auto;
-	margin: auto;
-  text-align: center;
-  text-decoration: none;
-  font-size: 15pt;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15pt;
 }
 
 #timer {
-	margin: auto;
-	text-align: center;
-	font-size: 48pt;
-} 
-
-#notifyMenu {
-	text-align: center;
+    margin: auto;
+    text-align: center;
+    font-size: 48pt;
 }
 
-#userPanel{
-	text-align: center;
+#endRButton {
+    float: none;
+    margin-top: 85px;
+}
+
+#notifyMenu {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#notifyMenu p {
+    margin-bottom: 40px;
+}
+
+#notifyMenu button {
+    float: none;
+}
+
+#notifyButton {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#userPanel {
+    text-align: center;
 }
 
 .menuButton {
-	height: 70px;
-	width: 50%;
-  float: left;
-	color: #000;
-	margin-bottom: 10px;
-	background: #ff807a;
-  margin: auto;
+    height: 70px;
+    width: 50%;
+    float: left;
+    color: #000;
+    margin-bottom: 10px;
+    background: #ff807a;
+    margin: auto;
 }
+
 .menuButton:hover {
-	  background: #ee7068;
+    background: #ee7068;
     cursor: pointer;
 }
+
 .menuButton p {
     margin-top: 30px;
 }
 
 .title {
-	height: 100px;
-	width: 100%;	
-	margin-bottom: 35px;
-	text-align: center;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 35px;
+    text-align: center;
 }
 
 .title h2 {
-	font-style: italic;
+    font-style: italic;
 }
 
 .table_person_box {
@@ -80,28 +103,35 @@ main {
     grid-template-columns: auto auto auto auto auto;
     grid-gap: 10px;
 }
+
 #match_box {
     height: 150px;
     float: left;
     margin: auto;
     margin-bottom: 450px;
+    text-align: center;
+}
+
+#match_box:nth-child(5n) .info_box {
+    margin-left: -350px;
 }
 
 .table_box {
-    text-align: center;
     width: 150px;
-    height: 150px;
+    height: 150px
 }
 
 .info_box {
-    height: 150px;
-    width: 250px;
+    font-size: 20px;
+    text-align: left;
+    height: 300px;
+    width: 350px;
     position: absolute;
-    margin-left: 160px;
+    margin-left: 150px;
     background: #ff807a;
 }
 
-.info_text{
+.info_text {
     color: white;
     background: grey;
     height: 100%;
@@ -110,7 +140,7 @@ main {
 }
 
 #close_button {
-    margin-left: 210px;
+    margin-left: 310px;
     width: 20px;
     height: 20px;
     background: #cccccc;
@@ -119,6 +149,7 @@ main {
     position: relative;
     border-radius: 4px;
 }
+
 #close_button:hover {
     cursor: pointer;
 }
@@ -126,26 +157,30 @@ main {
 #startButton {
     float: none;
     height: 150px;
-    width: 
+    margin-top: 150px;
     font-size: 18pt;
 }
+
 #table {
     width: 100px;
     height: 100px;
     background-color: #bbb;
     border-radius: 50%;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     color: #000;
+    border: 2px solid;
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 }
+
 #percentText {
-    text-align: center;
+    font-size: 18pt;
     position: absolute;
     display: inline;
-    line-height: 100px;
+    margin-top: -5px;
+    margin-bottom: -5px;
     vertical-align: middle;
-    font-size: 18pt;
 }

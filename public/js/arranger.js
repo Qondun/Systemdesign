@@ -9,8 +9,9 @@ const vm = new Vue({
         roundNumber: 1,
         ongoingRound: false,
         eventDone: false,
-        users: 1,
-        usersDone: 0
+        reviewDone: true,
+        users: '20',
+        usersDone: 0,
     },
     created: function () {
         socket.on('initialize', function (data) {
@@ -34,15 +35,12 @@ const vm = new Vue({
                 console.log("Denna text verkar aldrig visas?"); //Se över denna funktion
             }
         },
-	startEvent: function () {
-	    socket.emit('fillUp', 0);
-	    window.location.assign("/ongoing_event");
-	},
         startRound: function () {
             if (confirm("Start next round?")) {
 		socket.emit('startRoundToServer', {});
                 this.ongoingRound = true;
                 this.usersDone = 0;
+                this.reviewDone = false;
                 reset();
                 start();
             }
@@ -65,6 +63,15 @@ const vm = new Vue({
             ongoing_event.setup();
 	    socket.emit('quitDateToServer', {});
         },
+        startEvent: function () {
+            if(confirm("Start event?")){
+                socket.emit('fillUp', 0);
+                this.roundNumber = 1;
+                socket.emit('roundToServer', this.roundNumber);
+                socket.emit('setLatestMatching', 0);
+                window.location.assign("/ongoing_event");
+            }
+        },
         endEvent: function () {
             if (confirm("End event?")) {
                 this.roundNumber = 1;
@@ -84,6 +91,7 @@ const vm = new Vue({
         showMatches: function () {
             window.location.assign("/matches");
         },
+        
 
     }
 })

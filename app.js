@@ -84,7 +84,7 @@ function Data() {
 	  image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"},
 	{ name: 'Elsa', id: '104', age: '25', answers: [], shares: ['1'], matches: [], dates: [], previousDates: [], isMan: false,
 	  completed: true, email: "elsa@elsa.com",
-	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},*/
+	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},
 	/*{ name: 'Kamilla', id: '104', age: '25', answers: [], shares: ['1','2', '3'], matches: [], dates: [], isMan: false,
 	  completed: true, email: "elsa@elsa.com", 
 	  image: "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873"}*/],
@@ -244,6 +244,7 @@ io.on('connection', function(socket) {
         socket.emit('profileMatchesFromServer', data.collectMatches(id))
     });
     socket.on('fillUp', function(id){
+
         let moreMen = 0; //Increase for each man, decrease for each woman.
         for (let profile of data.profiles){
             if(profile.isMan == 'true' || profile.isMan == true){
@@ -260,11 +261,11 @@ io.on('connection', function(socket) {
                 let pic = data.manPics[newId % data.manPics.length];
                 let name = data.manNames[newId % data.manNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], 
-                    matches: [], dates: [], previousDates: [], isMan: true, completed: true, 
-				     image: pic});
+                                     matches: [], dates: [], previousDates: [], isMan: true, city: 'Uppsala', travel: 5, workout: 5, food: 5, mail: '', phone: '', completed: true, image: pic});
                 moreMen++;
                 data.numberOfUsersReady++;
 	        data.idReady.push(newId);
+            console.log("new user: " + name);
             }   
         }
         else {
@@ -273,11 +274,11 @@ io.on('connection', function(socket) {
                 let pic = data.womanPics[newId % data.womanPics.length];
                 let name = data.womanNames[newId % data.womanNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], 
-                    matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
-                image: pic});
+                                     matches: [], dates: [], previousDates: [], isMan: false, city: 'Uppsala', travel: 5, workout: 5, food: 5, mail: '', phone: '', completed: true, image: pic});
                 moreMen--;
                 data.numberOfUsersReady++;
         	data.idReady.push(newId);
+            console.log("new user: " + name);
             }   
         }
 
@@ -316,8 +317,15 @@ io.on('connection', function(socket) {
             if(profile.id == editedProfile.id) {
                 editedProfile.matches = profile.matches;
                 editedProfile.shares = profile.shares;
+                editedProfile.previousDate = profile.previousDates;
                 profile.name = editedProfile.name;
+                profile.mail = editedProfile.mail;
+                profile.phone = editedProfile.phone;
                 profile.isMan = editedProfile.isMan;
+                profile.city = editedProfile.city;
+                profile.travel = editedProfile.travel;
+                profile.workout = editedProfile.workout;
+                profile.food = editedProfile.food;
                 profile.completed = true;
                 profile.age = editedProfile.age;
 		if(profile.isMan == true || profile.isMan == 'true'){

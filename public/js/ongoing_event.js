@@ -24,6 +24,8 @@ const ongoing_event = new Vue({
     },
     created: function () {
         socket.on('initialize', function (data) {
+            console.log("init: ");
+            console.log(data);
             this.pairs = data.pairs;
             this.roundNumber = data.round;
             this.latestMatching = data.latestMatching;
@@ -31,10 +33,14 @@ const ongoing_event = new Vue({
             this.setup(data.profiles);
         }.bind(this));
         socket.on('pairsFromServer', function (data) {
+            console.log("pfs: ");
+            console.log(data);
             this.pairs = data.pairs;
             this.setup(data.profiles);
         }.bind(this));
         socket.on('roundFromServer', function (data) {
+            console.log("rfs: ");
+            console.log(data);
             this.roundNumber = data.round;
             this.setup(null); //Hoppas att detta alltid funkar?
         }.bind(this));
@@ -177,15 +183,19 @@ const ongoing_event = new Vue({
                 this.men.push({
                     name: person,
                     image: pic,
+                    city: 'Uppsala',
                     age: age,
+                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
                     isMan: isMan,
                     id: id
                 });
             } else {
                 this.women.push({
                     name: person,
+                    city: 'Uppsala',
                     image: pic,
                     age: age,
+                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
                     isMan: isMan,
                     id: id
                 });
@@ -289,6 +299,12 @@ const ongoing_event = new Vue({
             if (this.usersDone >= this.users) {
                 this.reviewDone = true;
             }
+        },
+        skipReview: function () {
+            if(confirm("Skip review phase?")){
+                this.reviewDone = true;
+            }
+            
         },
         showMatches: function () {
             window.location.assign("/matches");

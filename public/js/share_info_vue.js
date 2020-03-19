@@ -32,8 +32,8 @@ const vm = new Vue({
                 let qn = this.questionNumber;
                 qn++;
                 this.questionNumber = qn;
-                if(this.questionNumber <= 3){
-                    this.currentDate = this.dates[qn-1];
+                if (this.questionNumber <= 3) {
+                    this.currentDate = this.dates[qn - 1];
                 }
             }
         },
@@ -42,7 +42,7 @@ const vm = new Vue({
                 let qn = this.questionNumber;
                 qn--;
                 this.questionNumber = qn;
-                this.currentDate = this.dates[qn-1];
+                this.currentDate = this.dates[qn - 1];
             }
         },
         addAnswer: function(ans) {

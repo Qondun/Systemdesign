@@ -23,31 +23,34 @@
             <form id="profile_form">
                 <h3>Your information</h3>
                 <label>Select your gender</label><br>
-                <input type="radio" id="gender" name="gender" v-model="pick" value="true">
+                <input type="radio" id="gender" name="gender" v-model="profile.isMan" value="true">
                 <label for="male">Man</label>
-                <input type="radio" id="gender" name="gender" v-model="pick" value="false">
+                <input type="radio" id="gender" name="gender" v-model="profile.isMan" value="false">
                 <label for="female">Woman</label><br>
 
                 <h3>Full name</h3>
-                <input type="text" placeholder="Enter first- and Last name" required="required" v-model="fullname" class="user_input"></input><br>
+                <input type="text" placeholder="Enter first- and Last name" required="required" v-model="profile.name" class="user_input"></input><br>
                 <h3>City</h3>
-                <input type="text" placeholder="Enter city" required="required" v-model="city" class="user_input"></input><br>
+                <input type="text" placeholder="Enter city" required="required" v-model="profile.city" class="user_input"></input><br>
                 <h3>Age</h3>
-                <input type="number" min="18" placeholder="Enter age" class="user_input" v-model="age"></input><br>
-
+                <input type="number" min="18" placeholder="Enter age" class="user_input" v-model="profile.age"></input><br>
+                <h3>Email</h3>
+                <input type="text" placeholder="Enter email" required="required" v-model="profile.mail" class="user_input"></input><br>
+                <h3>Phone</h3>
+                <input type="number" placeholder="Enter åhpne" required="required" v-model="profile.phone" class="user_input"></input><br>
                 <h4 id="questions">How much do you like to travel?</h4><br>
                 <label class="range_indicator">-</label>
-                <input type="range" min="1" max="5" v-model="range1" class="user_input"></input>
+                <input type="range" min="1" max="5" v-model="profile.travel" class="user_input"></input>
                 <label class="range_indicator">+</label><br>
 
                 <h4 id="questions">How often do you train on a week?</h4><br>
                 <label class="range_indicator">-</label>
-                <input type="range" min="1" max="5" v-model="range2" class="user_input"></input>
+                <input type="range" min="1" max="5" v-model="profile.workout" class="user_input"></input>
                 <label class="range_indicator">+</label><br>
 
                 <h4 id="questions">How often do you go out and eat on a week?</h4><br>
                 <label class="range_indicator">-</label>
-                <input type="range" min="1" max="5" v-model="range3" class="user_input"></input>
+                <input type="range" min="1" max="5" v-model="profile.food" class="user_input"></input>
                 <label class="range_indicator">+</label><br>
             </form>
             <label v-if="submitted == true">Your information was submitted</label><br>

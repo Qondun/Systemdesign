@@ -73,7 +73,7 @@ function Data() {
         //{ name: 'Johnny', id: 'std1', age: '78', answers: [], shares: ['1'], matches: [],
 	//  isMan: true, completed: true, email: "bs@mail.us", 
 	//  image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Bernie_Sanders_July_2019_retouched.jpg'},
-        /*{ name: 'Arnold', id: '101', age: '72', answers: [], shares: ['1'], matches: [], dates: [], isMan: true, 
+        { name: 'Arnold', id: '101', age: '72', answers: [], shares: ['1'], matches: [], dates: [], isMan: true, 
 	  completed: true, email: "TheArnold@gmail.com", 
 	  image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
         { name: 'Keanu', id: '102', age: '55', answers: [], shares: ['1'], matches: [], dates: [], isMan: true,
@@ -84,7 +84,7 @@ function Data() {
 	  image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"},
 	{ name: 'Elsa', id: '104', age: '25', answers: [], shares: ['1'], matches: [], dates: [], isMan: false,
 	  completed: true, email: "elsa@elsa.com",
-	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},*/
+	  image: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Natalie_Dormer_2014.jpg"},
 	/*{ name: 'Kamilla', id: '104', age: '25', answers: [], shares: ['1','2', '3'], matches: [], dates: [], isMan: false,
 	  completed: true, email: "elsa@elsa.com", 
 	  image: "https://imgs.aftonbladet-cdn.se/v2/images/b27d5d33-e0fd-49d0-b924-2e4c9e697380?fit=crop&h=733&q=50&w=1100&s=8a1306695e56d97efbca205ad72293a21d5c7873"}*/],
@@ -239,6 +239,7 @@ io.on('connection', function(socket) {
         socket.emit('profileMatchesFromServer', data.collectMatches(id))
     });
     socket.on('fillUp', function(id){
+
         let moreMen = 0; //Increase for each man, decrease for each woman.
         for (let profile of data.profiles){
             if(profile.isMan == 'true' || profile.isMan == true){
@@ -260,6 +261,7 @@ io.on('connection', function(socket) {
                 moreMen++;
                 data.numberOfUsersReady++;
 	        data.idReady.push(newId);
+            console.log("new user: " + name);
             }   
         }
         else {
@@ -273,6 +275,7 @@ io.on('connection', function(socket) {
                 moreMen--;
                 data.numberOfUsersReady++;
         	data.idReady.push(newId);
+            console.log("new user: " + name);
             }   
         }
 	io.emit('numberOfUsersReady', {number: data.numberOfUsersReady});

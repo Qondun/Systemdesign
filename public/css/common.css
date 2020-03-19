@@ -15,6 +15,7 @@ body {
     background: #eeeeee;
     margin: auto;
     min-height: 100%;
+    padding-bottom: 20px;
 }
 
 #main_box h1 {

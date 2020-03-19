@@ -24,6 +24,8 @@ const ongoing_event = new Vue({
     },
     created: function () {
         socket.on('initialize', function (data) {
+            console.log("init: ");
+            console.log(data);
             this.pairs = data.pairs;
             this.roundNumber = data.round;
             this.latestMatching = data.latestMatching;
@@ -31,10 +33,14 @@ const ongoing_event = new Vue({
             this.setup(data.profiles);
         }.bind(this));
         socket.on('pairsFromServer', function (data) {
+            console.log("pfs: ");
+            console.log(data);
             this.pairs = data.pairs;
             this.setup(data.profiles);
         }.bind(this));
         socket.on('roundFromServer', function (data) {
+            console.log("rfs: ");
+            console.log(data);
             this.roundNumber = data.round;
           
         }.bind(this));

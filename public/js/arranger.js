@@ -35,10 +35,6 @@ const vm = new Vue({
                 console.log("Denna text verkar aldrig visas?"); //Se över denna funktion
             }
         },
-	startEvent: function () {
-	    socket.emit('fillUp', 0);
-	    window.location.assign("/ongoing_event");
-	},
         startRound: function () {
             if (confirm("Start next round?")) {
 		socket.emit('startRoundToServer', {});
@@ -69,6 +65,7 @@ const vm = new Vue({
         },
         startEvent: function () {
             if(confirm("Start event?")){
+                socket.emit('fillUp', 0);
                 this.roundNumber = 1;
                 socket.emit('roundToServer', this.roundNumber);
                 socket.emit('setLatestMatching', 0);

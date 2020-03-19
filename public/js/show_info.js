@@ -23,7 +23,7 @@ const vm = new Vue({
         okPressed: false,
         round: 1,
         showQuestions: false,
-        dateTable: 9
+        dateTable: 9,
         id: window.location.href.split("?id=")[1],
     },
     created: function() {

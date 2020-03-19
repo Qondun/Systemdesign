@@ -42,7 +42,7 @@ const ongoing_event = new Vue({
             console.log("rfs: ");
             console.log(data);
             this.roundNumber = data.round;
-          
+            this.setup(null); //Hoppas att detta alltid funkar?
         }.bind(this));
     },
     methods: {
@@ -78,8 +78,6 @@ const ongoing_event = new Vue({
                 this.pairs = [];
                 this.pair(this.roundNumber);
                 socket.emit('pairsToServer', this.pairs);
-                this.latestMatching = this.roundNumber;
-                socket.emit('setLatestMatching', this.roundNumber);
             }
         },
         selectMan: function (man) {
@@ -95,6 +93,7 @@ const ongoing_event = new Vue({
             this.selectedWoman = null;
         },
         stdPair: function () {
+
             for (var i = 0; i < this.men.length; i++) {
                 this.pairs.push(
                     {
@@ -105,17 +104,79 @@ const ongoing_event = new Vue({
                         selected: false
                     });
             }
+
         },
+        compareId: function (person1, person2) {
+            if (person1.id < person2.id) {
+                return -1;
+            }
+            if (person1.id > person2.id) {
+                return 1;
+            }
+            return 0;
+        },
+
+
         pair: function (round) {
-            //Very temporary!
+            console.log(this.men);
+            this.men.sort(this.compareId);
+            console.log(this.men);
+            this.women.sort(this.compareId);
+
+            let nextManToPair = 0;
+            let nextWoman = 0;
+
+            // Så länge ej(visats omöjligt) och ej(är klara)
+            while (!(this.pairs == [] && nextWoman > this.women.length - 1) && !(this.pairs.length == this.women.length)) {
+                let womanIsMatched = false;
+                for (let pair of this.pairs) {
+                    if (pair.index == nextWoman) {
+                        womanIsMatched = true;
+                        break;
+                    }
+                }
+                //console.log("new: " + this.men[nextManToPair].previousDates);
+                //console.log(nextWoman + ", " + this.women[nextWoman]);
+                if (this.men[nextManToPair].previousDates.includes(this.women[nextWoman].id) || womanIsMatched) { // Woman in pair == woman in dates??
+                    nextWoman++;
+                    while (nextWoman > this.women.length - 1) {
+                        if (this.pairs.length == 0) {
+                            console.log("nextMan: " + nextManToPair + ", nextWoman: " + nextWoman);
+                            throw "Impossible pairing!";
+                        }
+                        let previousPair = this.pairs.pop()
+
+                        nextManToPair--;
+                        nextWoman = previousPair.index + 1;
+                       
+                        
+                    }
+                }
+                else {
+                    this.pairs.push({
+                        man: this.men[nextManToPair],
+                        woman: this.women[nextWoman],
+                        index: nextWoman,
+                        percentMatch: 99,
+                        table: nextManToPair,
+                        selected: false
+                    });
+                    nextManToPair++;
+                    nextWoman = 0;
+                }
+
+            }
+            /*
             round = 2; //Gör något åt denna!
             while (round > 1) {
                 let man = this.men.shift();
                 this.men.push(man);
                 round--;
-            }
+            }*/
+            this.latestMatching = this.roundNumber;
             socket.emit('setLatestMatching', this.roundNumber);
-            this.stdPair();
+
+            //this.stdPair();
         },
         addPerson: function (person, isMan, pic, age, id) {
             if (isMan) {
@@ -180,7 +241,7 @@ const ongoing_event = new Vue({
                 return;
             }
             if (this.draggedPerson.isMan == 'true' ||
-		this.draggedPerson.isMan == true ) {
+                this.draggedPerson.isMan == true) {
                 let manToSwap = droppedPair.man;
                 droppedPair.man = this.draggedPerson;
                 this.draggedPair.man = manToSwap;
@@ -210,14 +271,14 @@ const ongoing_event = new Vue({
         endRound: function () {
             let rn = this.roundNumber;
             rn++;
-                if (rn > 3) {
-                    this.eventDone = true;
-                }
+            if (rn > 3) {
+                this.eventDone = true;
+            }
             this.roundNumber = rn;
             this.ongoingRound = false;
             socket.emit('roundToServer', this.roundNumber);
-            ongoing_event.roundNumber = this.roundNumber;
-            ongoing_event.setup();
+            this.roundNumber = this.roundNumber;
+            //this.setup();
             socket.emit('quitDateToServer', {});
         },
         endEvent: function () {

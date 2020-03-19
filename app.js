@@ -206,8 +206,8 @@ Data.prototype.getRound = function() {
 Data.prototype.sendDates = function() {
     for(let pair of this.pairs){
 	console.log(pair);
-	io.emit('setDate', {id: pair.man.id, date: pair.woman});
-	io.emit('setDate', {id: pair.woman.id, date: pair.man});
+	      io.emit('setDate', {id: pair.man.id, date: pair.woman, dateTable: pair.table});
+	      io.emit('setDate', {id: pair.woman.id, date: pair.man, dateTable: pair.table});
 	this.getProfile(pair.man.id).dates.push(pair.woman);//{name: pair.woman.name, image: pair.woman.image});
 	this.getProfile(pair.woman.id).dates.push(pair.man);//{name: pair.man.name, image: pair.man.image});
     }

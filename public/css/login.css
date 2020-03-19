@@ -1,0 +1,23 @@
+#button_box {
+    padding-top: 100px;
+}
+#button_box a{
+    text-decoration: none;
+    font-size: 25pt;
+    margin: auto;
+    text-align: center;
+}
+.menu_buttons {
+    background: #ff807a;
+    height: 120px;
+    width: 400px;
+    margin: auto;
+    margin-bottom: 60px;
+    color: #000000;
+    padding-top: 2px;
+    box-shadow: 3px 3px #000;
+}
+.menu_buttons:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}

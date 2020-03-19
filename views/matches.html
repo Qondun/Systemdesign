@@ -22,8 +22,8 @@
             <div v-for="(pair, key) in pairs">
                 <div class="singlePair" v-on:click="selectPair(key)"
                     v-bind:style="pair.selected ? 'filter: grayscale(100%);' : 'filter: grayscale(0%);'">
-                    <img :src="pair.man.picture" class="manPic"></img>
-                    <img :src="pair.woman.picture" class="womanPic"></img>
+                    <img :src="pair.man.image" class="manPic"></img>
+                    <img :src="pair.woman.image" class="womanPic"></img>
                     <span class="manName">{{pair.man.name}}</span>
                     <span class="womanName">{{pair.woman.name}}</span>
                     <span class="matchIndicator">{{pair.percentMatch}}%<span>

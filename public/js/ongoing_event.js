@@ -25,8 +25,6 @@ const ongoing_event = new Vue({
     },
     created: function () {
         socket.on('initialize', function (data) {
-            console.log("init: ");
-            console.log(data);
             this.pairs = data.pairs;
             this.roundNumber = data.round;
             this.latestMatching = data.latestMatching;
@@ -34,14 +32,12 @@ const ongoing_event = new Vue({
             this.setup(data.profiles);
         }.bind(this));
         socket.on('pairsFromServer', function (data) {
-            console.log("pfs: ");
-            console.log(data);
+            //console.log("Mottog paren!");
+            //console.log(data.pairs);
             this.pairs = data.pairs;
             this.setup(data.profiles);
         }.bind(this));
         socket.on('roundFromServer', function (data) {
-            console.log("rfs: ");
-            console.log(data);
             this.roundNumber = data.round;
             this.setup(null); //Hoppas att detta alltid funkar?
         }.bind(this));
@@ -51,7 +47,7 @@ const ongoing_event = new Vue({
     },
     methods: {
         setup: function (profiles) {
-            console.log(this.roundNumber + ", " + this.latestMatching);
+            //console.log(this.roundNumber + ", " + this.latestMatching);
             if (this.roundNumber == undefined) {
                 socket.emit('roundToServer', 1);
                 this.roundNumber = 1;
@@ -124,9 +120,9 @@ const ongoing_event = new Vue({
 
 
         pair: function (round) {
-            console.log(this.men);
+            //console.log(this.men);
             this.men.sort(this.compareId);
-            console.log(this.men);
+            //console.log(this.men);
             this.women.sort(this.compareId);
 
             let nextManToPair = 0;
@@ -147,7 +143,7 @@ const ongoing_event = new Vue({
                     nextWoman++;
                     while (nextWoman > this.women.length - 1) {
                         if (this.pairs.length == 0) {
-                            console.log("nextMan: " + nextManToPair + ", nextWoman: " + nextWoman);
+                            //console.log("nextMan: " + nextManToPair + ", nextWoman: " + nextWoman);
                             throw "Impossible pairing!";
                         }
                         let previousPair = this.pairs.pop()
@@ -191,7 +187,7 @@ const ongoing_event = new Vue({
                     image: pic,
                     city: 'Uppsala',
                     age: age,
-                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
+                    answers: {rating: 5, a1: 'Yes', a2: 'No', a3: 'Yes', comment: 'I would like to sit at a new table'},
                     isMan: isMan,
                     id: id
                 });
@@ -201,7 +197,7 @@ const ongoing_event = new Vue({
                     city: 'Uppsala',
                     image: pic,
                     age: age,
-                    answers: ['5','Yes','No','Yes','I would like to sit at a new table'],
+                    answers: {rating: 5, a1: 'Yes', a2: 'No', a3: 'Yes', comment: 'I would like to sit at a new table'},
                     isMan: isMan,
                     id: id
                 });
@@ -217,27 +213,33 @@ const ongoing_event = new Vue({
             let pair = this.pairs[ev.target.getAttribute('value')];
             let draggedPerson = pair.man;
             this.draggedPerson = draggedPerson;
-            console.log("dragging: " + draggedPerson.name);
+            //console.log("dragging: " + draggedPerson.name);
             this.draggedPair = pair;
+            this.selectedMan = null;
+            this.selectedIndex = null;
         },
         dragWoman: function (ev) {
             let pair = this.pairs[ev.target.getAttribute('value')];
             let draggedPerson = pair.woman;
             this.draggedPerson = draggedPerson;
-            console.log("dragging: " + draggedPerson.name);
+            //console.log("dragging: " + draggedPerson.name);
             this.draggedPair = pair;
+            this.selectedWoman = null;
         },
         dragTable: function (ev) {
             let pair = this.pairs[ev.target.getAttribute('value')];
             this.draggedPair = pair;
+            this.selectedMan = null;
+            this.selectedWoman = null;
+            this.selectedIndex = null;
         },
         drop: function (ev) {
             ev.preventDefault();
             if (this.draggedPerson == null && this.draggedPair == null) return;
-            console.log("dropped on index" + ev.target.getAttribute('value'));
+            //console.log("dropped on index" + ev.target.getAttribute('value'));
             let droppedPair = this.pairs[ev.target.getAttribute('value')];
             if (this.draggedPerson == null && this.draggedPair != null) {
-                console.log("Table swoopdiwoop");
+                //console.log("Table swoopdiwoop");
                 let manToSwap = droppedPair.man;
                 let womanToSwap = droppedPair.woman;
                 droppedPair.man = this.draggedPair.man;
@@ -287,8 +289,8 @@ const ongoing_event = new Vue({
             this.roundNumber = this.roundNumber;
             //this.setup();
             socket.emit('quitDateToServer', {});
-            console.log("End round");
-            console.log(this.roundNumber, this.ongoingRound, this.reviewDone);
+            //console.log("End round");
+            //console.log(this.roundNumber, this.ongoingRound, this.reviewDone);
         },
         endEvent: function () {
             if (confirm("End event?")) {

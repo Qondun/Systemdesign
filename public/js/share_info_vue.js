@@ -8,6 +8,7 @@ const vm = new Vue({
                 { name: 'Arnold', id: 'std2', age: '72', table: 'B3', match: 99, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg/330px-Arnold_Schwarzenegger_by_Gage_Skidmore_4.jpg'},
                 { name: 'Keanu', id: 'std3', age: '55', table: 'C9', match: 88, image: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Keanu_Reeves_%28crop_and_levels%29_%28cropped%29.jpg'}],*/
         answers: ['Not answered', 'Not answered', 'Not answered'],
+        answersMsg: ['Not answered', 'Not answered', 'Not answered'],
         questionsDone: false,
         currentDate: null,
         questionNumber: 1,
@@ -47,6 +48,12 @@ const vm = new Vue({
         },
         addAnswer: function(ans) {
             this.answers[this.questionNumber - 1] = ans;
+            if(ans != 'No'){
+                this.answersMsg[this.questionNumber - 1] = 'Yes';
+            }
+            else{
+                this.answersMsg[this.questionNumber - 1] = 'No';
+            }
             this.incrementNumber();
         },
         submitAnswers: function() {

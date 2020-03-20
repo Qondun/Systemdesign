@@ -33,6 +33,7 @@
                 </a>
             </div>
             <br>
+            <br>
             <div id="overall" v-if="questionNumber == 0">
                 <h2>Question {{questionNumber+1}}/5</h2>
                 <p>{{questions[questionNumber]}}</p>
@@ -64,6 +65,7 @@
                         </li>
                     </ul>
                 </div>
+                <br>
                 <button class="q_button" v-on:click="submitAnswers">Confirm answers</button><br>
                 <p v-if="questionsDone == false && triedSubmitting == true">You must answer all questions</p>
                 <p v-if="questionsDone == true && triedSubmitting == true">All your answers are now confirmed!</p>

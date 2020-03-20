@@ -65,11 +65,11 @@
                     <div v-if="roundNumber > 1">
                       Last date
                       <ul>
-                        <li> Overall rating: {{pair.man.answers[0]}}
-                        <li> Enjoyed date: {{pair.man.answers[1]}}
-                        <li> Appropriate age: {{pair.man.answers[2]}}
-                        <li> Good match: {{pair.man.answers[3]}}
-                        <li> Comments: {{pair.man.answers[4]}}
+                        <li> Overall rating: {{pair.man.answers.rating}}
+                        <li> Enjoyed date: {{pair.man.answers.a1}}
+                        <li> Appropriate age: {{pair.man.answers.a2}}
+                        <li> Good match: {{pair.man.answers.a3}}
+                        <li> Comments: {{pair.man.answers.comment}}
                       </ul>
                     </div>
                 </div>
@@ -111,11 +111,11 @@
                     <div v-if="roundNumber > 1">
                       Last date
                       <ul>
-                        <li> Overall rating: {{pair.woman.answers[0]}}
-                        <li> Enjoyed date: {{pair.woman.answers[1]}}
-                        <li> Appropriate age: {{pair.woman.answers[2]}}
-                        <li> Good match: {{pair.woman.answers[3]}}
-                        <li> Comments: {{pair.woman.answers[4]}}
+                        <li> Overall rating: {{pair.woman.answers.rating}}
+                        <li> Enjoyed date: {{pair.woman.answers.a1}}
+                        <li> Appropriate age: {{pair.woman.answers.a2}}
+                        <li> Good match: {{pair.woman.answers.a3}}
+                        <li> Comments: {{pair.woman.answers.comment}}
                       </ul>
                     </div>
                   </div>
@@ -138,8 +138,6 @@
                     <button class="menuButton" id="notifyButton" v-on:click="notifyUsers">Notify users</button>
                     <button v-if="!eventDone" class="menuButton" id="skipButton" v-on:click="skipReview">Skip reviews</button>
                     <button v-if="eventDone" class="menuButton" id="endEventButton" v-on:click="endEvent">End event</button>
-
-
             </section>
         </main>
     </div>

@@ -215,6 +215,8 @@ const ongoing_event = new Vue({
             this.draggedPerson = draggedPerson;
             //console.log("dragging: " + draggedPerson.name);
             this.draggedPair = pair;
+            this.selectedMan = null;
+            this.selectedIndex = null;
         },
         dragWoman: function (ev) {
             let pair = this.pairs[ev.target.getAttribute('value')];
@@ -222,10 +224,14 @@ const ongoing_event = new Vue({
             this.draggedPerson = draggedPerson;
             //console.log("dragging: " + draggedPerson.name);
             this.draggedPair = pair;
+            this.selectedWoman = null;
         },
         dragTable: function (ev) {
             let pair = this.pairs[ev.target.getAttribute('value')];
             this.draggedPair = pair;
+            this.selectedMan = null;
+            this.selectedWoman = null;
+            this.selectedIndex = null;
         },
         drop: function (ev) {
             ev.preventDefault();

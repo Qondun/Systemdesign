@@ -10,10 +10,11 @@ const vm = new Vue({
         range1: '',
         range2: '',
         range3: '',
+	image: null,
         id: window.location.href.split("?id=")[1],
         submitted: false,
         pick: false,
-        profile: {id: '', name: '', age: '', city: '', isMan: true, travel: 3, workout: 3, food: 3, matches: [], shares: [], answers: []}
+        profile: {id: '', name: '', age: '', city: '', isMan: true, travel: 3, workout: 3, food: 3, image: '', matches: [], shares: [], answers: []}
     },
     created: function () {
         socket.emit('getProfile', this.id);
@@ -23,6 +24,7 @@ const vm = new Vue({
                 console.log("profile: " + this.profile.name + " " + this.profile.age);
             }
         }.bind(this));
+	console.log("image x" + this.profile.image + "x");
     },
     methods: {
         test: function(){

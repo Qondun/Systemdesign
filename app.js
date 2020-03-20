@@ -331,7 +331,10 @@ io.on('connection', function(socket) {
                 profile.food = editedProfile.food;
                 profile.completed = true;
                 profile.age = editedProfile.age;
-		if(profile.isMan == true || profile.isMan == 'true'){
+		if(editedProfile.image != null){
+		    profile.image = editedProfile.image;
+		}
+		else if(profile.isMan == true || profile.isMan == 'true'){
             profile.image = "https://m.media-amazon.com/images/M/MV5BMTg1MjQ0MDg0Nl5BMl5BanBnXkFtZTcwNjYyNjI5Mg@@._V1_UY1200_CR88,0,630,1200_AL_.jpg";
             //data.manPics[profile.id%3];
 		}

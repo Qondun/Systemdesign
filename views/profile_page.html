@@ -18,7 +18,12 @@
             <div id="back_button">
             </div>
         </a>
-        <div id="user_img"></div>
+	<div v-if="profile.image == null">
+          <div id="user_img"></div>
+	</div>
+	<div id="user_img_exists" v-if="profile.image != null">
+	  <img v-bind:src="profile.image">
+	</div>
         <section id="profile_info">
             <form id="profile_form">
                 <h3>Your information</h3>
@@ -30,6 +35,8 @@
 
                 <h3>Full name</h3>
                 <input type="text" placeholder="Enter first- and Last name" required="required" v-model="profile.name" class="user_input"></input><br>
+		<h3>Picture</h3>
+                <input type="text" placeholder="Enter url to an image" required="required" v-model="profile.image" class="user_input"></input><br>
                 <h3>City</h3>
                 <input type="text" placeholder="Enter city" required="required" v-model="profile.city" class="user_input"></input><br>
                 <h3>Age</h3>

@@ -62,14 +62,16 @@
                     Travel: {{ pair.man.travel }}
                     <br>
                     <br>
-                    Last date
-                    <ul>
-                      <li> Overall rating: {{pair.man.answers[0]}}
-                      <li> Enjoyed date: {{pair.man.answers[1]}}
-                      <li> Appropriate age: {{pair.man.answers[2]}}
-                      <li> Good match: {{pair.man.answers[3]}}
-                      <li> Comments: {{pair.man.answers[4]}}
-                    </ul>
+                    <div v-if="roundNumber > 1">
+                      Last date
+                      <ul>
+                        <li> Overall rating: {{pair.man.answers[0]}}
+                        <li> Enjoyed date: {{pair.man.answers[1]}}
+                        <li> Appropriate age: {{pair.man.answers[2]}}
+                        <li> Good match: {{pair.man.answers[3]}}
+                        <li> Comments: {{pair.man.answers[4]}}
+                      </ul>
+                    </div>
                 </div>
                 </div>
                 <img v-bind:value="index" v-on:click="selectMan(pair.man, index)" v-bind:src="pair.man.image" draggable="true"  ondragstart="ongoing_event.dragMan(event)" height="150" width="150">
@@ -105,14 +107,16 @@
                     Food: {{ pair.woman.food }}
                     <br>
                     <br>
-                    Last date
-                    <ul>
-                      <li> Overall rating: {{pair.woman.answers[0]}}
-                      <li> Enjoyed date: {{pair.woman.answers[1]}}
-                      <li> Appropriate age: {{pair.woman.answers[2]}}
-                      <li> Good match: {{pair.woman.answers[3]}}
-                      <li> Comments: {{pair.woman.answers[4]}}
-                    </ul>
+                    <div v-if="roundNumber > 1">
+                      Last date
+                      <ul>
+                        <li> Overall rating: {{pair.woman.answers[0]}}
+                        <li> Enjoyed date: {{pair.woman.answers[1]}}
+                        <li> Appropriate age: {{pair.woman.answers[2]}}
+                        <li> Good match: {{pair.woman.answers[3]}}
+                        <li> Comments: {{pair.woman.answers[4]}}
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <img v-bind:value="index" v-on:click="selectWoman(pair.woman)" v-bind:src="pair.woman.image" draggable="true"  ondragstart="ongoing_event.dragWoman(event)" height="150" width="150">

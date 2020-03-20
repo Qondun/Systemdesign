@@ -1,12 +1,12 @@
 <html>
   <head>
-    <title>Menu</title>
+    <title>Log in</title>
     <meta charset="utf-8" />
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/user_menu.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
     <script src="https://vuejs.org/js/vue.js" defer></script>
-    <script src="js/user_menu.js" defer></script>
+    <script src="js/login.js" defer></script>
     <script src="/socket.io/socket.io.js" defer></script>
   </head>
   <body>
@@ -14,22 +14,11 @@
       <!--{{ name }}-->
       <h1>Menu</h1>
       <div id="button_box">
-        <a v-on:click="start_event">
+        <a v-on:click="login">
           <div class="menu_buttons">
-            <p>Ready up for event</p>
+            <p>Log in</p>
           </div>
         </a>
-        <a v-on:click="goToProfilePage">
-          <div class="menu_buttons">
-            <p>Profile</p>
-          </div>
-        </a>
-        <a v-on:click="goToUserMatches">
-          <div class="menu_buttons">
-            <p>Your matches</p>
-          </div>
-        </a>
-        
       </div>
     </main>
   </body>

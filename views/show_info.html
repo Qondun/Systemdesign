@@ -19,13 +19,14 @@
             </div>
             <div id="button_box_left">
                 <a href="#" v-if="questionNumber > 0" v-on:click="decrementNumber()">
+                <a v-if="questionNumber > 0" v-on:click="decrementNumber()">
                     <div class="question_button" id="left_button">
                     </div>
                     <label>Previous</label>
                 </a>
             </div>
             <div id="button_box_right">
-                <a href="#" v-if="questionNumber < 5" v-on:click="incrementNumber()">
+                <a v-if="questionNumber < 5" v-on:click="incrementNumber()">
                     <div class="question_button" id="right_button">
                     </div>
                     <label>Next</label>
@@ -58,7 +59,8 @@
                 <div class="list_box">
                     <ul>
                         <li v-for="(question, key) in questions">
-                            <span id="question_in_list">{{question}}</span><br><span id="answer_in_list">{{getAnswer(key)}}</span>
+                            <span id="question_in_list">{{question}}</span><br><span
+                                id="answer_in_list">{{getAnswer(key)}}</span>
                         </li>
                     </ul>
                 </div>
@@ -68,7 +70,7 @@
             </div>
                     
         </section>
-        <section v-if="dateAvailible==true && showQuestions == false">
+        <section v-if="dateAvailable==true && showQuestions == false">
             <h1>Information about date</h1>
             <div id="user_img">
                 <img v-bind:src="currentDate.img">
@@ -91,13 +93,15 @@
                 <p v-if="okPressed == true">Enjoy your date!</p>
             </div>
         </section>
-        <section v-if="dateAvailible==false">
+        <section v-if="dateAvailable==false">
             <div id="waitingForNext">
-                <div>
-                    <h2>Waiting for next date<br> Currently on date {{round}}/3</h2>
+                <div v-if="round <= 3">
+                    <h2>Waiting for next date<br>
+                        Currently on date {{round}}/3</h2>
                 </div>
-            </div>
-        </section>
+                <div v-if="round > 3">
+                    <h2>All rounds finished</h2>
+                </div>
     </main>
 </body>
 <footer>

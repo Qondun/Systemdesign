@@ -7,7 +7,7 @@
 body {
     background: #000000;
     font-family: Arial;
-    height: 100%
+    min-height: 100%;
 }
 
 #main_box {

@@ -266,6 +266,7 @@ const ongoing_event = new Vue({
                 socket.emit('startRoundToServer', {});
                 this.ongoingRound = true;
                 this.usersDone = 0;
+                this.selectedIndex = null;
                 //this.reviewDone = false;
                 reset();
                 start();

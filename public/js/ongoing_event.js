@@ -15,7 +15,7 @@ const ongoing_event = new Vue({
         eventDone: false,
         reviewDone: true,
         users: '20',
-        usersDone: '0',
+        usersDone: 0,
         draggedPerson: null,
         draggedPair: null,
         selectedPerson: null,
@@ -45,6 +45,9 @@ const ongoing_event = new Vue({
             this.roundNumber = data.round;
             this.setup(null); //Hoppas att detta alltid funkar?
         }.bind(this));
+	socket.on('userReady', function (data) {
+	    this.usersDone += 1;
+	}.bind(this));
     },
     methods: {
         setup: function (profiles) {

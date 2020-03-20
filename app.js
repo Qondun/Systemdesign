@@ -149,6 +149,7 @@ Data.prototype.answersToServer = function(id,answers){
         let ans = profile.answers[0];
         console.log("Recieved answer to profile " + profile.id + " answers: " + ans.rating + " " + ans.a1 + " " + ans.a2 + " " + ans.a3 + " "  + ans.comment);
         this.reviewsDone++;
+	io.emit('userReady', {});
     }
 }
 
@@ -206,14 +207,14 @@ Data.prototype.getRound = function() {
 Data.prototype.sendDates = function() {
     for(let pair of this.pairs){
 	console.log(pair);
-	      io.emit('setDate', {id: pair.man.id, date: pair.woman, dateTable: pair.table});
-	      io.emit('setDate', {id: pair.woman.id, date: pair.man, dateTable: pair.table});
-	      this.getProfile(pair.man.id).dates.push(pair.woman);
+	io.emit('setDate', {id: pair.man.id, date: pair.woman, dateTable: pair.table});
+	io.emit('setDate', {id: pair.woman.id, date: pair.man, dateTable: pair.table});
+	this.getProfile(pair.man.id).dates.push(pair.woman);
         this.getProfile(pair.woman.id).dates.push(pair.man);
         this.getProfile(pair.man.id).previousDates.push(pair.woman.id);
-	      this.getProfile(pair.woman.id).previousDates.push(pair.man.id);
+	this.getProfile(pair.woman.id).previousDates.push(pair.man.id);
         pair.man =  this.getProfile(pair.man.id);
-	      pair.woman = this.getProfile(pair.woman.id);
+	pair.woman = this.getProfile(pair.woman.id);
     }
     io.emit('pairsFromServer', {pairs: data.getAllPairs()});
 };
@@ -292,7 +293,8 @@ io.on('connection', function(socket) {
             data.profiles.push({ name: data.womanNames[firstId % data.womanNames.length], id: data.getId().toString(),
                 age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], 
                 matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
-                image: data.womanPics[firstId % data.womanPics.length]});
+				 image: data.womanPics[firstId % data.womanPics.length]});
+	    data.numberOfUsersReady += 2;
 
             while(data.profiles.length < 20){
                 firstId = (firstId+1) % data.womanNames.length;
@@ -304,7 +306,8 @@ io.on('connection', function(socket) {
                 data.profiles.push({ name: data.womanNames[firstId % data.womanNames.length], id: data.getId().toString(),
                     age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], 
                     matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
-                    image: data.womanPics[firstId % data.womanPics.length]});
+				     image: data.womanPics[firstId % data.womanPics.length]});
+		data.numberOfUsersReady += 2;
 
             }
         }

@@ -7,9 +7,9 @@ const vm = new Vue({
         fullname: '',
         city: '',
         age: 30,
-        range1: '3',
-        range2: '3',
-        range3: '3',
+        range1: 3,
+        range2: 3,
+        range3: 3,
         id: window.location.href.split("?id=")[1],
         submitted: false,
         pick: false,
@@ -23,6 +23,7 @@ const vm = new Vue({
                 console.log("profile: " + this.profile.name + " " + this.profile.age);
             }
         }.bind(this));
+	console.log("image x" + this.profile.image + "x");
     },
     methods: {
         test: function(){
@@ -30,6 +31,9 @@ const vm = new Vue({
                 window.alert("Enter name before submitting!");
             }
             else if(confirm("Send info?")){
+                this.profile.workout = 3;
+                this.profile.travel = 3;
+                this.profile.food = 3;
                 socket.emit('profileToServer', this.profile);
                 console.log(this.pick);
 		        window.location.href = '/user_menu?id='+this.id;

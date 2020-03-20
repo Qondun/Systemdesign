@@ -325,9 +325,13 @@ io.on('connection', function(socket) {
                 profile.travel = editedProfile.travel;
                 profile.workout = editedProfile.workout;
                 profile.food = editedProfile.food;
+                console.log("Recieved edit profile with preferences: " + editedProfile.travel + "," + editedProfile.food + " " + editedProfile.workout);
                 profile.completed = true;
                 profile.age = editedProfile.age;
-		if(profile.isMan == true || profile.isMan == 'true'){
+		if(editedProfile.image != null){
+		    profile.image = editedProfile.image;
+		}
+		else if(profile.isMan == true || profile.isMan == 'true'){
             profile.image = "https://m.media-amazon.com/images/M/MV5BMTg1MjQ0MDg0Nl5BMl5BanBnXkFtZTcwNjYyNjI5Mg@@._V1_UY1200_CR88,0,630,1200_AL_.jpg";
             //data.manPics[profile.id%3];
 		}
@@ -369,7 +373,7 @@ io.on('connection', function(socket) {
     socket.on('iWantId', function(nothin) {
         let newId = data.getId();
         io.emit('idFromServer', {id: newId});
-        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: {}, shares: [], matches: [], dates: [], previousDates: [], isMan: false, completed: false});
+        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: {}, shares: [], matches: [], city: '', travel: 3, workout: 3, food: 3, dates: [], previousDates: [], isMan: false, completed: false});
     });
     socket.on('readyForEvent', function(id){
 	if(!data.idReady.includes(id)){

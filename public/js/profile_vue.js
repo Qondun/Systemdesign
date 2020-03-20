@@ -7,14 +7,13 @@ const vm = new Vue({
         fullname: '',
         city: '',
         age: 30,
-        range1: '',
-        range2: '',
-        range3: '',
-	image: null,
+        range1: 3,
+        range2: 3,
+        range3: 3,
         id: window.location.href.split("?id=")[1],
         submitted: false,
         pick: false,
-        profile: {id: '', name: '', age: '', city: '', isMan: true, travel: 3, workout: 3, food: 3, image: '', matches: [], shares: [], answers: []}
+        profile: {id: '', name: '', age: '', city: '', isMan: true, travel: 3, workout: 3, food: 3, matches: [], shares: [], answers: []}
     },
     created: function () {
         socket.emit('getProfile', this.id);
@@ -32,6 +31,9 @@ const vm = new Vue({
                 window.alert("Enter name before submitting!");
             }
             else if(confirm("Send info?")){
+                this.profile.workout = 3;
+                this.profile.travel = 3;
+                this.profile.food = 3;
                 socket.emit('profileToServer', this.profile);
                 console.log(this.pick);
 		        window.location.href = '/user_menu?id='+this.id;

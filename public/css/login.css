@@ -1,5 +1,10 @@
+#main_box {
+    
+}
 #button_box {
     padding-top: 100px;
+    width: 400px;
+    margin: auto;
 }
 #button_box a{
     text-decoration: none;

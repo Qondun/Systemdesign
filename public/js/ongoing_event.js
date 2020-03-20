@@ -15,12 +15,13 @@ const ongoing_event = new Vue({
         eventDone: false,
         reviewDone: true,
         users: '20',
-        usersDone: '0',
+        usersDone: 0,
         draggedPerson: null,
         draggedPair: null,
         selectedPerson: null,
         selectedMan: null,
-        selectedWoman: null
+        selectedWoman: null,
+        selectedIndex: null
     },
     created: function () {
         socket.on('initialize', function (data) {
@@ -44,6 +45,9 @@ const ongoing_event = new Vue({
             this.roundNumber = data.round;
             this.setup(null); //Hoppas att detta alltid funkar?
         }.bind(this));
+	socket.on('userReady', function (data) {
+	    this.usersDone += 1;
+	}.bind(this));
     },
     methods: {
         setup: function (profiles) {
@@ -80,14 +84,16 @@ const ongoing_event = new Vue({
                 socket.emit('pairsToServer', this.pairs);
             }
         },
-        selectMan: function (man) {
+        selectMan: function (man, index) {
             this.selectedMan = man;
+            this.selectedIndex = index;
         },
         selectWoman: function (woman) {
             this.selectedWoman = woman;
         },
         deselectMan: function () {
             this.selectedMan = null;
+            this.selectedIndex = null;
         },
         deselectWoman: function () {
             this.selectedWoman = null;
@@ -263,6 +269,7 @@ const ongoing_event = new Vue({
                 socket.emit('startRoundToServer', {});
                 this.ongoingRound = true;
                 this.usersDone = 0;
+                this.selectedIndex = null;
                 this.reviewDone = false;
                 reset();
                 start();

@@ -149,6 +149,7 @@ Data.prototype.answersToServer = function(id,answers){
         let ans = profile.answers[0];
         console.log("Recieved answer to profile " + profile.id + " answers: " + ans.rating + " " + ans.a1 + " " + ans.a2 + " " + ans.a3 + " "  + ans.comment);
         this.reviewsDone++;
+	io.emit('userReady', {});
     }
 }
 
@@ -206,14 +207,14 @@ Data.prototype.getRound = function() {
 Data.prototype.sendDates = function() {
     for(let pair of this.pairs){
 	console.log(pair);
-	      io.emit('setDate', {id: pair.man.id, date: pair.woman, dateTable: pair.table});
-	      io.emit('setDate', {id: pair.woman.id, date: pair.man, dateTable: pair.table});
-	      this.getProfile(pair.man.id).dates.push(pair.woman);
+	io.emit('setDate', {id: pair.man.id, date: pair.woman, dateTable: pair.table});
+	io.emit('setDate', {id: pair.woman.id, date: pair.man, dateTable: pair.table});
+	this.getProfile(pair.man.id).dates.push(pair.woman);
         this.getProfile(pair.woman.id).dates.push(pair.man);
         this.getProfile(pair.man.id).previousDates.push(pair.woman.id);
-	      this.getProfile(pair.woman.id).previousDates.push(pair.man.id);
+	this.getProfile(pair.woman.id).previousDates.push(pair.man.id);
         pair.man =  this.getProfile(pair.man.id);
-	      pair.woman = this.getProfile(pair.woman.id);
+	pair.woman = this.getProfile(pair.woman.id);
     }
     io.emit('pairsFromServer', {pairs: data.getAllPairs()});
 };
@@ -260,7 +261,7 @@ io.on('connection', function(socket) {
                 let newId = data.getId();
                 let pic = data.manPics[newId % data.manPics.length];
                 let name = data.manNames[newId % data.manNames.length];
-                data.profiles.push({ name: name, id: newId.toString(), age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], 
+                data.profiles.push({ name: name, id: newId.toString(), age: '40', answers: [], shares: ['1', '2', '3', '4', '5'], 
                                      matches: [], dates: [], previousDates: [], isMan: true, city: 'Uppsala', travel: 5, workout: 5, food: 5, mail: '', phone: '', completed: true, image: pic});
                 moreMen++;
                 data.numberOfUsersReady++;
@@ -286,25 +287,27 @@ io.on('connection', function(socket) {
             let firstId = data.getId();
             
             data.profiles.push({ name: data.manNames[firstId % data.manNames.length], id: firstId.toString(), 
-                age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], 
+                age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5,
                 matches: [], dates: [], previousDates: [], isMan: true, completed: true, 
 				image: data.manPics[firstId % data.manPics.length]});
             data.profiles.push({ name: data.womanNames[firstId % data.womanNames.length], id: data.getId().toString(),
-                age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], 
+                                 age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, 
                 matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
-                image: data.womanPics[firstId % data.womanPics.length]});
+				 image: data.womanPics[firstId % data.womanPics.length]});
+	    data.numberOfUsersReady += 2;
 
             while(data.profiles.length < 20){
                 firstId = (firstId+1) % data.womanNames.length;
 
                 data.profiles.push({ name: data.manNames[firstId % data.manNames.length], id: data.getId().toString(), 
-                    age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], 
+                    age:'40', answers: [], shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, 
                     matches: [], dates: [], previousDates: [], isMan: true, completed: true, 
 				    image: data.manPics[firstId % data.manPics.length]});
                 data.profiles.push({ name: data.womanNames[firstId % data.womanNames.length], id: data.getId().toString(),
-                    age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], 
+                    age:'30', answers: [], shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5,
                     matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
-                    image: data.womanPics[firstId % data.womanPics.length]});
+				     image: data.womanPics[firstId % data.womanPics.length]});
+		data.numberOfUsersReady += 2;
 
             }
         }
@@ -326,9 +329,13 @@ io.on('connection', function(socket) {
                 profile.travel = editedProfile.travel;
                 profile.workout = editedProfile.workout;
                 profile.food = editedProfile.food;
+                console.log("Recieved edit profile with preferences: " + editedProfile.travel + "," + editedProfile.food + " " + editedProfile.workout);
                 profile.completed = true;
                 profile.age = editedProfile.age;
-		if(profile.isMan == true || profile.isMan == 'true'){
+		if(editedProfile.image != null){
+		    profile.image = editedProfile.image;
+		}
+		else if(profile.isMan == true || profile.isMan == 'true'){
             profile.image = "https://m.media-amazon.com/images/M/MV5BMTg1MjQ0MDg0Nl5BMl5BanBnXkFtZTcwNjYyNjI5Mg@@._V1_UY1200_CR88,0,630,1200_AL_.jpg";
             //data.manPics[profile.id%3];
 		}
@@ -370,7 +377,7 @@ io.on('connection', function(socket) {
     socket.on('iWantId', function(nothin) {
         let newId = data.getId();
         io.emit('idFromServer', {id: newId});
-        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: [], shares: [], matches: [], dates: [], previousDates: [], isMan: false, completed: false});
+        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: [], shares: [], matches: [], city: '', travel: 3, workout: 3, food: 3, dates: [], previousDates: [], isMan: false, completed: false});
     });
     socket.on('readyForEvent', function(id){
 	if(!data.idReady.includes(id)){

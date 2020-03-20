@@ -4,7 +4,7 @@ const socket = io();
 const vm = new Vue({
     el: '#main_box',
     data: {
-        questions: ['Overall rating?', 'Did you enjoy the date?', 'Did you think the age gap was too big?','Did you find this match to be correct for you?', "Comments?"],
+        questions: ['Overall rating?', 'Did you enjoy the date?', 'Was the age gap good?','Did you find this match to be correct for you?', "Comments?"],
         overallRating: '5',
         answers: {rating: 5, a1: 'Not answered', a2: 'Not answered', a3: 'Not answered', comment: ''},
         questionsDone: false,
@@ -36,19 +36,19 @@ const vm = new Vue({
 	          this.triedSubmitting = false;
 	          let date = vm.dates[vm.round-1];
             //vm.setDate(date.name,date.age,date.match,date.table,date.image);
-        }.bind(this));
-	      socket.on('quitDateFromServer', function (data) {
-	          console.log("Quit!");
-	          this.okPressed = true;
-	          this.showQuestions = true;
-	          //this.dateAvailable = false;
-	      }.bind(this));
-	      socket.on('setDate', function (data) {
-	          if(data.id == this.id){
-		            vm.setDate(data.date.name,data.date.age,data.date.match,data.date.table,data.date.image);
+              }.bind(this));
+	socket.on('quitDateFromServer', function (data) {
+	    console.log("Quit!");
+	    this.okPressed = true;
+	    this.showQuestions = true;
+	    //this.dateAvailable = false;
+	}.bind(this));
+	socket.on('setDate', function (data) {
+	    if(data.id == this.id){
+		vm.setDate(data.date.name,data.date.age,data.date.match,data.date.table,data.date.image);
                 this.dateTable = data.dateTable + 1;
-	          }
-	      }.bind(this));
+	    }
+	}.bind(this));
     },
     methods: {
             incrementNumber: function() {

@@ -326,6 +326,7 @@ io.on('connection', function(socket) {
                 profile.travel = editedProfile.travel;
                 profile.workout = editedProfile.workout;
                 profile.food = editedProfile.food;
+                console.log("Recieved edit profile with preferences: " + editedProfile.travel + "," + editedProfile.food + " " + editedProfile.workout);
                 profile.completed = true;
                 profile.age = editedProfile.age;
 		if(profile.isMan == true || profile.isMan == 'true'){
@@ -370,7 +371,7 @@ io.on('connection', function(socket) {
     socket.on('iWantId', function(nothin) {
         let newId = data.getId();
         io.emit('idFromServer', {id: newId});
-        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: [], shares: [], matches: [], dates: [], previousDates: [], isMan: false, completed: false});
+        data.profiles.push({ name: '', id: newId.toString(), age:30, answers: [], shares: [], matches: [], city: '', travel: 3, workout: 3, food: 3, dates: [], previousDates: [], isMan: false, completed: false});
     });
     socket.on('readyForEvent', function(id){
 	if(!data.idReady.includes(id)){

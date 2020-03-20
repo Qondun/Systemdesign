@@ -81,6 +81,7 @@ const ongoing_event = new Vue({
             }
         },
         selectMan: function (man) {
+            console.log("workout:" + man.workout);
             this.selectedMan = man;
         },
         selectWoman: function (woman) {

@@ -45,8 +45,9 @@ const vm = new Vue({
 	}.bind(this));
 	socket.on('setDate', function (data) {
 	    if(data.id == this.id){
-		vm.setDate(data.date.name,data.date.age,data.date.match,data.date.table,data.date.image);
+		vm.setDate(data.date.name, data.date.age, data.percentMatch, data.date.table, data.date.image);
                 this.dateTable = data.dateTable + 1;
+                console.log(data)
 	    }
 	}.bind(this));
     },
@@ -116,6 +117,7 @@ const vm = new Vue({
         setDate: function(name, age, match, table, img) {
             let myDate = { name, age, match, table, img };
             this.currentDate = myDate;
+            console.log(this.currentDate.match);
             this.dateAvailable = true;
         },
         completeDate: function() {

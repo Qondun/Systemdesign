@@ -55,6 +55,12 @@
                     <br>
                     Location: {{ pair.man.city }}
                     <br>
+                    Travel: {{ pair.man.travel }}
+                    <br>
+                    Workout: {{ pair.man.workout }}
+                    <br>
+                    Food: {{ pair.man.food }}
+                    <br>
                     <br>
                     Last date
                     <ul>
@@ -66,15 +72,15 @@
                     </ul>
                 </div>
                 </div>
-                <img v-bind:value="index" v-on:click="selectMan(pair.man)" v-bind:src="pair.man.image" draggable="true"  ondragstart="ongoing_event.dragMan(event)" height="150" width="150">
+                <img v-bind:value="index" v-on:click="selectMan(pair.man, index)" v-bind:src="pair.man.image" draggable="true"  ondragstart="ongoing_event.dragMan(event)" height="150" width="150">
                </span>
                     </div>
 
 
                     <div v-bind:value="index" draggable="true" ondragstart="ongoing_event.dragTable(event)">
                         <div id="table" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)" class="table_box">
-                            <p id="percentText" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)">
-                                {{pair.percentMatch}}%
+                            <p id="percentText" v-if="selectedIndex != index - 1" v-bind:value="index" ondrop="ongoing_event.drop(event)" ondragover="ongoing_event.allowDrop(event)">
+                              {{pair.percentMatch}}%
                             </p>
                         </div>
                     </div>
@@ -91,6 +97,12 @@
                     Age: {{ pair.woman.age }}
                     <br>
                     Location: {{ pair.woman.city }}
+                    <br>
+                    Travel: {{ pair.man.travel }}
+                    <br>
+                    Workout: {{ pair.man.workout }}
+                    <br>
+                    Food: {{ pair.man.food }}
                     <br>
                     <br>
                     Last date

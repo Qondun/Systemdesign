@@ -37,21 +37,21 @@
                 <h3>Email</h3>
                 <input type="text" placeholder="Enter email" required="required" v-model="profile.mail" class="user_input"></input><br>
                 <h3>Phone</h3>
-                <input type="number" placeholder="Enter åhpne" required="required" v-model="profile.phone" class="user_input"></input><br>
+                <input type="number" placeholder="Enter phone number" required="required" v-model="profile.phone" class="user_input"></input><br>
                 <h4 id="questions">How much do you like to travel?</h4><br>
-                <label class="range_indicator">-</label>
+                <label class="range_indicator">1</label>
                 <input type="range" min="1" max="5" v-model="profile.travel" class="user_input"></input>
-                <label class="range_indicator">+</label><br>
+                <label class="range_indicator">5</label><br>
 
                 <h4 id="questions">How often do you train on a week?</h4><br>
-                <label class="range_indicator">-</label>
+                <label class="range_indicator">1</label>
                 <input type="range" min="1" max="5" v-model="profile.workout" class="user_input"></input>
-                <label class="range_indicator">+</label><br>
+                <label class="range_indicator">5</label><br>
 
                 <h4 id="questions">How often do you go out and eat on a week?</h4><br>
-                <label class="range_indicator">-</label>
+                <label class="range_indicator">1</label>
                 <input type="range" min="1" max="5" v-model="profile.food" class="user_input"></input>
-                <label class="range_indicator">+</label><br>
+                <label class="range_indicator">5</label><br>
             </form>
             <label v-if="submitted == true">Your information was submitted</label><br>
             <button id="submit_button" v-on:click="test()">Submit info</button>

@@ -20,7 +20,8 @@ const ongoing_event = new Vue({
         draggedPair: null,
         selectedPerson: null,
         selectedMan: null,
-        selectedWoman: null
+        selectedWoman: null,
+        selectedIndex: null
     },
     created: function () {
         socket.on('initialize', function (data) {
@@ -80,14 +81,16 @@ const ongoing_event = new Vue({
                 socket.emit('pairsToServer', this.pairs);
             }
         },
-        selectMan: function (man) {
+        selectMan: function (man, index) {
             this.selectedMan = man;
+            this.selectedIndex = index;
         },
         selectWoman: function (woman) {
             this.selectedWoman = woman;
         },
         deselectMan: function () {
             this.selectedMan = null;
+            this.selectedIndex = null;
         },
         deselectWoman: function () {
             this.selectedWoman = null;

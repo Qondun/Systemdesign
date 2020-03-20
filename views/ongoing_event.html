@@ -23,7 +23,7 @@
             <h2>All rounds finished </h2>
           </div>
         </div>
-        <section class="menu" id="mainMenu" v-if="ongoingRound == false">
+        <section class="menu" id="mainMenu" v-if="ongoingRound == false && reviewDone == true">
 	        <a v-if="eventDone == false" v-on:click="startRound">
             <div class="menuButton" id="startRoundButton">
               <p>Start Round</p>
@@ -98,11 +98,11 @@
                     <br>
                     Location: {{ pair.woman.city }}
                     <br>
-                    Travel: {{ pair.man.travel }}
+                    Travel: {{ pair.woman.travel }}
                     <br>
-                    Workout: {{ pair.man.workout }}
+                    Workout: {{ pair.woman.workout }}
                     <br>
-                    Food: {{ pair.man.food }}
+                    Food: {{ pair.woman.food }}
                     <br>
                     <br>
                     Last date

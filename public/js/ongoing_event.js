@@ -267,7 +267,7 @@ const ongoing_event = new Vue({
                 this.ongoingRound = true;
                 this.usersDone = 0;
                 this.selectedIndex = null;
-                //this.reviewDone = false;
+                this.reviewDone = false;
                 reset();
                 start();
             }
@@ -284,6 +284,8 @@ const ongoing_event = new Vue({
             this.roundNumber = this.roundNumber;
             //this.setup();
             socket.emit('quitDateToServer', {});
+            console.log("End round");
+            console.log(this.roundNumber, this.ongoingRound, this.reviewDone);
         },
         endEvent: function () {
             if (confirm("End event?")) {

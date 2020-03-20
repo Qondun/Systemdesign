@@ -128,14 +128,12 @@
             </section>
             <br>
             <section class="menu" id="notifyMenu" v-if="roundNumber>1 && ongoingRound==false && reviewDone == false">
-                <div v-if="usersDone<users">
                     <p>Waiting for reviews</p>
                     <p>{{usersDone}}/{{users}} users done</p>
                     <button class="menuButton" id="notifyButton" v-on:click="notifyUsers">Notify users</button>
                     <button v-if="!eventDone" class="menuButton" id="skipButton" v-on:click="skipReview">Skip reviews</button>
                     <button v-if="eventDone" class="menuButton" id="endEventButton" v-on:click="endEvent">End event</button>
 
-                </div>
 
             </section>
         </main>

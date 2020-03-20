@@ -30,14 +30,23 @@
       <div id="selected_match_box" v-if="showMatch">
         <h2>{{selectedProfile.name}}</h2>
         <img id="user_img" v-bind:src="selectedProfile.image"><img>
+        
         <ul id="user_info">
           <li>
-            <input type="hidden" v-bind:value="selectedProfile.email" readonly id="email">{{selectedProfile.email}}</input>
-            <button v-on:click="copyText('#email')">Copy</button>
+            Age: {{ selectedProfile.age }}
+            </li>
+          <li>
+            Location: {{ selectedProfile.city }}
           </li>
           <li>
-            <input type="hidden" v-bind:value="selectedProfile.age" readonly id="age">{{selectedProfile.age}}</input>
-            <button v-on:click="copyText('#age')">Copy</button>
+            <span>Email: </span>
+            <input type="hidden" v-bind:value="selectedProfile.mail" readonly id="mail">{{ selectedProfile.mail }}</input>
+            <button v-on:click="copyText('#mail')">Copy</button>
+          </li>
+          <li>
+            <span>Phone: </span>
+            <input type="hidden" v-bind:value="selectedProfile.phone" readonly id="phone">{{selectedProfile.phone}}</input>
+            <button v-on:click="copyText('#phone')">Copy</button>
           </li>
         </ul>
       </div>

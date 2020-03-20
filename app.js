@@ -258,7 +258,7 @@ io.on('connection', function(socket) {
                 let pic = data.manPics[newId % data.manPics.length];
                 let name = data.manNames[newId % data.manNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age: '40', answers:  {}, shares: ['1', '2', '3', '4', '5'], 
-                                     matches: [], dates: [], previousDates: [], isMan: true, city: 'Uppsala', travel: 5, workout: 5, food: 5, mail: '', phone: '', completed: true, image: pic});
+                                     matches: [], dates: [], previousDates: [], isMan: true, city: 'Uppsala', travel: 5, workout: 5, food: 5, mail: 'test@mail.com', phone: '123', completed: true, image: pic});
                 moreMen++;
                 data.numberOfUsersReady++;
 	        data.idReady.push(newId);
@@ -271,7 +271,7 @@ io.on('connection', function(socket) {
                 let pic = data.womanPics[newId % data.womanPics.length];
                 let name = data.womanNames[newId % data.womanNames.length];
                 data.profiles.push({ name: name, id: newId.toString(), age:'30', answers: {}, shares: ['1', '2', '3', '4', '5'], 
-                                     matches: [], dates: [], previousDates: [], isMan: false, city: 'Uppsala', travel: 5, workout: 5, food: 5, mail: '', phone: '', completed: true, image: pic});
+                                     matches: [], dates: [], previousDates: [], isMan: false, city: 'Uppsala', travel: 5, workout: 5, food: 5, mail: 'test@mail.com', phone: '123', completed: true, image: pic});
                 moreMen--;
                 data.numberOfUsersReady++;
         	data.idReady.push(newId);
@@ -283,11 +283,11 @@ io.on('connection', function(socket) {
             let firstId = data.getId();
             
             data.profiles.push({ name: data.manNames[firstId % data.manNames.length], id: firstId.toString(), 
-                age:'40', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5,
+                age:'40', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, mail: 'test@mail.com', phone: '123',
                 matches: [], dates: [], previousDates: [], isMan: true, completed: true, 
 				image: data.manPics[firstId % data.manPics.length]});
             data.profiles.push({ name: data.womanNames[firstId % data.womanNames.length], id: data.getId().toString(),
-                                 age:'30', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, 
+                                 age:'30', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, mail: 'test@mail.com', phone: '123',
                 matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
 				 image: data.womanPics[firstId % data.womanPics.length]});
 	    data.numberOfUsersReady += 2;
@@ -296,11 +296,11 @@ io.on('connection', function(socket) {
                 firstId = (firstId+1) % data.womanNames.length;
 
                 data.profiles.push({ name: data.manNames[firstId % data.manNames.length], id: data.getId().toString(), 
-                    age:'40', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, 
+                    age:'40', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, mail: 'test@mail.com', phone: '123',
                     matches: [], dates: [], previousDates: [], isMan: true, completed: true, 
 				    image: data.manPics[firstId % data.manPics.length]});
                 data.profiles.push({ name: data.womanNames[firstId % data.womanNames.length], id: data.getId().toString(),
-                    age:'30', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5,
+                    age:'30', answers: {}, shares: ['1', '2', '3', '4', '5'], city: 'Uppsala', food: 5, workout: 5, travel: 5, mail: 'test@mail.com', phone: '123',
                     matches: [], dates: [], previousDates: [], isMan: false, completed: true, 
 				     image: data.womanPics[firstId % data.womanPics.length]});
 		data.numberOfUsersReady += 2;
